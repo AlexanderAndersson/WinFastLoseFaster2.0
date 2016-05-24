@@ -21,6 +21,17 @@ function CallRegisterValidationFunctions() {
     validateUsername(registerUsername.value);
     validatePassword(registerPassword.value, registerRetypePassword.value);
 
+    if(errorDiv.innerHTML == "")
+    {
+        document.getElementById("registerSubmit").disabled = false;
+
+    }
+    else
+    {
+        document.getElementById("registerSubmit").disabled = true;
+
+    }
+
 };
 
 function validateUsername(username) {

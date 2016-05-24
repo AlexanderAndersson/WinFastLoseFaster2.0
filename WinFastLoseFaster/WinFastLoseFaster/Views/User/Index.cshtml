@@ -3,6 +3,19 @@
     ViewBag.Title = "Login";
 }
 
+<style>
+    input {
+        color:white;
+    }
+    #errorMsg {
+        color:red;
+        margin:5px;
+    }
+    
+</style>
+<script type="text/javascript" href="../../Scripts/RegisterValidation.js">RegisterValidation.js</script>
+<!--<link type="text/javascript" href="../../Scripts/RegisterValidation.js" />-->
+
 <div class="form">
     <link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
     
@@ -16,37 +29,39 @@
         <div id="signup">
             <h1>Sign Up for Free</h1>
 
-            <form action="/" method="post">
+            <form action="Register" method="post">
 
                 <div class="top-row">
                     <div class="field-wrap">
                         <label>
-                            First Name<span class="req">*</span>
+                            Username<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        <input type="text" required autocomplete="off" name="inputUsername" id="registerUsername" />
                     </div>
 
                     <div class="field-wrap">
                         <label>
-                            Last Name<span class="req">*</span>
+                            Password<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        <input type="password" required autocomplete="off" name="inputPassword" id="registerPassword" />
                     </div>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Retype Password<span class="req">*</span>
+                    </label>
+                    <input type="password" required autocomplete="off" name="inputRetypePassword" id="registerRetypePassword" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Email Address<span class="req">*</span>
                     </label>
-                    <input type="email" required autocomplete="off" />
+                    <input type="email" required autocomplete="off" name="inputEmail" id="registerEmail" />
                 </div>
 
-                <div class="field-wrap">
-                    <label>
-                        Set A Password<span class="req">*</span>
-                    </label>
-                    <input type="password" required autocomplete="off" />
-                </div>
+                
 
                 <button type="submit" class="button button-block" />Get Started</button>
 
@@ -57,23 +72,23 @@
         <div id="login">
             <h1>Welcome Back!</h1>
 
-            <form action="/" method="post">
+            <form action="Login" method="post">
 
                 <div class="field-wrap">
                     <label>
-                        Email Address<span class="req">*</span>
+                        Username<span class="req">*</span>
                     </label>
-                    <input type="email" required autocomplete="off" />
+                    <input type="email" required autocomplete="off" name="inputUsername" id="loginUsername" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Password<span class="req">*</span>
                     </label>
-                    <input type="password" required autocomplete="off" />
+                    <input type="password" required autocomplete="off" name="inputPassword" id="loginPassword" />
                 </div>
 
-                <p class="forgot"><a href="#">Forgot Password?</a></p>
+                <!--<p class="forgot"><a href="#">Forgot Password?</a></p>-->
 
                 <button class="button button-block" />Log In </button>
 
@@ -81,6 +96,12 @@
 
         </div>
 
+        <div id="errorMsg">
+
+
+        </div>
+
     </div><!-- tab-content -->
 
 </div> <!-- /form -->
+

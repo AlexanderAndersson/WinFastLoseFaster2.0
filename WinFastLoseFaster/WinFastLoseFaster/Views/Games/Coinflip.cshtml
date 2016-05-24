@@ -1,0 +1,17 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
+
+@{
+    ViewBag.Title = "Coinflip";
+}
+
+<div id="divirino">
+    <button type="submit" id="knapp" class="btn-success">Join game</button>
+
+    @ViewBag.Random
+    <br />
+    @ViewBag.Winner
+
+    <br /><br />
+    Alex wins: @ViewBag.wins
+
+</div>

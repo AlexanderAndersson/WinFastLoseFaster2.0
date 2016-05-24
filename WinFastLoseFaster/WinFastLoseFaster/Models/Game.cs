@@ -17,6 +17,9 @@ namespace WinFastLoseFaster.Models
         public IList<Winner> WinnerId { get; set; }
 
         public DateTime Timestamp { get; set; }
+
+        public bool GameActive { get; set; }
+
         public GameEnum Gametype { get; set; }
         public enum GameEnum { Coinflip, Jackpot, Roulette }
 

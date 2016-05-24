@@ -17,6 +17,8 @@ namespace WinFastLoseFaster.Models
 
         public DbSet<Game> Games { get; set; }
 
+        public DbSet<Winner> Winners { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Game>().HasMany(g => g.user).WithMany(g => g.Games);

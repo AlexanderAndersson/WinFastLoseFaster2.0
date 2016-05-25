@@ -18,6 +18,8 @@ namespace WinFastLoseFaster.Controllers
             int randomGen = random.Next(101);
             ViewBag.Random = randomGen;
 
+            int wager = 50;
+
             var myUserList = from u in context.Users
                              select u;
 
@@ -32,9 +34,9 @@ namespace WinFastLoseFaster.Controllers
             context.SaveChanges();
 
 
-            List<Bet> bets = new List<Bet>() { new Bet { user = user1, game = thisGame, Wager = 50}, new Bet { user = user2, game = thisGame, Wager = 50 } };
-            List<Winner> winner1 = new List<Winner>() { new Winner { TotalAmount = (int)((bets[0].Wager + bets[1].Wager) * 0.97), WinningUser = user1, game = thisGame } };
-            List<Winner> winner2 = new List<Winner>() { new Winner { TotalAmount = (int)((bets[0].Wager + bets[1].Wager) * 0.97), WinningUser = user2, game = thisGame } };
+            List<Bet> bets = new List<Bet>() { new Bet { user = user1, game = thisGame, Wager = wager}, new Bet { user = user2, game = thisGame, Wager = wager } };
+            List<Winner> winner1 = new List<Winner>() { new Winner { TotalAmount = (int)((wager + wager) * 0.97), WinningUser = user1, game = thisGame } };
+            List<Winner> winner2 = new List<Winner>() { new Winner { TotalAmount = (int)((wager + wager) * 0.97), WinningUser = user2, game = thisGame } };
 
             context.Bets.Add(bets.First());
             context.Bets.Add(bets.Last());

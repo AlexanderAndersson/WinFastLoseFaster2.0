@@ -13,8 +13,6 @@
     }
     
 </style>
-<script type="text/javascript" href="../../Scripts/RegisterValidation.js">RegisterValidation.js</script>
-<!--<link type="text/javascript" href="../../Scripts/RegisterValidation.js" />-->
 
 <div class="form">
     <link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
@@ -61,9 +59,16 @@
                     <input type="email" required autocomplete="off" name="inputEmail" id="registerEmail" />
                 </div>
 
+                <div class="field-wrap">
+                    <label>
+                        Over 18<span class="req">*</span>
+                    </label>
+                    <input type="checkbox" required autocomplete="off" name="inputCheckbox" id="registerCheckbox" />
+                </div>
+
                 
 
-                <button type="submit" class="button button-block" />Get Started</button>
+                <button type="submit" class="button button-block" id="registerSubmit" />Get Started</button>
 
             </form>
 

@@ -17,6 +17,8 @@ namespace WinFastLoseFaster
 
         protected void Session_Start()
         {
+            Session["isLoggedIn"] = false;
+            Session["username"] = "";
 
 
         }

@@ -193,3 +193,8 @@ textarea {
   margin-top:-20px;
   text-align:right;
 }
+
+#signup {
+    height:1500px;
+    max-height: 2000px;
+}

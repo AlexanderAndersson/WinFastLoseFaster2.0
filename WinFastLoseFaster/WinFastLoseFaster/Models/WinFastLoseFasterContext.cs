@@ -21,9 +21,25 @@ namespace WinFastLoseFaster.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Game>().HasMany(g => g.user).WithMany(g => g.Games);
-            modelBuilder.Entity<Game>().HasMany(g => g.WinnerId);
-            modelBuilder.Entity<Game>().HasMany(u => u.Userbet);
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.users)
+                .WithMany(u => u.Games);
+
+            //modelBuilder.Entity<Game>().HasMany(g => g.Winners);
+
+            modelBuilder.Entity<Bet>()
+                .HasRequired(b => b.game)
+                .WithMany(g => g.Userbets);
+
+            modelBuilder.Entity<Winner>()
+                .HasRequired(w => w.game)
+                .WithMany(g => g.Winners);
+
+            modelBuilder.Entity<Bet>()
+                .HasRequired(b => b.user)
+                .WithMany(u => u.bets);
+
+
         }
     }
 }

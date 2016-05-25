@@ -10,11 +10,11 @@ namespace WinFastLoseFaster.Models
     {
         public int Id { get; set; }
 
-        public virtual IList<User> user {get; set;}
+        public virtual IList<User> users {get; set;}
 
-        public IList<Bet> Userbet { get; set; }
+        public virtual IList<Bet> Userbets { get; set; }
 
-        public IList<Winner> WinnerId { get; set; }
+        public virtual IList<Winner> Winners { get; set; }
 
         public DateTime Timestamp { get; set; }
 

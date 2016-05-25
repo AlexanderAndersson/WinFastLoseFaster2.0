@@ -12,8 +12,8 @@ namespace WinFastLoseFaster.Models
         [Key]
         public int MessageId { get; set; }
 
-        [ForeignKey("user")]
-        public int UserId { get; set; }
+        //[ForeignKey("user")]
+        //public int UserId { get; set; }
 
         [StringLength(150)]
         public string Message { get; set; }

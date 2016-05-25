@@ -21,12 +21,14 @@ namespace WinFastLoseFaster.Models
 
         public int Withdrawal { get; set; }
 
-        public int Amount { get; set; }
+        public int Credits { get; set; }
 
         [Required]
         [RegularExpression(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Must be a correct e-mail")]
         public string Mail { get; set; }
 
         public string Picture { get; set; }
+
+        public virtual IList<Bet> bets { get; set; }
     }
 }

@@ -11,8 +11,10 @@
     <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
     
-    
-
+    <form method="post" action="CreateCoinflip">
+        <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
+        <input type="submit" value="Skapa spel" id="knapp">
+    </form>
         
     @foreach (var coinflip in Model)
     {
@@ -37,8 +39,5 @@
 
 
 
-    <form method="post" action="CreateCoinflip">
-        <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
-        <input type="submit" value="Skapa spel" id="knapp">
-    </form>
+    
 </div>

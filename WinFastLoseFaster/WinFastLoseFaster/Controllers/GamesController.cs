@@ -64,67 +64,8 @@ namespace WinFastLoseFaster.Controllers
 
             context.SaveChanges();
             */
-            return View();
-        }
-
-        public ActionResult CreateCoinflip()
-        {
-            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
-
-            string strWager = Request["TextSum"];
-            int wager = 0;
-
-            if (!int.TryParse(strWager, out wager))
-            {
-                return RedirectToAction("Coinflip", "Games");
-            }
-
-            var myUserList = from u in context.Users
-                             select u;
-
-            User creater = myUserList.ToList().First();
-            User joiner = myUserList.ToList().Last();
-
-            List<User> users = new List<User>() { creater, joiner };
-
-            Game newGame = new Game() { Timestamp = DateTime.Now, users = users, GameActive = true, Gametype = 0};
-
-            context.Games.Add(newGame);
-            context.SaveChanges();
-
-            return View();
-            */
 
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();
-
-            int wager = 50;
-
-            var myUserList = from u in context.Users
-                             select u;
-
-            User user1 = myUserList.ToList().First();
-            User user2 = myUserList.ToList().Last();
-
-            List<User> users = new List<User>() { user1 };
-
-
-            Game thisGame = new Game() { users = users, Timestamp = DateTime.Now, GameActive = true, Gametype = Game.GameEnum.Coinflip };
-
-            
-
-            context.Games.Add(thisGame);
-            context.SaveChanges();
-
-            List<Bet> bets = new List<Bet>() { new Bet { user = user1, game = thisGame, Wager = wager } };
-
-            context.Bets.Add(bets.First());
-
-            user1.Credits -= bets.First().Wager;
-
-            thisGame = new Game() { Timestamp = DateTime.Now, users = users, GameActive = true, Userbets = bets, Gametype = Game.GameEnum.Coinflip };
-
-            context.SaveChanges();
-
 
             var myList = from cg in context.Games
                          where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
@@ -133,10 +74,47 @@ namespace WinFastLoseFaster.Controllers
 
 
             return View(myList.ToList());
+        }
 
-            Bet CreaterBet = new Bet() { user = creater, game = newGame, Wager = wager };
+        public ActionResult CreateCoinflip()
+        {
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
 
-            context.Bets.Add(CreaterBet);
+            string strWager = Request["TextSum"];
+            int wager = 0;
+            //string createrName = (string)Session["username"];
+
+
+            if (!int.TryParse(strWager, out wager))
+            {
+                return RedirectToAction("Coinflip", "Games");
+            }
+
+            //var myUserList = from u in context.Users
+            //                 where u.Username == createrName
+            //                 select u;
+
+            var myUserList = from u in context.Users
+                             select u;
+
+            User creater = myUserList.First();
+
+            List<User> user = new List<User>() { creater };
+
+            Game newGame = new Game() { Timestamp = DateTime.Now, Gametype = Game.GameEnum.Coinflip, GameActive = true, users = user };
+
+            context.Games.Add(newGame);
+            context.SaveChanges();
+         
+            List<Bet> bets = new List<Bet>() { new Bet { user = creater, game = newGame, Wager = wager } };
+
+            context.Bets.Add(bets.First());
+
+            creater.Credits -= bets.First().Wager;
+
+            newGame.Userbets = bets;
+            
+            context.SaveChanges();
 
             return RedirectToAction("Coinflip", "Games");
         }

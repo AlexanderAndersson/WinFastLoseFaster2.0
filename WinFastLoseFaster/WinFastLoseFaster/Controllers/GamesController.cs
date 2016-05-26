@@ -13,7 +13,7 @@ namespace WinFastLoseFaster.Controllers
         // GET: Games
         public ActionResult Coinflip()
         {
-            Random random = new Random();
+           /* Random random = new Random();
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();           
             int randomGen = random.Next(101);
             ViewBag.Random = randomGen;
@@ -62,8 +62,40 @@ namespace WinFastLoseFaster.Controllers
             ViewBag.winns = user1.Games.Count();
 
             context.SaveChanges();
-
+            */
             return View();
+        }
+
+        public ActionResult CreateCoinflip()
+        {
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            string strWager = Request["TextSum"];
+            int wager = 0;
+
+            if (!int.TryParse(strWager, out wager))
+            {
+                return RedirectToAction("Coinflip", "Games");
+            }
+
+            var myUserList = from u in context.Users
+                             select u;
+
+            User creater = myUserList.ToList().First();
+            User joiner = myUserList.ToList().Last();
+
+            List<User> users = new List<User>() { creater, joiner };
+
+            Game newGame = new Game() { Timestamp = DateTime.Now, users = users, GameActive = true, Gametype = 0};
+
+            context.Games.Add(newGame);
+            context.SaveChanges();
+
+            Bet CreaterBet = new Bet() { user = creater, game = newGame, Wager = wager };
+
+            context.Bets.Add(CreaterBet);
+
+            return RedirectToAction("Coinflip", "Games");
         }
     }
 }

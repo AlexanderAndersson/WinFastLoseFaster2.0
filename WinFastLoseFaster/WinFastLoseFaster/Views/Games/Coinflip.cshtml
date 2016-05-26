@@ -1,14 +1,11 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
-
 @{
     ViewBag.Title = "Coinflip";
 }
 
 <div id="divirino">
-    <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
-
-    Random nummer: @ViewBag.Random
-    <br />
-    Vinnaren är: @ViewBag.Winner
-
+    <form method="post" action="CreateCoinflip">
+        <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
+        <input type="submit" value="Skapa spel" id="knapp">
+    </form>
 </div>

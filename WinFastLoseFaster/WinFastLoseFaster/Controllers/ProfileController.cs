@@ -27,9 +27,12 @@ namespace WinFastLoseFaster.Controllers
 
                 User user = myUserList.First();
 
-                var myWinnerList = from u in context.Games
-                                   where u.Winners == user
-                                   select u;
+                var myWins = from g in context.Winners
+                             where g.WinningUser.Id == user.Id
+                             select g;
+
+                
+
 
 
                 List<Game> myGames = new List<Game>();
@@ -41,20 +44,16 @@ namespace WinFastLoseFaster.Controllers
                 }
 
 
-                var gamesWon = from g in context.Winners
-                               where g.WinningUser.Id == user.Id
-                               select g;
-
-
                 ViewBag.Username = user.Username;
-                ViewBag.Bets = user.bets;
+                ViewBag.Bets = user.bets.Count();
                 ViewBag.Deposit = user.Deposit;
-                ViewBag.Wins = gamesWon.Count();
-                //ViewBag.KD = myWinnerList.Count() / user.Games.Count();
+                ViewBag.Wins = myWins.Count(); ;
+                ViewBag.WLR = (double)myWins.Count() / user.Games.Count;
+                ViewBag.Picture = user.Picture;
             }
             else
             {
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("/Index", "User");
             }
             return View();
 

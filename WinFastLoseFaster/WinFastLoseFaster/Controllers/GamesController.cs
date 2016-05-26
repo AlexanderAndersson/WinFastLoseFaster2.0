@@ -87,7 +87,7 @@ namespace WinFastLoseFaster.Controllers
 
             if (!int.TryParse(strWager, out wager))
             {
-                return RedirectToAction("Coinflip", "Games");
+                return RedirectToAction("/Coinflip", "Games");
             }
 
             var myUserList = from u in context.Users
@@ -98,6 +98,12 @@ namespace WinFastLoseFaster.Controllers
             //                 select u;
 
             User creater = myUserList.First();
+
+            if (creater.Credits < wager)
+            {
+                return RedirectToAction("/Coinflip", "Games");
+
+            }//User doesn't have enough Credits to create the game
 
             List<User> user = new List<User>() { creater };
 
@@ -111,12 +117,108 @@ namespace WinFastLoseFaster.Controllers
             context.Bets.Add(bets.First());
 
             creater.Credits -= bets.First().Wager;
+            Session["credits"] = creater.Credits;
 
             newGame.Userbets = bets;
             
             context.SaveChanges();
 
             return RedirectToAction("Coinflip", "Games");
+        }
+
+        public ActionResult JoinCoinflip()
+        {
+
+            string strCoinflipGameId = Request["coinflipGameId"];
+            string username = (string)Session["username"];
+
+            Random rnd = new Random();
+
+            int coinflipGameId = 0;
+
+            if (!int.TryParse(strCoinflipGameId, out coinflipGameId))
+            {
+                return RedirectToAction("Coinflip", "Games");
+
+            }//Check if coinflipGameId is int
+
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+
+            var gameJoinList = from g in context.Games
+                               where g.Id == coinflipGameId
+                               select g;
+
+
+            Game gameToJoin = gameJoinList.FirstOrDefault();
+
+
+            var userJoinList = from u in context.Users
+                               where u.Username == username
+                               select u;
+
+
+
+            User creater = gameToJoin.users.FirstOrDefault();
+            User joiner = userJoinList.FirstOrDefault();
+
+            if (creater.Username == joiner.Username)
+            {
+                return RedirectToAction("Coinflip", "Games");
+
+            }//Användaren försöker spela mot sig själv, som man inte får.
+
+            List<User> usersToPlay = new List<User>() { creater, joiner };
+
+            List<Bet> bets = gameToJoin.Userbets.ToList();
+
+            int wager = bets.FirstOrDefault().Wager;
+
+            if (joiner.Credits < wager)
+            {
+                return RedirectToAction("/Index", "Home");
+
+            }//joining player doesn't have enough credits to join the coinflip and gets redirected back to home/Index
+
+            Bet newBet = new Bet() { game = gameToJoin, user = joiner, Wager = wager };
+
+            bets.Add(newBet);
+
+            joiner.Credits -= wager;
+
+            int totalAmount = (int)((bets.First().Wager + bets.Last().Wager) * 0.97);
+
+            List<Winner> winner = new List<Winner>();
+            winner.Add(new Winner { game = gameToJoin, TotalAmount = totalAmount });
+
+            if (rnd.Next(101) < 50)
+            {
+                winner.FirstOrDefault().WinningUser = creater;
+                creater.Credits += totalAmount;
+
+            }
+            else
+            {
+                winner.FirstOrDefault().WinningUser = joiner;
+                joiner.Credits += totalAmount;
+
+            }
+
+            gameToJoin.Timestamp = DateTime.Now;
+            gameToJoin.GameActive = false;
+            gameToJoin.Winners = winner;
+            gameToJoin.users = usersToPlay;
+
+            Session["credits"] = joiner.Credits;
+
+            context.Winners.Add(winner.FirstOrDefault());
+
+            context.SaveChanges();
+
+
+
+            return RedirectToAction("/Coinflip", "Games");
         }
 
 

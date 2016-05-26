@@ -19,6 +19,7 @@ namespace WinFastLoseFaster
         {
             Session["isLoggedIn"] = false;
             Session["username"] = "";
+            Session["credits"] = 0;
 
 
         }

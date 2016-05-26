@@ -11,14 +11,28 @@
     <h5>Awesome coinflip game where you can coinflip a fucking coin with another m8 of yours or an enemy mohhahaha</h5>
 </div>
 <div class="container">
-    <div class="row" id="CreateGame">
-        <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
-        <form method="post" action="CreateCoinflip">
-            <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
-            <input class="btn-danger" type="submit" value="Skapa spel" id="knapp">
-        </form>
-    </div>
+    @if ((bool)Session["isLoggedIn"] == true)
+    {
+
+        <div class="row" id="CreateGame">
+            <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
+
+
+            <form method="post" action="CreateCoinflip">
+                <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
+                <input class="btn-danger" type="submit" value="Skapa spel" id="knapp">
+            </form>
+
+        </div>
+
+    }
+    else
+    {
+        <span style="color:red;">Login to create Coinflip game</span>
+
+    }
+
 </div>
 <br>
     @foreach (var coinflip in Model)
@@ -29,11 +43,23 @@
             Wager: @Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)
             @*@Html.DisplayFor(coinflipGame => coinflip.Timestamp)*@
 
-            <form action="JoinCoinflip" method="post">
-                <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
-                <input  class="btn-success" type="submit" value="Join Game" />
+            @if ((bool)Session["isLoggedIn"] == true)
+            {
 
-            </form>
+                <form action="JoinCoinflip" method="post">
+                    <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
+                    <input class="btn-success" type="submit" value="Join Game" />
+
+                </form>
+
+            }
+            else
+            {
+                <span style="color:red;">Login to join game</span>
+
+            }
+
+
         </div>
         <br>
     }

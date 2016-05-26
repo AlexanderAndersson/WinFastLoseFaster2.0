@@ -7,18 +7,18 @@
     ViewBag.Title = "Coinflip";
 }
 
-<div id="divirino">
-    <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
+<div class="container">
+    <div class="row" id="divirino">
+        <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
-    
-    <form method="post" action="CreateCoinflip">
-        <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
-        <input type="submit" value="Skapa spel" id="knapp">
-    </form>
-        
+        <form method="post" action="CreateCoinflip">
+            <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
+            <input class="btn-danger" type="submit" value="Skapa spel" id="knapp">
+        </form>
+    </div>
+</div>
     @foreach (var coinflip in Model)
     {
-
         <div class="coinflipGame">
 
             @Html.DisplayFor(coinflipGame => coinflip.users[0].Username)
@@ -26,18 +26,13 @@
             @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
 
             <form action="JoinCoinflip" method="post">
-
                 <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
-                <input type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipJoinButton" value="Join Game" />
-
+                <input class="btn-success" type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipJoinButton" value="Join Game" />
             </form>
-
-        </div>    
-
-
+        </div>
     }
 
 
 
     
-</div>
+

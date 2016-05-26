@@ -2,13 +2,12 @@
 }
 
 .container {
-    border: 2px solid orange;
+    /*border: 2px solid orange;*/
 }
 
-#divirino {
-    width: 200px;
-    height: 150px;
-    margin-top: 100px;
+#CreateGame {
+    width: 104px;
+    margin: 0px auto;
     border: 2px solid orange;
     background-color: lightblue;
 }
@@ -22,4 +21,18 @@
     width: 100px;
     height: 40px;
     background-color: white;
+}
+
+.coinflipGame {
+    border: 1px solid lightblue;
+    margin: 0px auto;
+    width: 230px;
+}
+
+#title {
+    margin: 0px auto;
+}
+
+#title h2, h5 {
+    text-align: center;
 }

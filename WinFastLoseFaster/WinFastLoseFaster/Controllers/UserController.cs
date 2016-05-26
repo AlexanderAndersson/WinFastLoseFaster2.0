@@ -20,6 +20,7 @@ namespace WinFastLoseFaster.Controllers
 
             Session["isLoggedIn"] = false;
             Session["Username"] = "";
+            Session["credits"] = 0;
 
             return RedirectToAction("Index", "Home");
         }
@@ -33,7 +34,7 @@ namespace WinFastLoseFaster.Controllers
             string password = Request["inputPassword"];
 
             var userList = from u in context.Users
-                           where u.Username == username
+                           where u.Username == username.Trim()
                            select u;
 
 
@@ -43,6 +44,7 @@ namespace WinFastLoseFaster.Controllers
                 {
                     Session["isLoggedIn"] = true;
                     Session["username"] = username;
+                    Session["credits"] = userList.First().Credits;
 
                     return RedirectToAction("Index", "Home");
 
@@ -57,7 +59,7 @@ namespace WinFastLoseFaster.Controllers
 
 
 
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("/Index", "User");
         }
 
         public ActionResult Register()
@@ -125,7 +127,8 @@ namespace WinFastLoseFaster.Controllers
                 context.SaveChanges();
 
                 Session["isLoggedIn"] = true;
-                Session["username"] = username;
+                Session["username"] = username.Trim();
+                Session["credits"] = userToAdd.Credits;
   
 
                 return RedirectToAction("Index", "Home");

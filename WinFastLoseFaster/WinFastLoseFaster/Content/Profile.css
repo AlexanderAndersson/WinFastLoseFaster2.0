@@ -1,0 +1,44 @@
+﻿body {
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 1px solid orange;
+    display: inline-block;
+}
+
+/*#deposit {
+    display: inline-block;
+    border: 10px solid orange;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    padding-top: 30px;
+    border-radius: 5px;
+}
+
+#username {
+    display: inline-block;
+}
+
+#Win {
+    display: inline-block;
+    border: 10px solid orange;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    padding-top: 30px;
+    border-radius: 5px;
+}*/
+
+.bigStats div {
+    display: inline-block;
+    border: 10px solid orange;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    padding-top: 30px;
+    border-radius: 5px;
+}

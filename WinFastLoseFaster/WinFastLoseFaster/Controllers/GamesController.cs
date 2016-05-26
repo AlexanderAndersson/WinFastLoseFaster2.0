@@ -69,7 +69,7 @@ namespace WinFastLoseFaster.Controllers
 
             var myList = from cg in context.Games
                          where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
-                         orderby cg.Userbets.FirstOrDefault().Wager
+                         orderby cg.Userbets.FirstOrDefault().Wager descending
                          select cg;
 
 
@@ -82,7 +82,7 @@ namespace WinFastLoseFaster.Controllers
 
             string strWager = Request["TextSum"];
             int wager = 0;
-            //string createrName = (string)Session["username"];
+            string createrName = (string)Session["username"];
 
 
             if (!int.TryParse(strWager, out wager))
@@ -90,12 +90,12 @@ namespace WinFastLoseFaster.Controllers
                 return RedirectToAction("Coinflip", "Games");
             }
 
-            //var myUserList = from u in context.Users
-            //                 where u.Username == createrName
-            //                 select u;
-
             var myUserList = from u in context.Users
+                             where u.Username == createrName
                              select u;
+
+            //var myUserList = from u in context.Users
+            //                 select u;
 
             User creater = myUserList.First();
 

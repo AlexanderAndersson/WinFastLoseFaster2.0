@@ -119,9 +119,7 @@ namespace WinFastLoseFaster.Controllers
             if (faults == 0)
             {
 
-                username = userList.First().Username;
-
-                User userToAdd = new User() { Username = username, Password = password, Mail = email, Picture = "http://vignette3.wikia.nocookie.net/peido/images/a/a1/Fsjal_spongebob.png/revision/latest?cb=20110801205739", Credits = 1000, Deposit = 0, Withdrawal = 0 };
+                User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Picture = "http://vignette3.wikia.nocookie.net/peido/images/a/a1/Fsjal_spongebob.png/revision/latest?cb=20110801205739", Credits = 1000, Deposit = 0, Withdrawal = 0 };
 
                 context.Users.Add(userToAdd);
                 context.SaveChanges();

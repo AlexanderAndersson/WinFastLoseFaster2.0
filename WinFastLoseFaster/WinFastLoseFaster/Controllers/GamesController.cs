@@ -13,6 +13,7 @@ namespace WinFastLoseFaster.Controllers
         // GET: Games
         public ActionResult Coinflip()
         {
+            /*
             Random random = new Random();
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();           
             int randomGen = random.Next(101);
@@ -64,6 +65,49 @@ namespace WinFastLoseFaster.Controllers
             context.SaveChanges();
 
             return View();
+            */
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            int wager = 50;
+
+            var myUserList = from u in context.Users
+                             select u;
+
+            User user1 = myUserList.ToList().First();
+            User user2 = myUserList.ToList().Last();
+
+            List<User> users = new List<User>() { user1 };
+
+
+            Game thisGame = new Game() { users = users, Timestamp = DateTime.Now, GameActive = true, Gametype = Game.GameEnum.Coinflip };
+
+            
+
+            context.Games.Add(thisGame);
+            context.SaveChanges();
+
+            List<Bet> bets = new List<Bet>() { new Bet { user = user1, game = thisGame, Wager = wager } };
+
+            context.Bets.Add(bets.First());
+
+            user1.Credits -= bets.First().Wager;
+
+            thisGame = new Game() { Timestamp = DateTime.Now, users = users, GameActive = true, Userbets = bets, Gametype = Game.GameEnum.Coinflip };
+
+            context.SaveChanges();
+
+
+            var myList = from cg in context.Games
+                         where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
+                         orderby cg.Userbets.FirstOrDefault().Wager
+                         select cg;
+
+
+            return View(myList.ToList());
+
         }
+
+
     }
 }

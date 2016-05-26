@@ -1,4 +1,8 @@
-﻿<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
+﻿@model IEnumerable<WinFastLoseFaster.Models.Game>
+ 
+@using WinFastLoseFaster.Models;
+<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
+
 
 @{
     ViewBag.Title = "Coinflip";
@@ -7,8 +11,42 @@
 <div id="divirino">
     <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
-    Random nummer: @ViewBag.Random
-    <br />
-    Vinnaren är: @ViewBag.Winner
+    
+    <table border="5px">
+
+        <tr>
+            <th>Created By</th>
+            <th>Wager</th>
+            <th>Time Created</th>
+        </tr>
+
+        
+        @foreach (var coinflip in Model)
+        {
+
+            <tr>
+
+
+                    <td>@Html.DisplayFor(coinflipGame => coinflip.users[0].Username)</td>
+                    <td>@Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)</td>
+                    <td>
+                        @*@Html.DisplayFor(coinflipGame => ((DateTime)coinflip.Timestamp).ToShortDateString())
+                        <br />
+                        @Html.DisplayFor(coinflipGame => ((DateTime)coinflip.Timestamp).ToShortTimeString())*@
+                        @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
+                    </td>
+                    @*<td><input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" /></td>
+                    <td><input type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" /></td>*@
+
+                <td>@Html.DisplayFor(coinflipGame => coinflip.Id)</td>
+                
+
+            </tr>
+
+        }
+
+
+    </table>
+
 
 </div>

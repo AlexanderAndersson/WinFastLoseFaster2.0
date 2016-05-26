@@ -12,41 +12,30 @@
     <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
     
-    <table border="5px">
-
-        <tr>
-            <th>Created By</th>
-            <th>Wager</th>
-            <th>Time Created</th>
-        </tr>
+    
 
         
-        @foreach (var coinflip in Model)
-        {
+    @foreach (var coinflip in Model)
+    {
 
-            <tr>
+        <div class="coinflipGame">
 
+            @Html.DisplayFor(coinflipGame => coinflip.users[0].Username)
+            @Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)
+            @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
 
-                    <td>@Html.DisplayFor(coinflipGame => coinflip.users[0].Username)</td>
-                    <td>@Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)</td>
-                    <td>
-                        @*@Html.DisplayFor(coinflipGame => ((DateTime)coinflip.Timestamp).ToShortDateString())
-                        <br />
-                        @Html.DisplayFor(coinflipGame => ((DateTime)coinflip.Timestamp).ToShortTimeString())*@
-                        @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
-                    </td>
-                    @*<td><input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" /></td>
-                    <td><input type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" /></td>*@
+            <form action="JoinCoinflip" method="post">
 
-                <td>@Html.DisplayFor(coinflipGame => coinflip.Id)</td>
-                
+                <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
+                <input type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipJoinButton" value="Join Game" />
 
-            </tr>
+            </form>
 
-        }
+        </div>    
 
 
-    </table>
+    }
+
 
 
 </div>

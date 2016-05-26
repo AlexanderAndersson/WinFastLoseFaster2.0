@@ -39,15 +39,17 @@
                 @if ((bool)Session["isLoggedIn"] == true)
                 {
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@Session["username"]<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-
-                        <li><a href="/Profile/Index">Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="~/User/Logout">Logout</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> @Session["username"] <span class="caret"></span></a>
                         
-                    </ul>
+                            <ul class="dropdown-menu" role="menu">
 
+                            <li><a href="/Profile/Index">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/User/Logout">Logout</a></li>
+                        
+                        </ul>
+
+                    </li>
                 }
                 else
                 {

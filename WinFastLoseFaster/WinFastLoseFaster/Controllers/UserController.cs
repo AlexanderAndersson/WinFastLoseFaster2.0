@@ -74,13 +74,13 @@ namespace WinFastLoseFaster.Controllers
             int faults = 0;
 
 
-            if(username.Length < 3)
+            if(username.Trim().Length < 3)
             {
                 faults++;
 
             }
 
-            if (password.Length < 6)
+            if (password.Trim().Length < 6)
             {
                 faults++;
 
@@ -98,11 +98,11 @@ namespace WinFastLoseFaster.Controllers
 
             }
 
-            if (checkbox == "false")
+            /*if (checkbox == "false")
             {
                 faults++;
 
-            }
+            }*/
 
             var userList = from u in context.Users
                            where u.Username == username
@@ -118,6 +118,8 @@ namespace WinFastLoseFaster.Controllers
 
             if (faults == 0)
             {
+
+                username = userList.First().Username;
 
                 User userToAdd = new User() { Username = username, Password = password, Mail = email, Picture = "http://vignette3.wikia.nocookie.net/peido/images/a/a1/Fsjal_spongebob.png/revision/latest?cb=20110801205739", Credits = 1000, Deposit = 0, Withdrawal = 0 };
 

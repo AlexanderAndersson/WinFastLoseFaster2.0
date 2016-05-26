@@ -181,6 +181,7 @@ namespace WinFastLoseFaster.Controllers
 
             }//joining player doesn't have enough credits to join the coinflip and gets redirected back to home/Index
 
+
             Bet newBet = new Bet() { game = gameToJoin, user = joiner, Wager = wager };
 
             bets.Add(newBet);
@@ -209,10 +210,13 @@ namespace WinFastLoseFaster.Controllers
             gameToJoin.GameActive = false;
             gameToJoin.Winners = winner;
             gameToJoin.users = usersToPlay;
+            gameToJoin.Userbets = bets;
 
             Session["credits"] = joiner.Credits;
 
             context.Winners.Add(winner.FirstOrDefault());
+
+            context.Bets.Add(newBet);
 
             context.SaveChanges();
 

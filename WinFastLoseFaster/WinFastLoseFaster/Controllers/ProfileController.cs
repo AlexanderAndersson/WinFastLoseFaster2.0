@@ -31,10 +31,25 @@ namespace WinFastLoseFaster.Controllers
                                    where u.Winners == user
                                    select u;
 
+
+                List<Game> myGames = new List<Game>();
+
+                foreach (Game game in user.Games.AsEnumerable())
+                {
+                    myGames.Add(game);
+
+                }
+
+
+                var gamesWon = from g in context.Winners
+                               where g.WinningUser.Id == user.Id
+                               select g;
+
+
                 ViewBag.Username = user.Username;
                 ViewBag.Bets = user.bets;
                 ViewBag.Deposit = user.Deposit;
-                ViewBag.Wins = myWinnerList;
+                ViewBag.Wins = gamesWon.Count();
                 //ViewBag.KD = myWinnerList.Count() / user.Games.Count();
             }
             else

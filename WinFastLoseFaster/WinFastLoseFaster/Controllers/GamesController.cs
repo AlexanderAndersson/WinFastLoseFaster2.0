@@ -13,6 +13,7 @@ namespace WinFastLoseFaster.Controllers
         // GET: Games
         public ActionResult Coinflip()
         {
+            /*
             Random random = new Random();
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();           
             int randomGen = random.Next(101);
@@ -62,8 +63,62 @@ namespace WinFastLoseFaster.Controllers
             ViewBag.winns = user1.Games.Count();
 
             context.SaveChanges();
+            */
 
-            return View();
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            var myList = from cg in context.Games
+                         where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
+                         orderby cg.Userbets.FirstOrDefault().Wager
+                         select cg;
+
+
+            return View(myList.ToList());
         }
+
+        public ActionResult CreateCoinflip()
+        {
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            string strWager = Request["TextSum"];
+            int wager = 0;
+            //string createrName = (string)Session["username"];
+
+
+            if (!int.TryParse(strWager, out wager))
+            {
+                return RedirectToAction("Coinflip", "Games");
+            }
+
+            //var myUserList = from u in context.Users
+            //                 where u.Username == createrName
+            //                 select u;
+
+            var myUserList = from u in context.Users
+                             select u;
+
+            User creater = myUserList.First();
+
+            List<User> user = new List<User>() { creater };
+
+            Game newGame = new Game() { Timestamp = DateTime.Now, Gametype = Game.GameEnum.Coinflip, GameActive = true, users = user };
+
+            context.Games.Add(newGame);
+            context.SaveChanges();
+         
+            List<Bet> bets = new List<Bet>() { new Bet { user = creater, game = newGame, Wager = wager } };
+
+            context.Bets.Add(bets.First());
+
+            creater.Credits -= bets.First().Wager;
+
+            newGame.Userbets = bets;
+            
+            context.SaveChanges();
+
+            return RedirectToAction("Coinflip", "Games");
+        }
+
+
     }
 }

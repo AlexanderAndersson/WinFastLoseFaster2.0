@@ -1,4 +1,7 @@
-﻿<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
+﻿@model IEnumerable<WinFastLoseFaster.Models.Game>
+ 
+@using WinFastLoseFaster.Models;
+<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
 
 @{
     ViewBag.Title = "Coinflip";
@@ -7,8 +10,34 @@
 <div id="divirino">
     <!--<button type="submit" id="knapp" class="btn-success">Join game</button>-->
 
-    Random nummer: @ViewBag.Random
-    <br />
-    Vinnaren är: @ViewBag.Winner
+    
+    <form method="post" action="CreateCoinflip">
+        <input type="text" placeholder="Summa" id="summa" name="TextSum"><br>
+        <input type="submit" value="Skapa spel" id="knapp">
+    </form>
+        
+    @foreach (var coinflip in Model)
+    {
 
+        <div class="coinflipGame">
+
+            @Html.DisplayFor(coinflipGame => coinflip.users[0].Username)
+            @Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)
+            @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
+
+            <form action="JoinCoinflip" method="post">
+
+                <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
+                <input type="submit" id="joinCoinflip_@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipJoinButton" value="Join Game" />
+
+            </form>
+
+        </div>    
+
+
+    }
+
+
+
+    
 </div>

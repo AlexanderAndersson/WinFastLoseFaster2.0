@@ -10,7 +10,16 @@
 .navbar-toggle {
     z-index:3;
 }
-.dropdown{
-    display:block;
-    color:white;
+.dropdown {
+    display: block;
+    color: aqua;
+    
+}
+
+.navbar-nav li {
+   color:rebeccapurple;
+}
+
+.navbar-nav li:hover {
+    background-color:fuchsia;
 }

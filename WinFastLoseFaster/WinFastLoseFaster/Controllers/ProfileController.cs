@@ -31,11 +31,10 @@ namespace WinFastLoseFaster.Controllers
                              where g.WinningUser.Id == user.Id
                              select g;
 
-                
 
 
 
-                List<Game> myGames = new List<Game>();
+                List < Game > myGames = new List<Game>();
 
                 foreach (Game game in user.Games.AsEnumerable())
                 {

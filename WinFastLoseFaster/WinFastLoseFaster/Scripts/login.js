@@ -1,4 +1,16 @@
-﻿$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+﻿$(document).ready(function () {
+    $("#login").addClass('active');
+    $("#signup").removeClass('active');
+
+    target = $(this).attr('href');
+
+    $('.tab-content > div').not("#login").hide();
+
+    $(target).fadeIn(600);
+
+});
+
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
     var $this = $(this),
         label = $this.prev('label');

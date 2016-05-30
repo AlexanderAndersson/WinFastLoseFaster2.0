@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WinFastLoseFaster.Models;
 
 namespace WinFastLoseFaster.Controllers
 {
@@ -11,6 +12,10 @@ namespace WinFastLoseFaster.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            int count = context.Users.Count();
+
             return View();
         }
     }

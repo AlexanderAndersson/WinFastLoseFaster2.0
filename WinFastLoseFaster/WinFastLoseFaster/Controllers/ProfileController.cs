@@ -27,11 +27,31 @@ namespace WinFastLoseFaster.Controllers
 
                 User user = myUserList.First();
 
-                var myWins = from g in context.Winners
+                var numberOfWins = from g in context.Winners
                              where g.WinningUser.Id == user.Id
                              select g;
 
+                var amountWon = from a in context.Winners
+                                where a.WinningUser.Username == loggedInUser
+                                select a.TotalAmount;
 
+
+                var betAmount = from b in context.Bets
+                                where b.user.Username == loggedInUser
+                                select b.Wager;
+
+                int bets = 0;
+                int won = 0;
+
+                foreach (var bet in betAmount)
+                {
+                    bets += bet;
+                }
+
+                foreach (var wins in amountWon)
+                {
+                    won += wins;
+                }
 
 
                 List < Game > myGames = new List<Game>();
@@ -39,16 +59,16 @@ namespace WinFastLoseFaster.Controllers
                 foreach (Game game in user.Games.AsEnumerable())
                 {
                     myGames.Add(game);
-
                 }
-
 
                 ViewBag.Username = user.Username;
                 ViewBag.Bets = user.bets.Count();
                 ViewBag.Deposit = user.Deposit;
-                ViewBag.Wins = myWins.Count(); ;
-                ViewBag.WLR = (double)myWins.Count() / user.Games.Count;
+                ViewBag.Wins = numberOfWins.Count(); ;
+                ViewBag.WLR = (double)numberOfWins.Count() / user.Games.Count;
                 ViewBag.Picture = user.Picture;
+                ViewBag.Profit = won - bets;
+                ViewBag.Credits = user.Credits;
             }
             else
             {

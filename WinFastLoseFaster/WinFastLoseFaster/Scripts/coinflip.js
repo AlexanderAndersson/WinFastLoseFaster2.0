@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+
+
     $('#coin').on('click', function () {
 
         $('#coin').removeClass();

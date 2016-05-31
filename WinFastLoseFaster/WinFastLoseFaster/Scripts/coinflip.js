@@ -1,6 +1,10 @@
 ﻿$(document).ready(function () {
 
+    $(".btn-success .coinflipJoinGame").on("click", function () {
 
+
+
+    });
 
     $('#coin').on('click', function () {
 
@@ -33,3 +37,14 @@ function getSpin() {
     return spin;
 }
 
+
+
+function getGameList()
+{
+
+    $.ajax({
+        url "/Games/ListCoinflipGames",
+
+    })
+        
+}

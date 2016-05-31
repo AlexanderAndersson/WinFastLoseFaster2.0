@@ -226,16 +226,48 @@ namespace WinFastLoseFaster.Controllers
             //return Json(new { Count = count },
             //    JsonRequestBehavior.AllowGet);
 
-            //WinFastLoseFasterContext context2 = new WinFastLoseFasterContext();
+
+            string createrUsername = creater.Username;
+            string createrProfilePicture = creater.Picture;
 
 
+            string joinerUsername = joiner.Username;
+            string joinerProfilePicture = joiner.Picture;
 
-            //return Json(new object { Count = })
+
+            return Json(new { createrUsername = createrUsername, createrProfilePicture = createrProfilePicture, joinerUsername = joinerUsername, joinerProfilePicture = joinerProfilePicture },
+                JsonRequestBehavior.AllowGet);
 
 
             //return RedirectToAction("/Coinflip", "Games");
-            return View();
+            //return View();
         }
+
+
+        public ActionResult ListCoinflipGames()
+        {
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            var myList = from cg in context.Games
+                         where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
+                         orderby cg.Userbets.FirstOrDefault().Wager descending
+                         select cg;
+
+
+            //ZooContext context = new ZooContext();
+            //int count = context.Djur.Count();
+            //return Json(new { Count = count },
+            //    JsonRequestBehavior.AllowGet);
+
+            return Json(new { activeCoinflipGames = myList.ToList() },
+                JsonRequestBehavior.AllowGet);
+
+
+            return View(myList.ToList());
+
+        }
+
 
 
     }

@@ -22,18 +22,18 @@ img {
     width: 180px;
     height: 180px;
     text-align: center;
-    align-content: center;
     border-radius: 5px;
     padding-top: 25px;
     margin-top: 30px;
     margin-right: 10px;
-    /*box-shadow: 5px 5px 5px lightseagreen;*/
 }
 
 #profilHeader {
     display: inline-block;
-    /*border: 1px solid pink;*/
+    border: 1px solid pink;
     position: fixed;
+    padding-bottom: 20px;
+    /*width: 1140px;*/  
     /*background-color: #333333;*/
 }
 
@@ -43,5 +43,19 @@ img {
 
 .Stats {
     height: 2000px;
-    border: 2px solid orange
+    border: 2px solid orange;
+    margin-top: 284px;
+       
+}
+
+.Flikar {
+    height: 50px;
+    border: 2px solid lime;
+    margin-top: 235px;
+    position: fixed;
+}
+
+#dix4hire {
+    border: 5px solid blue;
+    width: 100%;
 }

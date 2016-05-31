@@ -1,45 +1,58 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+@model IEnumerable<WinFastLoseFaster.Models.Game>
+@using WinFastLoseFaster.Models;
 @{
     ViewBag.Title = "Profil-Sida";
 }
 
 
-<div id="profilHeader">
-    <img src="@ViewBag.Picture" />
+<div id="dix4hire">
+    <div id="profilHeader">
+        <img src="@ViewBag.Picture" />
 
-    <div id="username">
-        <h2>@ViewBag.Username</h2>
+        <div id="username">
+            <h2>@ViewBag.Username</h2>
+        </div>
+
+        <div class="headStats">
+            <h2>Deposit</h2>
+            <h3>$@ViewBag.Deposit</h3>
+        </div>
+
+        <div class="headStats">
+            <h2>Wins</h2>
+            <h3>@ViewBag.Wins</h3>
+        </div>
+
+        <div class="headStats">
+            @if (ViewBag.Profit > 0)
+            {
+                <h2>Profit</h2>
+                <h3><span style="color: green">@ViewBag.Profit</span></h3>
+            }
+            else if (ViewBag.Profit < 0)
+            {
+                <h2>Profit</h2>
+                <h3><span style="color: red">@ViewBag.Profit</span></h3>
+            }
+            else
+            {
+                <h2>Profit</h2>
+                <h3>@ViewBag.Profit</h3>
+            }
+        </div>
+        <div class="headStats">
+            <h2>Credits</h2>
+            <h3>@ViewBag.Credits</h3>
+        </div>
     </div>
 
-    <div class="headStats">
-        <h2>Deposit</h2>
-        <h3>$@ViewBag.Deposit</h3>
+    <div class="Flikar">
+        <div>Matches</div>
     </div>
 
-    <div class="headStats">
-        <h2>Wins</h2>
-        <h3>@ViewBag.Wins</h3>
-    </div>
-
-    <div class="headStats">
-        @if (ViewBag.Profit > 0)
-        {
-            <h2>Profit</h2>
-            <h3><span style="color: green">@ViewBag.Profit</span></h3>
-        }
-        else if (ViewBag.Profit < 0)
-        {
-            <h2>Profit</h2>
-            <h3><span style="color: red">@ViewBag.Profit</span></h3>
-        }
-        else
-        {
-            <h2>Profit</h2>
-            <h3>@ViewBag.Profit</h3>
-        }
-    </div>
-    <div class="headStats">
-        <h2>Credits</h2>
-        <h3>@ViewBag.Credits</h3>
+    <div class="Stats">
+        <div>
+        </div>
     </div>
 </div>

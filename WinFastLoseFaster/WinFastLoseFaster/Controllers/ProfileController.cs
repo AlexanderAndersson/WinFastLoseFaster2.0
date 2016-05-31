@@ -54,7 +54,7 @@ namespace WinFastLoseFaster.Controllers
                 }
 
 
-                List < Game > myGames = new List<Game>();
+                List <Game> myGames = new List<Game>();
 
                 foreach (Game game in user.Games.AsEnumerable())
                 {

@@ -221,8 +221,20 @@ namespace WinFastLoseFaster.Controllers
             context.SaveChanges();
 
 
+            //ZooContext context = new ZooContext();
+            //int count = context.Djur.Count();
+            //return Json(new { Count = count },
+            //    JsonRequestBehavior.AllowGet);
 
-            return RedirectToAction("/Coinflip", "Games");
+            //WinFastLoseFasterContext context2 = new WinFastLoseFasterContext();
+
+
+
+            //return Json(new object { Count = })
+
+
+            //return RedirectToAction("/Coinflip", "Games");
+            return View();
         }
 
 

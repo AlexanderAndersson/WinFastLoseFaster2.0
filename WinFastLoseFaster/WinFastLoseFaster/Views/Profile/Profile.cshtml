@@ -85,9 +85,24 @@
 
                     @foreach (Winner winner in game.Winners)
                     {
+
                         <h4>@winner.WinningUser.Username</h4>
                         <h4>@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+
+                        foreach(var player in game.users)
+                        {
+                            if (player != winner.WinningUser)
+                            {
+                                <h4>@player.Username</h4>
+
+                            }
+
+                        }
+
                     }
+
+                    
+
                     <h4>@game.Timestamp.ToShortDateString()</h4>
                     <h4>@game.Timestamp.ToShortTimeString()</h4>
 

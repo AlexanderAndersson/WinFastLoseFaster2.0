@@ -227,19 +227,19 @@ namespace WinFastLoseFaster.Controllers
             //    JsonRequestBehavior.AllowGet);
 
 
-            string createrUsername = creater.Username;
-            string createrProfilePicture = creater.Picture;
+            //string createrUsername = creater.Username;
+            //string createrProfilePicture = creater.Picture;
 
 
-            string joinerUsername = joiner.Username;
-            string joinerProfilePicture = joiner.Picture;
+            //string joinerUsername = joiner.Username;
+            //string joinerProfilePicture = joiner.Picture;
 
 
-            return Json(new { createrUsername = createrUsername, createrProfilePicture = createrProfilePicture, joinerUsername = joinerUsername, joinerProfilePicture = joinerProfilePicture },
-                JsonRequestBehavior.AllowGet);
+            //return Json(new { createrUsername = createrUsername, createrProfilePicture = createrProfilePicture, joinerUsername = joinerUsername, joinerProfilePicture = joinerProfilePicture },
+            //    JsonRequestBehavior.AllowGet);
 
 
-            //return RedirectToAction("/Coinflip", "Games");
+            return RedirectToAction("/Coinflip", "Games");
             //return View();
         }
 

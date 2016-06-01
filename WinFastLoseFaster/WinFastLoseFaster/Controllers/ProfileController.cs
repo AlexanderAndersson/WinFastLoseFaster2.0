@@ -69,6 +69,8 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Picture = user.Picture;
                 ViewBag.Profit = won - bets;
                 ViewBag.Credits = user.Credits;
+                ViewBag.myGames = user.Games.OrderByDescending(g => g.Timestamp);
+                ViewBag.currentUser = user;
             }
             else
             {

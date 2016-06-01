@@ -1,10 +1,9 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
-@model IEnumerable<WinFastLoseFaster.Models.Game>
-@using WinFastLoseFaster.Models;
 @{
     ViewBag.Title = "Profil-Sida";
 }
-
+@model IEnumerable<WinFastLoseFaster.Models.Game>
+@using WinFastLoseFaster.Models;
 
 <div id="dix4hire">
     <div id="profilHeader">
@@ -53,6 +52,51 @@
 
     <div class="Stats">
         <div>
+            
+            @foreach (Game game in ViewBag.myGames)
+            {
+                
+                <div class="game" style="display:inline-block; width:100%;">
+                    @if (game.GameActive == true)
+                    {
+                    <h4>Active</h4>
+                    }
+                    else
+                    {
+
+                        foreach (Winner winner in game.Winners)
+                        {
+                            if (winner.WinningUser == ViewBag.currentUser)
+                            {
+                                <h4 style="color:green;">Won</h4>
+                            }
+                            else
+                            {
+                                <h4 style="color:red;">Lost</h4>
+                            }
+                        }
+
+                    }
+                    
+
+                    <h4>@game.Userbets.FirstOrDefault().Wager</h4>
+
+                    @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
+
+                    @foreach (Winner winner in game.Winners)
+                    {
+                        <h4>@winner.WinningUser.Username</h4>
+                        <h4>@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+                    }
+                    <h4>@game.Timestamp.ToShortDateString()</h4>
+                    <h4>@game.Timestamp.ToShortTimeString()</h4>
+
+
+                    <h4>@game.Gametype</h4>
+
+                </div>
+
+            }
         </div>
     </div>
 </div>

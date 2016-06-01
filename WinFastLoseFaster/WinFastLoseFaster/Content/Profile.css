@@ -34,7 +34,7 @@ img {
     position: fixed;
     padding-bottom: 20px;
     /*width: 1140px;*/  
-    /*background-color: #333333;*/
+    background-color: #333333;
 }
 
 #profilHeader img {
@@ -42,10 +42,8 @@ img {
 }
 
 .Stats {
-    height: 2000px;
     border: 2px solid orange;
-    margin-top: 284px;
-       
+    margin-top: 284px;     
 }
 
 .Flikar {
@@ -58,4 +56,15 @@ img {
 #dix4hire {
     border: 5px solid blue;
     width: 100%;
+}
+
+.game h4 {
+    display:inline-block;
+    margin-right:20px;
+    /*border: 1px solid orange;*/
+    min-width: 100px;
+}
+
+.game {
+    border:1px solid black;
 }

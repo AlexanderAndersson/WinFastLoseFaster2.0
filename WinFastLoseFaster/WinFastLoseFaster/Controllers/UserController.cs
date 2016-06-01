@@ -91,6 +91,7 @@ namespace WinFastLoseFaster.Controllers
                 "http://orig06.deviantart.net/6a87/f/2013/046/f/2/snorlax_fsjal_by_zunyokingdom-d5v3nfp.jpg",
                 "http://orig01.deviantart.net/d6ca/f/2010/077/0/b/plastic_soldier_fsjal_by_platinumglitchmint.jpg",
                 "http://orig08.deviantart.net/8cbc/f/2010/199/0/6/23___fsjal_yoshi__by_ztoonlinkz.png",
+                "https://pbs.twimg.com/media/BJXYR9sCUAArAO-.jpg"
 
             };
 

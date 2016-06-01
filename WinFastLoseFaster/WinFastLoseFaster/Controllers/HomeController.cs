@@ -12,9 +12,9 @@ namespace WinFastLoseFaster.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+            //WinFastLoseFasterContext context = new WinFastLoseFasterContext();
 
-            int count = context.Users.Count();
+            //int count = context.Users.Count();
 
             return View();
         }

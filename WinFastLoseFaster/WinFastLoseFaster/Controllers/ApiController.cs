@@ -16,12 +16,12 @@ namespace WinFastLoseFaster.Controllers
             var TotalWon = from w in context.Winners
                            select w.TotalAmount;
 
-            List<double> wins = new List<double>();
+            double wins = 0.00;
 
             foreach (var win in TotalWon)
             {
                 //Tar ut credits i valuta
-                wins.Add(win / 10.00);
+                wins += win;
             }
 
             if (TotalWon.Count() > 0)

@@ -16,7 +16,7 @@ namespace WinFastLoseFaster.Controllers
 
             //int count = context.Users.Count();
 
-            return View();
+            return RedirectToAction("/Index", "User");
         }
     }
 }

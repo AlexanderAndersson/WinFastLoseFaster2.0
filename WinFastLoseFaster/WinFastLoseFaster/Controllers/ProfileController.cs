@@ -32,22 +32,14 @@ namespace WinFastLoseFaster.Controllers
                              select g;
 
                 var amountWon = from a in context.Winners
-                                where a.WinningUser.Username == loggedInUser
+                                where a.WinningUser.Username == user.Username
                                 select a.TotalAmount;
 
-
                 var betAmount = from b in context.Bets
-                                where b.user.Username == loggedInUser
+                                where b.user.Username == user.Username
                                 select b.Wager;
 
-                List<Game> losses = new List<Game>();
-
-                //foreach (var game in user.Games)
-                //{
-                //    if (game.users.IndexOf(user) != -1 && game.Winners.FirstOrDefault().WinningUser != user)
-                //    losses.Add(game);
-
-                //}
+                int matchesLost = user.Games.Count() - numberOfWins.Count();
 
                 int bets = 0;
                 int won = 0;
@@ -62,7 +54,6 @@ namespace WinFastLoseFaster.Controllers
                     won += wins;
                 }
 
-
                 List <Game> myGames = new List<Game>();
 
                 foreach (Game game in user.Games.AsEnumerable())
@@ -74,19 +65,22 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Bets = user.bets.Count();
                 ViewBag.Deposit = user.Deposit;
                 ViewBag.Wins = numberOfWins.Count(); ;
-                ViewBag.WLR = (double)numberOfWins.Count() / user.Games.Count;
+                ViewBag.WLR = Math.Round((double)numberOfWins.Count() / matchesLost, 2);
                 ViewBag.Picture = user.Picture;
                 ViewBag.Profit = won - bets;
                 ViewBag.Credits = user.Credits;
                 ViewBag.myGames = user.Games.OrderByDescending(g => g.Timestamp);
                 ViewBag.currentUser = user;
+                ViewBag.Withdrawal = user.Withdrawal;
+                ViewBag.MatchesPlayed = user.Games.Count();
+                ViewBag.Loss = matchesLost;
+
             }
             else
             {
                 return RedirectToAction("/Index", "User");
             }
             return View();
-
         }
     }
 }

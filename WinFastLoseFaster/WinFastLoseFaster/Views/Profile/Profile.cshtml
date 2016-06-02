@@ -5,113 +5,133 @@
 @model IEnumerable<WinFastLoseFaster.Models.Game>
 @using WinFastLoseFaster.Models;
 
-<div id="dix4hire">
-    <div id="profilHeader">
-        <img src="@ViewBag.Picture" />
+<div id="profilHeader">
+    <img src="@ViewBag.Picture" />
 
-        <div id="username">
-            <h2>@ViewBag.Username</h2>
-        </div>
-
-        <div class="headStats">
-            <h2>Deposit</h2>
-            <h3>$@ViewBag.Deposit</h3>
-        </div>
-
-        <div class="headStats">
-            <h2>Wins</h2>
-            <h3>@ViewBag.Wins</h3>
-        </div>
-
-        <div class="headStats">
-            @if (ViewBag.Profit > 0)
-            {
-                <h2>Profit</h2>
-                <h3><span style="color: green">@ViewBag.Profit</span></h3>
-            }
-            else if (ViewBag.Profit < 0)
-            {
-                <h2>Profit</h2>
-                <h3><span style="color: red">@ViewBag.Profit</span></h3>
-            }
-            else
-            {
-                <h2>Profit</h2>
-                <h3>@ViewBag.Profit</h3>
-            }
-        </div>
-        <div class="headStats">
-            <h2>Credits</h2>
-            <h3>@ViewBag.Credits</h3>
-        </div>
+    <div id="username">
+        <h2>@ViewBag.Username</h2>
     </div>
 
-    <div class="Flikar">
-        <div>Matches</div>
+    <div class="headStats">
+        <h2>W/L Ratio</h2>
+        @if (ViewBag.WLR > 1)
+        {
+            <h3 style="color: green">@ViewBag.WLR</h3>
+        }
+        else if (ViewBag.WLR == 0)
+        {
+            <h3 style="color: white">@ViewBag.WLR</h3>
+        }
+        else
+        {
+            <h3 style="color: red"> @ViewBag.WLR</h3>
+        }      
     </div>
 
-    <div class="Stats">
-        <div>
-            
-            @foreach (Game game in ViewBag.myGames)
-            {
-                
-                <div class="game" style="display:inline-block; width:100%;">
-                    @if (game.GameActive == true)
-                    {
-                    <h4>Active</h4>
-                    }
-                    else
-                    {
+    <div class="headStats">
+        <h2>Win/Loss</h2>
+        <h3 style="color: green">@ViewBag.Wins</h3>
+        <h3 style="color: red">@ViewBag.Loss</h3>
+    </div>
 
-                        foreach (Winner winner in game.Winners)
-                        {
-                            if (winner.WinningUser == ViewBag.currentUser)
-                            {
-                                <h4 style="color:green;">Won</h4>
-                            }
-                            else
-                            {
-                                <h4 style="color:red;">Lost</h4>
-                            }
-                        }
-
-                    }
-                    
-
-                    <h4>@game.Userbets.FirstOrDefault().Wager</h4>
-
-                    @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
-
-                    @foreach (Winner winner in game.Winners)
-                    {
-
-                        <h4>@winner.WinningUser.Username</h4>
-                        <h4>@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
-
-                        foreach(var player in game.users)
-                        {
-                            if (player != winner.WinningUser)
-                            {
-                                <h4>@player.Username</h4>
-
-                            }
-
-                        }
-
-                    }
-
-                    
-
-                    <h4>@game.Timestamp.ToShortDateString()</h4>
-                    <h4>@game.Timestamp.ToShortTimeString()</h4>
-
-
-                    <h4>@game.Gametype</h4>
-
-                </div>
-
-            }
-        </div>
+    <div class="headStats">
+        @if (ViewBag.Profit > 0)
+        {
+            <h2>Profit</h2>
+            <h3><span style="color: green">@ViewBag.Profit</span></h3>
+        }
+        else if (ViewBag.Profit < 0)
+        {
+            <h2>Profit</h2>
+            <h3><span style="color: red">@ViewBag.Profit</span></h3>
+        }
+        else
+        {
+            <h2>Profit</h2>
+            <h3>@ViewBag.Profit</h3>
+        }
+    </div>
+    <div class="headStats">
+        <h2>Credits</h2>
+        <h3>@ViewBag.Credits</h3>
     </div>
 </div>
+
+<div class="Flikar">
+    <div id="matcherFlik">
+        <h3>Matches</h3>
+    </div>
+    <div id="statsFlik">
+        <h3>Stats</h3>
+    </div>  
+</div>
+<div id="statsTitlar">
+    <h4>Status</h4>
+    <h4>Wager</h4>
+    <h4>Winner</h4>
+    <h4>Credits-won</h4>
+    <h4>Loser</h4>
+    <h4>Date</h4>
+    <h4>Time</h4>
+    <h4>Game type</h4>
+</div>
+<div id="matches">
+    <div>            
+        @foreach (Game game in ViewBag.myGames)
+        {               
+            <div class="game">
+                @if (game.GameActive == true)
+                {
+                <h4 style="color: white;">Active</h4>
+                }
+                else
+                {
+                    foreach (Winner winner in game.Winners)
+                    {
+                        if (winner.WinningUser == ViewBag.currentUser)
+                        {
+                            <h4 style="color:green;">Won</h4>
+                        }
+                        else
+                        {
+                            <h4 style="color:red;">Lost</h4>
+                        }
+                    }
+                }                   
+                <h4>@game.Userbets.FirstOrDefault().Wager</h4>
+
+                @if (game.GameActive == true)
+                {
+                    <h4>Pending</h4>
+                    <h4>Pending</h4>
+                    <h4>Pending</h4>
+                }
+
+                @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
+
+                @foreach (Winner winner in game.Winners)
+                {
+                    <h4>@winner.WinningUser.Username</h4>
+                    <h4>@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+
+                    foreach(var player in game.users)
+                    {
+                        if (player != winner.WinningUser)
+                        {
+                            <h4>@player.Username</h4>
+                        }
+                    }
+                }                  
+                <h4>@game.Timestamp.ToShortDateString()</h4>
+                <h4>@game.Timestamp.ToShortTimeString()</h4>
+                <h4>@game.Gametype</h4>
+            </div>
+        }
+    </div>   
+</div>
+
+<div id="stats">
+    <h1>STATS MOTHERFUCKER!</h1>
+</div>
+
+<script src="~/Scripts/statsFlikar.js"></script>

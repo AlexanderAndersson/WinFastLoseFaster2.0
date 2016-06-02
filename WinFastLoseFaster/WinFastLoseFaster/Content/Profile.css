@@ -1,6 +1,8 @@
 ﻿body {
 }
 
+/*************** BIG STATS SHIT ***************/
+
 img {
     width: 200px;
     height: 200px;
@@ -29,11 +31,8 @@ img {
 }
 
 #profilHeader {
-    display: inline-block;
-    border: 1px solid pink;
-    position: fixed;
+    /*border: 1px solid pink;*/
     padding-bottom: 20px;
-    /*width: 1140px;*/  
     background-color: #333333;
 }
 
@@ -41,30 +40,66 @@ img {
     margin-top: -75px;
 }
 
-.Stats {
-    border: 2px solid orange;
-    margin-top: 284px;     
-}
+/*************** FLIKAR FÖR MATCHER OCH STATS ***************/
 
 .Flikar {
     height: 50px;
-    border: 2px solid lime;
-    margin-top: 235px;
-    position: fixed;
+    /*border: 2px solid lime;*/
+    /*position: fixed;*/
 }
 
-#dix4hire {
-    border: 5px solid blue;
-    width: 100%;
+.Flikar div {
+    display: inline-block;
 }
 
-.game h4 {
+.Flikar div:hover {
+    cursor: pointer;
+    color: orange;
+}
+
+.Flikar h3 {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    margin-right: 5px; 
+    margin-top: 10px;
+}
+
+/*************** TITLAR FÖR MATCHER ***************/
+
+#statsTitlar h4 {
     display:inline-block;
-    margin-right:20px;
-    /*border: 1px solid orange;*/
-    min-width: 100px;
+    margin-right:16px;
+    min-width: 118px;
+    color: orange;
+    margin-left: 4px;
+}
+
+#statsTitlar {
+    /*border: 2px solid red;*/
+}
+
+/*************** MATCH HISTORIK ***************/
+
+.Matches {
+    /*border: 2px solid orange;*/   
 }
 
 .game {
     border:1px solid black;
+    display:inline-block; 
+    width:100%
+}
+
+.game h4 {
+    display: inline-block;
+    margin-left: 4px;
+    margin-right:16px;
+    /*border: 1px solid orange;*/
+    min-width: 118px;  
+}
+
+/*************** STATS ***************/
+
+#stats {
+    display: none;
 }

@@ -22,7 +22,7 @@ namespace WinFastLoseFaster.Controllers
             Session["Username"] = "";
             Session["credits"] = 0;
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("/Index", "User");
         }
 
         public ActionResult Login()
@@ -47,7 +47,7 @@ namespace WinFastLoseFaster.Controllers
                     Session["username"] = username;
                     Session["credits"] = userList.First().Credits;
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Coinflip", "Games");
 
                 }
                 else

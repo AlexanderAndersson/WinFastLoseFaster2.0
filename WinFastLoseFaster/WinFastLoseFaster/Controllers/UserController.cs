@@ -47,7 +47,7 @@ namespace WinFastLoseFaster.Controllers
                     Session["username"] = username;
                     Session["credits"] = userList.First().Credits;
 
-                    return RedirectToAction("Coinflip", "Games");
+                    return RedirectToAction("/Index", "Home");
 
                 }
                 else
@@ -150,7 +150,7 @@ namespace WinFastLoseFaster.Controllers
             if (faults == 0)
             {
 
-                User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Credits = 1000, Deposit = 0, Withdrawal = 0 };
+                User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Credits = 1000, Deposit = 0, Withdrawal = 0, Games = { }, bets = { } };
                 userToAdd.Picture = profilePictures.ElementAt(rnd.Next(profilePictures.Count));
 
                 context.Users.Add(userToAdd);
@@ -161,11 +161,11 @@ namespace WinFastLoseFaster.Controllers
                 Session["credits"] = userToAdd.Credits;
   
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("/Index", "Home");
             }
             else
             {
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("/Index", "User");
 
             }
 

@@ -40,6 +40,15 @@ namespace WinFastLoseFaster.Controllers
                                 where b.user.Username == loggedInUser
                                 select b.Wager;
 
+                List<Game> losses = new List<Game>();
+
+                //foreach (var game in user.Games)
+                //{
+                //    if (game.users.IndexOf(user) != -1 && game.Winners.FirstOrDefault().WinningUser != user)
+                //    losses.Add(game);
+
+                //}
+
                 int bets = 0;
                 int won = 0;
 

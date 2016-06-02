@@ -9,7 +9,9 @@ namespace WinFastLoseFaster.Models
     public class WinFastLoseFasterContext : DbContext
     {
         public WinFastLoseFasterContext() : base ("name=LocalDb")
-        {}
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
 
         public DbSet<User> Users { get; set; }
 

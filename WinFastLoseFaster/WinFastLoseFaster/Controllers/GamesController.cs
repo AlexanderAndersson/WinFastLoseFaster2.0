@@ -260,11 +260,25 @@ namespace WinFastLoseFaster.Controllers
             //return Json(new { Count = count },
             //    JsonRequestBehavior.AllowGet);
 
-            return Json(new { activeCoinflipGames = myList.ToList() },
+
+            var myList2 = context.Games.Where(g => g.GameActive == true && g.Gametype == Game.GameEnum.Coinflip);
+
+
+            foreach (var game in myList2)
+            {
+
+                
+                context.Entry(game).Collection(g => g.users).Load();
+                context.Entry(game).Reference(g => g.Userbets).Load();
+
+            }
+
+
+            return Json(new { activeCoinflipGame = myList2.ToList() },
                 JsonRequestBehavior.AllowGet);
 
 
-            return View(myList.ToList());
+            //return View(myList.ToList());
 
         }
 

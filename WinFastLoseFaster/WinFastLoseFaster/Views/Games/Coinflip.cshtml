@@ -35,13 +35,17 @@
 
 </div>
 <br>
+<div id="coinflipGameList">
+
+    @*
+
     @foreach (var coinflip in Model)
     {
         <div class="coinflipGame row">
 
             @Html.DisplayFor(coinflipGame => coinflip.users[0].Username)
             Wager: @Html.DisplayFor(coinflipGame => coinflip.Userbets.FirstOrDefault().Wager)
-            @*@Html.DisplayFor(coinflipGame => coinflip.Timestamp)*@
+            @Html.DisplayFor(coinflipGame => coinflip.Timestamp)
 
             @if ((bool)Session["isLoggedIn"] == true)
             {
@@ -63,6 +67,10 @@
         </div>
         <br>
     }
+
+    *@
+
+</div>
 
 
 <div id="coin-flip-cont">

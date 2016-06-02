@@ -28,10 +28,13 @@
         }      
     </div>
 
-    <div class="headStats">
+    <div id="WL" class="headStats">
         <h2>Win/Loss</h2>
-        <h3 style="color: green">@ViewBag.Wins</h3>
-        <h3 style="color: red">@ViewBag.Loss</h3>
+        <h3>
+            <span style="color: green">@ViewBag.Wins</span>
+            <span style="color: white">/</span>
+            <span style="color: red">@ViewBag.Loss</span>
+        </h3>
     </div>
 
     <div class="headStats">
@@ -48,12 +51,12 @@
         else
         {
             <h2>Profit</h2>
-            <h3>@ViewBag.Profit</h3>
+            <h3 style="color: white">@ViewBag.Profit</h3>
         }
     </div>
     <div class="headStats">
         <h2>Credits</h2>
-        <h3>@ViewBag.Credits</h3>
+        <h3 style="color: white">@ViewBag.Credits</h3>
     </div>
 </div>
 

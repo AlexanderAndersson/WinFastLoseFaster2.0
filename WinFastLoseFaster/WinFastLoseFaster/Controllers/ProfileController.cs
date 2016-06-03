@@ -27,9 +27,9 @@ namespace WinFastLoseFaster.Controllers
 
                 User user = myUserList.First();
 
-                var numberOfWins = from g in context.Winners
-                                   where g.WinningUser.Id == user.Id
-                                   select g;
+                var numberOfWins = from n in context.Winners
+                                   where n.WinningUser.Id == user.Id
+                                   select n;
 
                 var amountWon = from a in context.Winners
                                 where a.WinningUser.Username == user.Username
@@ -39,12 +39,16 @@ namespace WinFastLoseFaster.Controllers
                                 where b.user.Username == user.Username
                                 select b.Wager;
 
-                var winBetAmount = from b in context.Bets
-                                   where b.user.Username == user.Username
-                                   where b.game.Winners == user
-                                   select b.Wager;
+                //var winBetAmount = from w in context.Bets
+                //                   where w.user.Username == user.Username
+                //                   where w.game.Winners == user
+                //                   select w.Wager;
 
-                int matchesLost = user.Games.Count() - numberOfWins.Count();
+                var notActiveGames = from l in user.Games
+                                     where l.GameActive != true
+                                     select l;
+
+                int matchesLost = notActiveGames.Count() - numberOfWins.Count();
 
                 int bets = 0;
                 int won = 0;
@@ -68,10 +72,19 @@ namespace WinFastLoseFaster.Controllers
 
                 if (matchesLost == 0)
                 {
-                    matchesLost = 1;
+                    if (numberOfWins.Count() == 0)
+                    {
+                        ViewBag.WLR = 1;
+                    }
+                    else
+                    {
+                        ViewBag.WLR = Math.Round((double)numberOfWins.Count() / 1, 2);
+                    }                 
                 }
-
-                ViewBag.WLR = Math.Round((double)numberOfWins.Count() / matchesLost, 2);
+                else
+                {
+                    ViewBag.WLR = Math.Round((double)numberOfWins.Count() / matchesLost, 2);
+                }
 
                 if (double.IsNaN(ViewBag.WLR))
                 {

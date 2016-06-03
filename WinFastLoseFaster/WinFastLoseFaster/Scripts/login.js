@@ -1,29 +1,17 @@
-﻿$(document).ready(function () {
 
-    //e.preventDefault();
+﻿//$(document).ready(function () {
+//    $("#login").addClass('active');
+//    $("#signup").removeClass('active');
 
-    //$(this).parent().addClass('active');
-    //$(this).parent().siblings().removeClass('active');
+//    //target = $(this).attr('href');
+//    target = $("#login");
 
-    //target = $(this).attr('href');
+//    $('.tab-content > div').not("#login").hide();
 
-    //$('.tab-content > div').not(target).hide();
+//    $(target).fadeIn(600);
 
-    //$(target).fadeIn(600);
+//});
 
-    //alert("HELLO");
-    $("#signup").removeClass('active');
-    $("#login").addClass('active');
-    
-
-    target = $("#login");
-
-    //$(".tab-content > div").not(target).hide();
-    $("#signup").hide();
-
-    $(target).fadeIn(1000);
-
-});
 
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
@@ -66,5 +54,4 @@ $('.tab a').on('click', function (e) {
     $('.tab-content > div').not(target).hide();
 
     $(target).fadeIn(600);
-
 }); 

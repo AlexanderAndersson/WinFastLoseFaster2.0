@@ -1,12 +1,27 @@
 ﻿$(document).ready(function () {
-    $("#login").addClass('active');
+
+    //e.preventDefault();
+
+    //$(this).parent().addClass('active');
+    //$(this).parent().siblings().removeClass('active');
+
+    //target = $(this).attr('href');
+
+    //$('.tab-content > div').not(target).hide();
+
+    //$(target).fadeIn(600);
+
+    //alert("HELLO");
     $("#signup").removeClass('active');
+    $("#login").addClass('active');
+    
 
-    target = $(this).attr('href');
+    target = $("#login");
 
-    $('.tab-content > div').not("#login").hide();
+    //$(".tab-content > div").not(target).hide();
+    $("#signup").hide();
 
-    $(target).fadeIn(600);
+    $(target).fadeIn(1000);
 
 });
 

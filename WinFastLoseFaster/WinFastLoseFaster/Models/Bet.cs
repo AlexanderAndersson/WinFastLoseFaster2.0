@@ -15,7 +15,7 @@ namespace WinFastLoseFaster.Models
         //[ForeignKey("user")]
         //public int UserId { get; set; }
 
-        [Required]
+        
         public int Wager { get; set; }
 
         [ScriptIgnore]

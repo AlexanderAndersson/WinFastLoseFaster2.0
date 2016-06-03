@@ -38,6 +38,7 @@ img {
 
 #profilHeader img {
     margin-top: -75px;
+    cursor:pointer;
 }
 
 /*************** FLIKAR FÖR MATCHER OCH STATS ***************/

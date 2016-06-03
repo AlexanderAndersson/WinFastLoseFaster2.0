@@ -82,5 +82,28 @@ namespace WinFastLoseFaster.Controllers
             }
             return View();
         }
+
+        public ActionResult ChangeProfilePicture()
+        {
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            string username = Session["username"].ToString();
+
+            string newProfilePictureUrl = Request["newProfilePicture"];
+
+            var getUser = from u in context.Users
+                          where u.Username == username
+                          select u;
+
+            User user = getUser.FirstOrDefault();
+
+            user.Picture = newProfilePictureUrl;
+
+            context.SaveChanges();
+            
+
+            return RedirectToAction("Profile", "Profile");
+        }
     }
 }

@@ -248,6 +248,7 @@ namespace WinFastLoseFaster.Controllers
         {
 
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+            context.Configuration.ProxyCreationEnabled = false;
 
             var myList = from cg in context.Games
                          where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
@@ -266,10 +267,8 @@ namespace WinFastLoseFaster.Controllers
 
             foreach (var game in myList2)
             {
-
-                
                 context.Entry(game).Collection(g => g.users).Load();
-                context.Entry(game).Reference(g => g.Userbets).Load();
+                context.Entry(game).Collection(g => g.Userbets).Load();
 
             }
 

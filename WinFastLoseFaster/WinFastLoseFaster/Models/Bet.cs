@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace WinFastLoseFaster.Models
 {
@@ -17,8 +18,10 @@ namespace WinFastLoseFaster.Models
         [Required]
         public int Wager { get; set; }
 
+        [ScriptIgnore]
         public virtual Game game { get; set; }
 
+        [ScriptIgnore]
         public virtual User user { get; set; }
     }
 }

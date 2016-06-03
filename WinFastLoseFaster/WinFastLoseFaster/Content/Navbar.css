@@ -4,6 +4,11 @@
     left: 0;
     text-align: center;
     margin: 0 auto;
+    font-size:medium;
+    background-color:black;
+    color:red;
+    
+    
     
     
 }
@@ -21,5 +26,24 @@
 }
 
 .navbar-nav li:hover {
-    background-color:fuchsia;
+    background-color:white;
 }
+.navbar-nav {
+    background-color: #179b77;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #1ab188;
+    text-transform:uppercase;
+}
+.navbar{
+    border:0px;
+}
+body {
+    /* font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
+    font-size: 12px;
+   /*line-height: 1.428571429;*/
+   
+}
+
+
+

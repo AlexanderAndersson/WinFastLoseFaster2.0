@@ -7,17 +7,15 @@
     #errorMsg {
         color:red;
         margin:5px;
-    }
-    
+    }    
 </style>
 
 <div class="form">
-    <link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
-    
+    <link href="~/Content/Login.css" rel="stylesheet" type="text/css" /> 
 
     <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
+        <li id="signupTab" class="tab"><a href="#signup">Sign Up</a></li>
+        <li id="loginTab" class="tab active"><a href="#login">Log In</a></li>
     </ul>
 
     <div class="tab-content">
@@ -27,6 +25,7 @@
             <form action="Register" method="post">
 
                 <div class="top-row">
+
                     <div class="field-wrap">
                         <label>
                             Username<span class="req">*</span>
@@ -44,7 +43,7 @@
 
                 <div class="field-wrap">
                     <label>
-                        Retype Password<span class="req">*</span>
+                        Confirm Password<span class="req">*</span>
                     </label>
                     <input type="password" required autocomplete="off" name="inputRetypePassword" id="registerRetypePassword" />
                 </div>
@@ -61,51 +60,36 @@
                         Over 18<span class="req">*</span>
                     </label>
                     <input type="checkbox" required autocomplete="off" name="inputCheckbox" id="registerCheckbox" style="height:30px" />
-                </div>
-
-                
-
+                </div>               
                 <button type="submit" class="button button-block" id="registerSubmit" />Get Started</button>
-
             </form>
-
         </div>
 
         <div id="login">
             <h1>Welcome Back!</h1>
-
             <form action="Login" method="post">
-
                 <div class="field-wrap">
                     <label>
-                        Username<span class="req">*</span>
+                        Username
                     </label>
                     <input type="text" required autocomplete="off" name="inputUsername" id="loginUsername" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
-                        Password<span class="req">*</span>
+                        Password
                     </label>
                     <input type="password" required autocomplete="off" name="inputPassword" id="loginPassword" />
                 </div>
-
                 <!--<p class="forgot"><a href="#">Forgot Password?</a></p>-->
-
-                <button class="button button-block" />Log In </button>
-
+                <button class="button button-block">Log In </button>
             </form>
-
         </div>
-
-        <div id="errorMsg">
-
-
-        </div>
-       
-
+            <div id="errorMsg">
+        </div>       
     </div><!-- tab-content -->
-
 </div> <!-- /form -->
-<script src="~/Scripts/RegisterValidation.js"></script>
+
+@*<script src="~/Scripts/RegisterValidation.js"></script>*@
+<script src="~/Scripts/login.js"></script>
 

@@ -21,6 +21,22 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
+					
+    <div class="headStats">
+        <h2>W/L Ratio</h2>
+        @if (ViewBag.WLR > 1)
+        {
+            <h3 style="color: green">@ViewBag.WLR</h3>
+        }
+        else if (ViewBag.WLR == 1)
+        {
+            <h3 style="color: white">@ViewBag.WLR</h3>
+        }   
+        else
+        {
+            <h3 style="color: red"> @ViewBag.WLR</h3>
+        }      
+    </div>
 
                 </div>
             </form>
@@ -131,7 +147,7 @@
                     <h4>@game.Userbets.FirstOrDefault().Wager</h4>
 
                     @if (game.GameActive == true)
-                {
+					{
                         <h4>Pending</h4>
                         <h4>Pending</h4>
                         <h4>Pending</h4>
@@ -140,7 +156,7 @@
                     @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
 
                     @foreach (Winner winner in game.Winners)
-                {
+					{
                         <h4>@winner.WinningUser.Username</h4>
                         <h4>@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
 
@@ -152,16 +168,33 @@
                             }
                         }
                     }
+
+                }    
+                @if (game.Timestamp.Date == DateTime.Today)
+                {
+                    <h4>Today</h4>
+                    <h4>@game.Timestamp.ToShortTimeString()</h4>
+                }
+                else
+                {
                     <h4>@game.Timestamp.ToShortDateString()</h4>
                     <h4>@game.Timestamp.ToShortTimeString()</h4>
-                    <h4>@game.Gametype</h4>
-                </div>
-            }
-        </div>
-    </div>
+                }
 
-    <div id="stats">
-        <h1>STATS MOTHERFUCKER!</h1>
-    </div>
+                
+                <h4>@game.Gametype</h4>
+            </div>
+        }
+    </div>   
+</div>
+
+<div id="stats">
+    <h4>@ViewBag.Bets</h4>
+    <h4>@ViewBag.Deposit</h4>
+    <h4>@ViewBag.Withdrawal</h4>
+    <h4>@ViewBag.MatchesPlayed</h4>
+    <h4>@ViewBag.Loss</h4>
+</div>
+>>>>>>> c1562057bbd274eb2b16b93f29be2c3a126d0697
 
     <script src="~/Scripts/statsFlikar.js"></script>

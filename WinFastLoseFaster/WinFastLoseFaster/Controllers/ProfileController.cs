@@ -28,8 +28,8 @@ namespace WinFastLoseFaster.Controllers
                 User user = myUserList.First();
 
                 var numberOfWins = from g in context.Winners
-                             where g.WinningUser.Id == user.Id
-                             select g;
+                                   where g.WinningUser.Id == user.Id
+                                   select g;
 
                 var amountWon = from a in context.Winners
                                 where a.WinningUser.Username == user.Username
@@ -39,6 +39,11 @@ namespace WinFastLoseFaster.Controllers
                                 where b.user.Username == user.Username
                                 select b.Wager;
 
+                var winBetAmount = from b in context.Bets
+                                   where b.user.Username == user.Username
+                                   where b.game.Winners == user
+                                   select b.Wager;
+
                 int matchesLost = user.Games.Count() - numberOfWins.Count();
 
                 int bets = 0;
@@ -46,7 +51,7 @@ namespace WinFastLoseFaster.Controllers
 
                 foreach (var bet in betAmount)
                 {
-                    bets += bet;
+                    bets += bet;                 
                 }
 
                 foreach (var wins in amountWon)
@@ -61,20 +66,31 @@ namespace WinFastLoseFaster.Controllers
                     myGames.Add(game);
                 }
 
-                ViewBag.Username = user.Username;
-                ViewBag.Bets = user.bets.Count();
-                ViewBag.Deposit = user.Deposit;
-                ViewBag.Wins = numberOfWins.Count(); ;
+                if (matchesLost == 0)
+                {
+                    matchesLost = 1;
+                }
+
                 ViewBag.WLR = Math.Round((double)numberOfWins.Count() / matchesLost, 2);
+
+                if (double.IsNaN(ViewBag.WLR))
+                {
+                    ViewBag.WLR = 1;
+                }
+
                 ViewBag.Picture = user.Picture;
+                ViewBag.Username = user.Username;
+                ViewBag.Wins = numberOfWins.Count();
+                ViewBag.Loss = matchesLost;
                 ViewBag.Profit = won - bets;
                 ViewBag.Credits = user.Credits;
-                ViewBag.myGames = user.Games.OrderByDescending(g => g.Timestamp);
-                ViewBag.currentUser = user;
-                ViewBag.Withdrawal = user.Withdrawal;
-                ViewBag.MatchesPlayed = user.Games.Count();
-                ViewBag.Loss = matchesLost;
 
+                ViewBag.currentUser = user;
+                ViewBag.BetsAmount = bets;
+                ViewBag.Deposit = user.Deposit;
+                ViewBag.Withdrawal = user.Withdrawal;
+                ViewBag.myGames = user.Games.OrderByDescending(g => g.Timestamp);
+                ViewBag.MatchesPlayed = user.Games.Count();
             }
             else
             {

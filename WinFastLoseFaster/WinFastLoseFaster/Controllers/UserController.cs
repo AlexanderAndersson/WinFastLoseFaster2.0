@@ -52,7 +52,7 @@ namespace WinFastLoseFaster.Controllers
                 }
                 else
                 {
-                    
+
 
                 }//Right username, wrong password
 
@@ -65,13 +65,14 @@ namespace WinFastLoseFaster.Controllers
 
         public ActionResult Register()
         {
+            int faults = 0;
+            using (WinFastLoseFasterContext context = new WinFastLoseFasterContext())
+            {
 
-            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
 
+                Random rnd = new Random();
 
-            Random rnd = new Random();
-
-            List<string> profilePictures = new List<string>()
+                List<string> profilePictures = new List<string>()
             {
                 "http://orig04.deviantart.net/77b2/f/2010/215/7/b/43___fsjal_wason__by_ztoonlinkz.png",
                 "http://i0.kym-cdn.com/photos/images/facebook/000/841/850/42c.jpg",
@@ -96,81 +97,80 @@ namespace WinFastLoseFaster.Controllers
             };
 
 
-            string username = Request["inputUsername"];
-            string password = Request["inputPassword"];
-            string password2 = Request["inputRetypePassword"];
-            string email = Request["inputEmail"];
-            string checkbox = Request["inputCheckbox"];
-
-            int faults = 0;
+                string username = Request["inputUsername"];
+                string password = Request["inputPassword"];
+                string password2 = Request["inputRetypePassword"];
+                string email = Request["inputEmail"];
+                string checkbox = Request["inputCheckbox"];
 
 
-            if(username.Trim().Length < 3)
-            {
-                faults++;
 
-            }
+                if (username.Trim().Length < 3)
+                {
+                    faults++;
 
-            if (password.Trim().Length < 6)
-            {
-                faults++;
+                }
 
-            }
+                if (password.Trim().Length < 6)
+                {
+                    faults++;
 
-            if (password != password2)
-            {
-                faults++;
+                }
 
-            }
+                if (password != password2)
+                {
+                    faults++;
 
-            if (email.Length == 0)
-            {
-                faults++;
+                }
 
-            }
+                if (email.Length == 0)
+                {
+                    faults++;
 
-            if (checkbox == "false")
-            {
-                faults++;
+                }
 
-            }
+                if (checkbox == "false")
+                {
+                    faults++;
 
-            var userList = from u in context.Users
-                           where u.Username == username
-                           select u;
-            
-            if (userList.Count() > 0)
-            {
-                //There's already a user with that username
-                faults++;
+                }
 
-            }
+                var userList = from u in context.Users
+                               where u.Username == username
+                               select u;
+
+                if (userList.Count() > 0)
+                {
+                    //There's already a user with that username
+                    faults++;
+
+                }
 
 
-            if (faults == 0)
-            {
+                if (faults == 0)
+                {
 
                 User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Credits = 1000, Deposit = 0, Withdrawal = 0, Games = { }, bets = { } };
                 userToAdd.Picture = profilePictures.ElementAt(rnd.Next(profilePictures.Count));
 
-                context.Users.Add(userToAdd);
-                context.SaveChanges();
+                    context.Users.Add(userToAdd);
+                    context.SaveChanges();
 
-                Session["isLoggedIn"] = true;
-                Session["username"] = username.Trim();
-                Session["credits"] = userToAdd.Credits;
-  
+                    Session["isLoggedIn"] = true;
+                    Session["username"] = username.Trim();
+                    Session["credits"] = userToAdd.Credits;
 
-                return RedirectToAction("/Index", "Home");
+
             }
+
+                
+            }
+            if (faults == 0)
+                return RedirectToAction("/Index", "Home");
             else
-            {
                 return RedirectToAction("/Index", "User");
 
-            }
 
-
-            
         }
 
 

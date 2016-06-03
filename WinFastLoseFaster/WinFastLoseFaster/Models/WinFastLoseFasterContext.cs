@@ -14,6 +14,7 @@ namespace WinFastLoseFaster.Models
             
         }
 
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Bet> Bets { get; set; }

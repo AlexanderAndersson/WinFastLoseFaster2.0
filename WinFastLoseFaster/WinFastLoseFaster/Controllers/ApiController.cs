@@ -10,13 +10,16 @@ namespace WinFastLoseFaster.Controllers
     public class ApiController : Controller
     {
         // GET: Api
-        public ActionResult Index()
+        public ActionResult AmountPaidOut(string callback)
         {
+            
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();
             var TotalWon = from w in context.Winners
                            select w.TotalAmount;
 
             double wins = 0.00;
+
+            Math.Round(wins, 2);
 
             foreach (var win in TotalWon)
             {
@@ -30,7 +33,7 @@ namespace WinFastLoseFaster.Controllers
             }
             else
             {
-                return Json("No wins found " +  JsonRequestBehavior.AllowGet);
+                return  Json("No wins found ",  JsonRequestBehavior.AllowGet);
             }
         }
     }

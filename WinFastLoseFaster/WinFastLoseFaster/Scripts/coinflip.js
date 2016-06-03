@@ -45,12 +45,12 @@ function getSpin() {
     if (randomNumber < 1) {
         alert("SQUIRTLE WON");
         spin = "animation1980";
-        
+
     }
     else {
         alert("LENNY WON");
         spin = "animation2160";
-        
+
 
     }
     return spin;
@@ -58,8 +58,7 @@ function getSpin() {
 
 
 
-function getGameList()
-{
+function getGameList() {
 
     $.ajax({
 
@@ -67,27 +66,38 @@ function getGameList()
         dataType: 'json',
         data: {},
         success: function (data) {
-            $('#ajaxResult').html('Det finns '
-                + data.Count + ' djur i databasen!');
+            var list = data.activeCoinflipGame;
 
-            for (i = 0; i < data.Count; i++) {
+            for (i = 0; i < list.Count; i++) {
 
-                var cGameToList = data.activeCoinflipGame[i];
-                
-                $("#coinflipGameList").html($("#coinflipGameList").html() +  "<div class='coinflipGame row'>" 
-                    + cGameToList.users[0].Username
-                    + "Wager: " + cGameToList.Userbets[0].Wager
-                    + cGameToList.Timestamp
+                var cGameToList = list.activeCoinflipGame[i];
 
-                    + "<form action='JoinCoinflip' method='post'>"
-                    + "<input type='number' value='" + cGameToList.Id + "' name='coinflipGameId' readonly />"
-                    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />"
-                    + "</form>"
-                    
-                    + "</div>");
+                //$("#coinflipGameList").html($("#coinflipGameList").html() +  "<div class='coinflipGame row'>" 
+                //    + cGameToList.users[0].Username
+                //    + "Wager: " + cGameToList.Userbets[0].Wager
+                //    + cGameToList.Timestamp
+
+                //    + "<form action='JoinCoinflip' method='post'>"
+                //    + "<input type='number' value='" + cGameToList.Id + "' name='coinflipGameId' readonly />"
+                //    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />"
+                //    + "</form>"
+
+                //    + cGameToList[0]
+
+                //    + "</div>");
+
+                document.getElementById("coinflipGameList").innerHTML += "<div class='coinflipGame row'>"
+                + cGameToList.Username
+                + ", Wager: " + cGameToList.Wager
+
+                + "<form action='JoinCoinflip' method='post'>"
+                + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' readonly />"
+                + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />";
+                + "</div>";
+
 
             }
-            
+
 
         },
         error: function (jqXHR, statusText, errorThrown) {
@@ -97,5 +107,5 @@ function getGameList()
 
     });
 
-        
+
 }

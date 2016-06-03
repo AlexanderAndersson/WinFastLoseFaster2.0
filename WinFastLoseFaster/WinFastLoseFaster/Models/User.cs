@@ -34,5 +34,14 @@ namespace WinFastLoseFaster.Models
 
         [ScriptIgnore]
         public virtual IList<Bet> bets { get; set; }
+
+        public string ToJson()
+        {
+            string json = "{";
+            json +="\"Username\": \""+ Username + "\"";
+            json += ", ";
+            json += bets.LastOrDefault().ToJson();
+            return json + "}";
+        }
     }
 }

@@ -262,18 +262,52 @@ namespace WinFastLoseFaster.Controllers
             //    JsonRequestBehavior.AllowGet);
 
 
-            var myList2 = context.Games.Where(g => g.GameActive == true && g.Gametype == Game.GameEnum.Coinflip);
+            //var myList2 = context.Games.Where(g => g.GameActive == true && g.Gametype == Game.GameEnum.Coinflip);
 
 
-            foreach (var game in myList2)
+            //foreach (var game in myList2)
+            //{
+            //    context.Entry(game).Collection(g => g.users).Load();
+            //    context.Entry(game).Collection(g => g.Userbets).Load();
+
+            //}
+
+            //List<string> myList3 = new List<string>();
+
+            //foreach (var game in myList2)
+            //{
+
+
+            //}
+
+
+            //return Json(new { activeCoinflipGame = myList2.ToList() },
+            //    JsonRequestBehavior.AllowGet);
+
+            List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
+            List<string> takeThisJson2 = new List<string>();
+
+            foreach (var game in myList)
             {
-                context.Entry(game).Collection(g => g.users).Load();
-                context.Entry(game).Collection(g => g.Userbets).Load();
+
+                GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
+                {
+                    
+                    Creater = game.users.FirstOrDefault().Username,
+                    Wager = game.Userbets.FirstOrDefault().Wager,
+                    GameId = game.Id
+
+                };
+
+                takeThisJson.Add(shit);
+                takeThisJson2.Add(game.users.FirstOrDefault().Username);
+                takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
+                takeThisJson2.Add(game.Id.ToString());
 
             }
 
 
-            return Json(new { activeCoinflipGame = myList2.ToList() },
+            return Json(new { activeCoinflipGame = takeThisJson },
                 JsonRequestBehavior.AllowGet);
 
 

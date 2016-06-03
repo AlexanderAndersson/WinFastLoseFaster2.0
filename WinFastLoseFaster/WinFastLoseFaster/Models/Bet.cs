@@ -23,5 +23,13 @@ namespace WinFastLoseFaster.Models
 
         [ScriptIgnore]
         public virtual User user { get; set; }
+
+        public string ToJson()
+        {
+            string json = "";
+            json += "\"Wager\": " + Wager;
+
+            return json;
+        }
     }
 }

@@ -11,10 +11,10 @@ namespace WinFastLoseFaster.Models
     {
         public int Id { get; set; }
 
-        [ScriptIgnore]
+        
         public virtual IList<User> users {get; set;}
 
-        [ScriptIgnore]
+        
         public virtual IList<Bet> Userbets { get; set; }
 
         [ScriptIgnore]

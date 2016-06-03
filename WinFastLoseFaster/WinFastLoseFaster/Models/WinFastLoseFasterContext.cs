@@ -10,7 +10,7 @@ namespace WinFastLoseFaster.Models
     {
         public WinFastLoseFasterContext() : base ("name=LocalDb")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = false;
             
         }
 

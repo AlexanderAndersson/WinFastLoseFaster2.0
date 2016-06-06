@@ -8,7 +8,7 @@ namespace WinFastLoseFaster.Models
 {
     public class WinFastLoseFasterContext : DbContext
     {
-        public WinFastLoseFasterContext() : base ("name=WebDB")
+        public WinFastLoseFasterContext() : base ("name=LocalDB")
         {}
 
         public DbSet<User> Users { get; set; }

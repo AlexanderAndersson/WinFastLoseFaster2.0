@@ -73,26 +73,29 @@
         </div>
     </div>
     <!--Status Titlar-->
-    <div id="statsTitlar">
-        <h4>Status</h4>
-        <h4>Wager</h4>
-        <h4>Winner</h4>
-        <h4>Credits-won</h4>
-        <h4>Loser</h4>
-        <h4>Date</h4>
-        <h4>Time</h4>
-        <h4>Game type</h4>
-    </div>
+    <table id="statsTitlar">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Wager</th>
+                <th>Winner</th>
+                <th>Credits Won</th>
+                <th>Loser</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Game Type</th>
+            </tr>
+        </thead>
+    </table>
     <!--Matcher-->
-    <div id="matches">
-        <div>
+    <table id="matches">
             @foreach (Game game in ViewBag.myGames)
             {
                 <!--Spel status-->
-                <div class="game">
+                <tr class="game">
                     @if (game.GameActive == true)
                 {
-                        <h4 class="white">Active</h4>
+                        <td class="white">Active</td>
                     }
                     else
                     {
@@ -100,44 +103,42 @@
                         {
                             if (winner.WinningUser == ViewBag.currentUser)
                             {
-                                <h4 class="green">Won</h4>
+                                <td class="green">Won</td>
                             }
                             else
                             {
-                                <h4 class="red">Lost</h4>
+                                <td class="red">Lost</td>
                             }
                         }
                     }
-                    <h4>@game.Userbets.FirstOrDefault().Wager</h4>
+                    <td>@game.Userbets.FirstOrDefault().Wager</td>
 
                     <!--Om spelet är aktivt så kommer där stå pending istället för Winner, Credits-Won och Loser-->
                     @if (game.GameActive == true)
                     {
-                        <h4>Pending</h4>
-                        <h4 class="white">Pending</h4>
-                        <h4>Pending</h4>
+                        <td>Pending</td>
+                        <td class="white">Pending</td>
+                        <td>Pending</td>
                     }
-
-                    @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
 
                     @foreach (Winner winner in game.Winners)
                     {
                         if (winner.WinningUser == ViewBag.currentUser)
                         {
-                            <h4>You</h4>
+                            <td>You</td>
                         }
                         else
                         {
-                            <h4>@winner.WinningUser.Username</h4>
+                            <td>@winner.WinningUser.Username</td>
                         }
 
                         if (winner.WinningUser == ViewBag.currentUser)
                         {
-                            <h4 class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+                            <td class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
                         }
                         else
                         {                        
-                            <h4 class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+                            <td class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
                         }
 
                         foreach (var player in game.users)
@@ -146,11 +147,11 @@
                             {
                                 if (winner.WinningUser != ViewBag.currentUser)
                                 {
-                                    <h4>You</h4>
+                                    <td>You</td>
                                 }
                                 else
                                 {
-                                    <h4>@player.Username</h4>                                   
+                                    <td>@player.Username</td>                                   
                                 }
                             }
                         }
@@ -158,20 +159,19 @@
                     <!--Om spelet spelades idag så står det today istället för ett datum-->
                     @if (game.Timestamp.Date == DateTime.Today)
                     {
-                        <h4>Today</h4>
-                        <h4>@game.Timestamp.ToShortTimeString()</h4>
+                        <td>Today</td>
+                        <td>@game.Timestamp.ToShortTimeString()</td>
                     }
                     else
                     {
-                        <h4>@game.Timestamp.ToShortDateString()</h4>
-                        <h4>@game.Timestamp.ToShortTimeString()</h4>
+                        <td>@game.Timestamp.ToShortDateString()</td>
+                        <td>@game.Timestamp.ToShortTimeString()</td>
                     }
                     <!--Spel typ-->
-                    <h4>@game.Gametype</h4>
-                </div>
+                    <td>@game.Gametype</td>
+                </tr>
             }
-        </div>
-    </div>
+    </table>
 
     <!--Alla stats på stats sidan-->
     <div id="stats">
@@ -197,14 +197,12 @@
         </div>
         <div>
             <h3>Losses</h3>
-            <h4><span class="green">@ViewBag.Loss</span></h4>
+            <h4><span class="red">@ViewBag.Loss</span></h4>
         </div>
         <div>
             <h3>Amount Won</h3>
             <h4><span class="green">@ViewBag.amountWon</span></h4>
-        </div>
-
-        
+        </div>      
     </div>
 </div>
 

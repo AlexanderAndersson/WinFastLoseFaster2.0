@@ -48,19 +48,18 @@ namespace WinFastLoseFaster.Controllers
                     Session["credits"] = userList.First().Credits;
 
                     return RedirectToAction("Coinflip", "Games");
-
                 }
                 else
                 {
-
-
+                    ViewBag.wrongPassword = "Wrong username or password";
                 }//Right username, wrong password
 
             }//No user with inputted username
-
-
-
-            return RedirectToAction("/Index", "User");
+            else
+            {
+                ViewBag.Wrong = "Wrong username or password";
+            }
+            return View("Index");
         }
 
         public ActionResult Register()

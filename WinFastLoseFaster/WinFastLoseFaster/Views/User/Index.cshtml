@@ -3,13 +3,6 @@
     ViewBag.Title = "Login";
 }
 
-<style>
-    #errorMsg {
-        color:red;
-        margin:5px;
-    }    
-</style>
-
 <div class="form">
     <link href="~/Content/Login.css" rel="stylesheet" type="text/css" /> 
 
@@ -61,18 +54,19 @@
                     </label>
                     <input type="checkbox" required autocomplete="off" name="inputCheckbox" id="registerCheckbox" style="height:30px" />
                 </div>               
-                <button type="submit" class="button button-block" id="registerSubmit" />Get Started</button>
+                <button type="submit" class="button button-block" id="registerSubmit">Get Started</button>
             </form>
         </div>
 
         <div id="login">
             <h1>Welcome Back!</h1>
+            <h5 class="red">@ViewBag.Wrong</h5>
             <form action="Login" method="post">
                 <div class="field-wrap">
                     <label>
                         Username
                     </label>
-                    <input type="text" required autocomplete="off" name="inputUsername" id="loginUsername" />
+                    <input type="text" required autocomplete="off" name="inputUsername" id="loginUsername"/>
                 </div>
 
                 <div class="field-wrap">

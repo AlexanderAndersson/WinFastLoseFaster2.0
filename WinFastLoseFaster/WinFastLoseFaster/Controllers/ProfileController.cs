@@ -27,6 +27,8 @@ namespace WinFastLoseFaster.Controllers
 
                 User user = myUserList.First();
 
+                Session["credits"] = user.Credits;
+
                 var numberOfWins = from n in context.Winners
                                    where n.WinningUser.Id == user.Id
                                    select n;
@@ -57,6 +59,7 @@ namespace WinFastLoseFaster.Controllers
                 int bets = 0;
                 int won = 0;
                 int loss = 0;
+                double wonAmount = 0.00;
 
                 foreach (var bet in betAmount)
                 {
@@ -66,6 +69,7 @@ namespace WinFastLoseFaster.Controllers
                 foreach (var wins in amountWon)
                 {
                     won += wins;
+                    wonAmount += (wins * 1.03 / 2 )* 0.97;             
                 }
 
                 //foreach (var losses in amountLost)
@@ -108,7 +112,7 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Profit = won - bets;
                 ViewBag.Credits = user.Credits;
 
-                ViewBag.amountWon = won;
+                ViewBag.amountWon = Math.Round(wonAmount, 0);
                 ViewBag.currentUser = user;
                 ViewBag.BetsAmount = bets;
                 ViewBag.Deposit = user.Deposit;

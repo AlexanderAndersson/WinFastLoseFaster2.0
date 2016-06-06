@@ -1,5 +1,8 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+
+
 @{
+
     ViewBag.Title = "Profil sida";
 }
 @model IEnumerable<WinFastLoseFaster.Models.Game>
@@ -100,8 +103,10 @@
             <h3>Stats</h3>
         </div>
     </div>
+    <br />
+
     <!--Status Titlar-->
-    <table id="statsTitlar">
+    @*<table id="statsTitlar">
         <thead>
             <tr>
                 <th>Status</th>
@@ -114,13 +119,26 @@
                 <th>Game Type</th>
             </tr>
         </thead>
-    </table>
+    </table>*@
     <!--Matcher-->
-    <table id="matches">
+    <table id="statsTitlar" class="table-responsive">
+        @*<thead>*@
+            <tr>
+                <th>Status</th>
+                <th>Wager</th>
+                <th>Winner</th>
+                <th>Credits Won</th>
+                <th>Loser</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Game Type</th>
+            </tr>
+        @*</thead>*@
+        @*<tbody>*@
             @foreach (Game game in ViewBag.myGames)
             {
                 <!--Spel status-->
-                <tr class="game">
+                <tr id="game" class="table-responsive">
                     @if (game.GameActive == true)
                 {
                         <td class="white">Active</td>
@@ -165,7 +183,7 @@
                             <td class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
                         }
                         else
-                        {                        
+                        {
                             <td class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
                         }
 
@@ -179,7 +197,7 @@
                                 }
                                 else
                                 {
-                                    <td>@player.Username</td>                                   
+                                    <td>@player.Username</td>
                                 }
                             }
                         }
@@ -199,6 +217,8 @@
                     <td>@game.Gametype</td>
                 </tr>
             }
+        @*</tbody>*@
+
     </table>
 
     <!--Alla stats på stats sidan-->

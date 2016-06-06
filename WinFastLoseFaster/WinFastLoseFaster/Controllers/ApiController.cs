@@ -10,18 +10,21 @@ namespace WinFastLoseFaster.Controllers
     public class ApiController : Controller
     {
         // GET: Api
-        public ActionResult Index()
+        public ActionResult AmountPaidOut(string callback)
         {
+            
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();
             var TotalWon = from w in context.Winners
                            select w.TotalAmount;
 
-            List<double> wins = new List<double>();
+            double wins = 0.00;
+
+            Math.Round(wins, 2);
 
             foreach (var win in TotalWon)
             {
                 //Tar ut credits i valuta
-                wins.Add(win / 10.00);
+                wins += win;
             }
 
             if (TotalWon.Count() > 0)
@@ -30,7 +33,7 @@ namespace WinFastLoseFaster.Controllers
             }
             else
             {
-                return Json("No wins found " +  JsonRequestBehavior.AllowGet);
+                return  Json("No wins found ",  JsonRequestBehavior.AllowGet);
             }
         }
     }

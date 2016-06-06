@@ -48,7 +48,7 @@
 
                 <form action="JoinCoinflip" method="post">
                     <input type="number" value="@Html.DisplayFor(coinflipGame => coinflip.Id)" name="coinflipGameId" hidden readonly />
-                    <input class="btn-success" type="submit" value="Join Game" />
+                    <input class="btn-success coinflipJoinGame" type="submit" value="Join Game" />
 
                 </form>
 
@@ -65,6 +65,14 @@
     }
 
 
+<div id="coin-flip-cont">
+    <div id="coin">
+        <div class="front"></div>
+        <div class="back"></div>
+    </div>
+</div>
+
+
 
     
-
+<script src="~/Scripts/coinflip.js"></script>

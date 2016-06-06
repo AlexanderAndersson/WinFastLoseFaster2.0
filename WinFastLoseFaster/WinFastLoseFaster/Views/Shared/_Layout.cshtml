@@ -10,6 +10,8 @@
     <link href="~/Content/navbar.css" rel="stylesheet" type="text/css" />
     <link href="<%:@Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
 
+    @*JAVASCRIPT*@
+
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -45,7 +47,7 @@
                 @if ((bool)Session["isLoggedIn"] == true)
                 {
 
-                    <li>
+                    <li style="margin-top:15px;">
                         $ @Session["credits"]
                     </li>
 
@@ -72,7 +74,7 @@
             </ul>
         </div>
     </nav> <!--sluta-->
-    
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -84,6 +86,8 @@
 
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/Login.js"></script>
    
+    <script src="~/Scripts/login'.js"></script>
 </body>
 </html>

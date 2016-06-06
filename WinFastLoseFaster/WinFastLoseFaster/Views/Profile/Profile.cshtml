@@ -1,45 +1,225 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
 @{
-    ViewBag.Title = "Profil-Sida";
+    ViewBag.Title = "Profil sida";
 }
+@model IEnumerable<WinFastLoseFaster.Models.Game>
+@using WinFastLoseFaster.Models;
 
+<!--Wrapper runt hela skiten-->
+<div id="wrapper"> 
+    <!--Profilbild-->
+    <div id="profilHeader">
+        <img id="profilPic" src="@ViewBag.Picture" />
+        <!--Username-->
+        <div id="username">
+            <h2>@ViewBag.Username</h2>
+        </div>
+        <!--W/L Ratio-->
+        <div class="headStats">
+            <h2>W/L Ratio</h2>
+            @if (ViewBag.WLR > 1)
+            {
+                <h3 class="green">@ViewBag.WLR</h3>
+            }
+            else if (ViewBag.WLR == 1)
+            {
+                <h3 class="white">@ViewBag.WLR</h3>
+            }
+            else
+            {
+                <h3 class="red"> @ViewBag.WLR</h3>
+            }
+        </div>
+        <!--Antal vinster och förluster-->
+        <div id="WL" class="headStats">
+            <h2>Win/Loss</h2>
+            <h3>
+                <span class="green">@ViewBag.Wins</span>
+                <span class="white">/</span>
+                <span class="red">@ViewBag.Loss</span>
+            </h3>
+        </div>
+        <!--Profit-->
+        <div class="headStats">
+            @if (ViewBag.Profit > 0)
+            {
+                <h2>Profit</h2>
+                <h3 class="green">@ViewBag.Profit</h3>
+            }
+            else if (ViewBag.Profit < 0)
+            {
+                <h2>Profit</h2>
+                <h3 class="red">@ViewBag.Profit</h3>
+            }
+            else
+            {
+                <h2>Profit</h2>
+                <h3 style="color: white">@ViewBag.Profit</h3>
+            }
+        </div>
+        <!--Credits-->
+        <div class="headStats">
+            <h2>Credits</h2>
+            <h3 class="white">@ViewBag.Credits</h3>
+        </div>
+    </div>
+    <!--Flikar-->
+    <div class="Flikar">
+        <div id="matcherFlik">
+            <h3>Matches</h3>
+        </div>
+        <div id="statsFlik">
+            <h3>Stats</h3>
+        </div>
+    </div>
+    <!--Status Titlar-->
+    <table style="font-size:12px;">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Status</th>
+                <th>Status</th>
+                <th>Status</th>
+            </tr>
+            
+        </thead>
+        <!--FOREACH <tr> <td>-->
+            </table>
+    <div id="statsTitlar">
+        <h4>Status</h4>
+        <h4>Wager</h4>
+        <h4>Winner</h4>
+        <h4>Credits-won</h4>
+        <h4>Loser</h4>
+        <h4>Date</h4>
+        <h4>Time</h4>
+        <h4>Game type</h4>
+    </div>
+    <!--Matcher-->
+    <div id="matches">
+        <div>
+            @foreach (Game game in ViewBag.myGames)
+            {
+                <!--Spel status-->
+                <div class="game">
+                    @if (game.GameActive == true)
+                {
+                        <h4 class="white">Active</h4>
+                    }
+                    else
+                    {
+                        foreach (Winner winner in game.Winners)
+                        {
+                            if (winner.WinningUser == ViewBag.currentUser)
+                            {
+                                <h4 class="green">Won</h4>
+                            }
+                            else
+                            {
+                                <h4 class="red">Lost</h4>
+                            }
+                        }
+                    }
+                    <h4>@game.Userbets.FirstOrDefault().Wager</h4>
 
-<div id="profilHeader">
-    <img src="@ViewBag.Picture" />
+                    <!--Om spelet är aktivt så kommer där stå pending istället för Winner, Credits-Won och Loser-->
+                    @if (game.GameActive == true)
+                    {
+                        <h4>Pending</h4>
+                        <h4 class="white">Pending</h4>
+                        <h4>Pending</h4>
+                    }
 
-    <div id="username">
-        <h2>@ViewBag.Username</h2>
+                    @*<p>@game.Userbets.IndexOf(Bet { User = ViewBag.currentUser })</p>*@
+
+                    @foreach (Winner winner in game.Winners)
+                    {
+                        if (winner.WinningUser == ViewBag.currentUser)
+                        {
+                            <h4>You</h4>
+                        }
+                        else
+                        {
+                            <h4>@winner.WinningUser.Username</h4>
+                        }
+
+                        if (winner.WinningUser == ViewBag.currentUser)
+                        {
+                            <h4 class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+                        }
+                        else
+                        {                        
+                            <h4 class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</h4>
+                        }
+
+                        foreach (var player in game.users)
+                        {
+                            if (player != winner.WinningUser)
+                            {
+                                if (winner.WinningUser != ViewBag.currentUser)
+                                {
+                                    <h4>You</h4>
+                                }
+                                else
+                                {
+                                    <h4>@player.Username</h4>                                   
+                                }
+                            }
+                        }
+                    }
+                    <!--Om spelet spelades idag så står det today istället för ett datum-->
+                    @if (game.Timestamp.Date == DateTime.Today)
+                    {
+                        <h4>Today</h4>
+                        <h4>@game.Timestamp.ToShortTimeString()</h4>
+                    }
+                    else
+                    {
+                        <h4>@game.Timestamp.ToShortDateString()</h4>
+                        <h4>@game.Timestamp.ToShortTimeString()</h4>
+                    }
+                    <!--Spel typ-->
+                    <h4>@game.Gametype</h4>
+                </div>
+            }
+        </div>
     </div>
 
-    <div class="headStats">
-        <h2>Deposit</h2>
-        <h3>$@ViewBag.Deposit</h3>
-    </div>
+    <!--Alla stats på stats sidan-->
+    <div id="stats">
+        <div>
+            <h3>Total bet amount</h3>
+            <h4>@ViewBag.BetsAmount</h4>
+        </div>
+        <div>
+            <h3>Total Deposit</h3>
+            <h4>@ViewBag.Deposit</h4>
+        </div>
+        <div>
+            <h3>Total Withdrawal</h3>
+            <h4>@ViewBag.Withdrawal</h4>
+        </div>
+        <div>
+            <h3>Matches Played</h3>
+            <h4>@ViewBag.MatchesPlayed</h4>
+        </div>
+        <div>
+            <h3>Wins</h3>
+            <h4><span class="green">@ViewBag.Wins</span></h4>
+        </div>
+        <div>
+            <h3>Losses</h3>
+            <h4><span class="green">@ViewBag.Loss</span></h4>
+        </div>
+        <div>
+            <h3>Amount Won</h3>
+            <h4><span class="green">@ViewBag.amountWon</span></h4>
+        </div>
 
-    <div class="headStats">
-        <h2>Wins</h2>
-        <h3>@ViewBag.Wins</h3>
-    </div>
-
-    <div class="headStats">
-        @if (ViewBag.Profit > 0)
-        {
-            <h2>Profit</h2>
-            <h3><span style="color: green">@ViewBag.Profit</span></h3>
-        }
-        else if (ViewBag.Profit < 0)
-        {
-            <h2>Profit</h2>
-            <h3><span style="color: red">@ViewBag.Profit</span></h3>
-        }
-        else
-        {
-            <h2>Profit</h2>
-            <h3>@ViewBag.Profit</h3>
-        }
-    </div>
-    <div class="headStats">
-        <h2>Credits</h2>
-        <h3>@ViewBag.Credits</h3>
+        
     </div>
 </div>
+
+<!--Scripts as u can see-->
+<script src="~/Scripts/refresh.js"></script>
+<script src="~/Scripts/statsFlikar.js"></script>

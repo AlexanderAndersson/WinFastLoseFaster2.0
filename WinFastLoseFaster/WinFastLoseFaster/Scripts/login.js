@@ -1,14 +1,16 @@
-﻿$(document).ready(function () { 
-    $("#login").addClass('active');
-    $("#signup").removeClass('active');
+﻿//$(document).ready(function () {
+//    $("#login").addClass('active');
+//    $("#signup").removeClass('active');
 
-    target = $(this).attr('href');
+//    //target = $(this).attr('href');
+//    target = $("#login");
 
-    $('.tab-content > div').not("#login").hide();
+//    $('.tab-content > div').not("#login").hide();
 
-    $(target).fadeIn(600);
+//    $(target).fadeIn(600);
 
-});
+//});
+
 
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
@@ -51,5 +53,4 @@ $('.tab a').on('click', function (e) {
     $('.tab-content > div').not(target).hide();
 
     $(target).fadeIn(600);
-
 }); 

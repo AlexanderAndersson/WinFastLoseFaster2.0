@@ -19,7 +19,14 @@ namespace WinFastLoseFaster.Models
 
         public int Wager { get; set; }
 
-        
+        //public DateTime Timestamp { get; set; }
+
+        public string ShortDate { get; set; }
+
+        public string ShortTime { get; set; }
+
+
+
 
     }
 }

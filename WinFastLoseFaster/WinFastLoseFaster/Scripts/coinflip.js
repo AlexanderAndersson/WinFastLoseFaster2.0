@@ -17,7 +17,8 @@
 
     $('#coin').on('click', function () {
 
-        $("#coin").css("display", "initial");
+        //$("#coin").css("display", "initial");
+        alert(document.getElementById("coin").style.display)
         $('#coin').removeClass();
 
         setTimeout(function () {
@@ -26,11 +27,13 @@
 
     });
 
+    getGameList();
+
     setInterval(function () {
 
         getGameList();
 
-    }, 1000);
+    }, 3000);
 
 });
 
@@ -43,12 +46,12 @@ function getSpin() {
     var spin = "";
     var randomNumber = Math.random() * 2;
     if (randomNumber < 1) {
-        alert("SQUIRTLE WON");
+        //alert("SQUIRTLE WON");
         spin = "animation1980";
 
     }
     else {
-        alert("LENNY WON");
+        //alert("LENNY WON");
         spin = "animation2160";
 
 
@@ -68,35 +71,53 @@ function getGameList() {
         success: function (data) {
             var list = data.activeCoinflipGame;
 
-            for (i = 0; i < list.Count; i++) {
+            $("#coinflipGameList").html("");
 
-                var cGameToList = list.activeCoinflipGame[i];
+            //alert("data: " + data);
+            //alert("json activeCoinflipGame obj: " + data.activeCoinflipGame);
+            console.log("data: " + JSON.stringify(data));
+            console.log("json activeCoinflipGame obj: " + JSON.stringify(data.activeCoinflipGame));
 
-                //$("#coinflipGameList").html($("#coinflipGameList").html() +  "<div class='coinflipGame row'>" 
-                //    + cGameToList.users[0].Username
-                //    + "Wager: " + cGameToList.Userbets[0].Wager
-                //    + cGameToList.Timestamp
+            for (i = 0; i < list.length; i++) {
 
-                //    + "<form action='JoinCoinflip' method='post'>"
-                //    + "<input type='number' value='" + cGameToList.Id + "' name='coinflipGameId' readonly />"
-                //    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />"
-                //    + "</form>"
+                //alert("I FOR LOOPEN");
 
-                //    + cGameToList[0]
+                var cGameToList = list[i];
 
-                //    + "</div>");
+                
 
-                document.getElementById("coinflipGameList").innerHTML += "<div class='coinflipGame row'>"
-                + cGameToList.Username
-                + ", Wager: " + cGameToList.Wager
+                var shitToWrite = $("#coinflipGameList").html($("#coinflipGameList").html() + "<div class='coinflipGame row'>"
+                    + cGameToList.Creater + " "
+                    + "Wager: " + cGameToList.Wager + " "
+                    + cGameToList.ShortDate + " "
+                    + cGameToList.ShortTime
 
-                + "<form action='JoinCoinflip' method='post'>"
-                + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' readonly />"
-                + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />";
-                + "</div>";
+                    + "<form action='JoinCoinflip' method='post'>"
+                    + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' hidden readonly />"
+                    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />"
+                    + "</form>"
+
+                    + "</div>");
+
+                
+                //alert("Saker att skriva till div coinflipGameList: " + shitToWrite);
+
+
+                //document.getElementById("coinflipGameList").innerHTML = "";
+
+                //document.getElementById("coinflipGameList").innerHTML += "<div class='coinflipGame row'>"
+                //+ cGameToList.Username
+                //+ ", Wager: " + cGameToList.Wager
+
+                //+ "<form action='JoinCoinflip' method='post'>"
+                //+ "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' readonly />"
+                //+ "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />";
+                //+ "</div>";
 
 
             }
+
+            //alert("AFTER FOREACH");
 
 
         },

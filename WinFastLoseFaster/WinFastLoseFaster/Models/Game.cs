@@ -17,7 +17,7 @@ namespace WinFastLoseFaster.Models
         
         public virtual IList<Bet> Userbets { get; set; }
 
-        [ScriptIgnore]
+        
         public virtual IList<Winner> Winners { get; set; }
 
         public DateTime Timestamp { get; set; }

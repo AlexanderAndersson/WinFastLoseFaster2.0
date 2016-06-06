@@ -150,8 +150,8 @@ namespace WinFastLoseFaster.Controllers
                 if (faults == 0)
                 {
 
-                User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Credits = 1000, Deposit = 0, Withdrawal = 0, Games = { }, bets = { } };
-                userToAdd.Picture = profilePictures.ElementAt(rnd.Next(profilePictures.Count));
+                    User userToAdd = new User() { Username = username.Trim(), Password = password, Mail = email, Credits = 1000, Deposit = 0, Withdrawal = 0, Games = { }, bets = { } };
+                    userToAdd.Picture = profilePictures.ElementAt(rnd.Next(profilePictures.Count));
 
                     context.Users.Add(userToAdd);
                     context.SaveChanges();
@@ -161,7 +161,7 @@ namespace WinFastLoseFaster.Controllers
                     Session["credits"] = userToAdd.Credits;
 
 
-            }
+                }
 
                 
             }

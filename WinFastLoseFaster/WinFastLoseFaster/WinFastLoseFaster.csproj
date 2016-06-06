@@ -147,10 +147,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606011441477_InitialCreate.cs" />
-    <Compile Include="Migrations\201606011441477_InitialCreate.Designer.cs">
-      <DependentUpon>201606011441477_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bet.cs" />
     <Compile Include="Models\Chat.cs" />
@@ -184,11 +180,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Test\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606011441477_InitialCreate.resx">
-      <DependentUpon>201606011441477_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

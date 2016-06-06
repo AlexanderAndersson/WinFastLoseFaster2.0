@@ -122,7 +122,7 @@
 
                     @foreach (Winner winner in game.Winners)
                     {
-                        foreach (Winner winner in game.Winners)
+                       if (winner.WinningUser == ViewBag.currentUser)
                         {
                             <h4>You</h4>
                         }

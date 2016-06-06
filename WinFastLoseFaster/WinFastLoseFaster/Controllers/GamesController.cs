@@ -248,7 +248,7 @@ namespace WinFastLoseFaster.Controllers
         {
 
             WinFastLoseFasterContext context = new WinFastLoseFasterContext();
-            context.Configuration.ProxyCreationEnabled = false;
+            //context.Configuration.ProxyCreationEnabled = false;
 
             var myList = from cg in context.Games
                          where cg.Gametype == Game.GameEnum.Coinflip && cg.GameActive == true
@@ -286,25 +286,38 @@ namespace WinFastLoseFaster.Controllers
 
             List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
             List<string> takeThisJson2 = new List<string>();
+            
 
-            foreach (var game in myList)
+
+            if (myList.Count() > 0)
             {
 
-                GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
+                foreach (var game in myList)
                 {
+
+                    GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
+                    {
+                        Creater = game.users.FirstOrDefault().Username,
+                        Wager = game.Userbets.FirstOrDefault().Wager,
+                        GameId = game.Id,
+                        ShortDate = game.Timestamp.ToShortDateString(),
+                        ShortTime = game.Timestamp.ToShortTimeString()
+                        
+                    };
+
                     
-                    Creater = game.users.FirstOrDefault().Username,
-                    Wager = game.Userbets.FirstOrDefault().Wager,
-                    GameId = game.Id
 
-                };
 
-                takeThisJson.Add(shit);
-                takeThisJson2.Add(game.users.FirstOrDefault().Username);
-                takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
-                takeThisJson2.Add(game.Id.ToString());
+                    takeThisJson.Add(shit);
+                    //takeThisJson2.Add(game.users.FirstOrDefault().Username);
+                    //takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
+                    //takeThisJson2.Add(game.Id.ToString());
+
+                }
 
             }
+
+            
 
 
             return Json(new { activeCoinflipGame = takeThisJson },

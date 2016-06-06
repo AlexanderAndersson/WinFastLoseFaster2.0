@@ -9,8 +9,7 @@ namespace WinFastLoseFaster.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "WinFastLoseFaster.Models.WinFastLoseFasterContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WinFastLoseFaster.Models.WinFastLoseFasterContext context)

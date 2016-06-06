@@ -18,10 +18,10 @@ namespace WinFastLoseFaster.Models
         
         public int Wager { get; set; }
 
-        [ScriptIgnore]
+        
         public virtual Game game { get; set; }
 
-        [ScriptIgnore]
+        
         public virtual User user { get; set; }
 
         public string ToJson()

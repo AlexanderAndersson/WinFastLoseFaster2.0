@@ -17,7 +17,7 @@ namespace WinFastLoseFaster.Models
         [Required]
         public string Password { get; set; }
 
-        [ScriptIgnore]
+
         public virtual IList<Game> Games { get; set; }
 
         public int Deposit { get; set; }
@@ -32,7 +32,7 @@ namespace WinFastLoseFaster.Models
 
         public string Picture { get; set; }
 
-        [ScriptIgnore]
+
         public virtual IList<Bet> bets { get; set; }
 
         public string ToJson()

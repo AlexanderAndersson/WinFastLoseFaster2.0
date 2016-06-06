@@ -10,12 +10,12 @@ namespace WinFastLoseFaster.Models
     {
         public int Id { get; set; }
 
-        [ScriptIgnore]
+
         public virtual User WinningUser { get; set; }
 
         public int TotalAmount { get; set; }
 
-        [ScriptIgnore]
+
         public virtual Game game { get; set; }
     }
 }

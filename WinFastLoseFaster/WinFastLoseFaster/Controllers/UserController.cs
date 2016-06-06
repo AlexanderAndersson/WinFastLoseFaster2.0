@@ -51,13 +51,13 @@ namespace WinFastLoseFaster.Controllers
                 }
                 else
                 {
-                    ViewBag.wrongPassword = "Wrong username or password";
+                    ViewBag.Wrong = "Wrong username or password";
                 }//Right username, wrong password
 
             }//No user with inputted username
             else
             {
-                ViewBag.Wrong = "Wrong username or password";
+                //ViewBag.Wrong = "Wrong username or password";
             }
             return View("Index");
         }

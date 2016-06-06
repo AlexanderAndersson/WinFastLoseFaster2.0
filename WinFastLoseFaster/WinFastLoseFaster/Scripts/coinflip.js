@@ -94,9 +94,9 @@ function getGameList() {
 
                     + "<form action='JoinCoinflip' method='post'>"
                     + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' hidden readonly />"
-                    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />"
+                    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' style='float:right' />"
                     + "</form>"
-
+                    
                     + "</div>");
 
                 

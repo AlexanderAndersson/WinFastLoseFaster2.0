@@ -42,7 +42,7 @@
 }
 
 .headStats {
-    display: inline-block;
+    display:table-cell;
     border: 5px solid lightseagreen;
     background-color: black;
     width: 180px;
@@ -52,6 +52,8 @@
     padding-top: 25px;
     margin-top: 30px;
     margin-right: 10px;
+   
+    
 }
 
 #profilHeader {
@@ -60,7 +62,7 @@
 }
 
 #profilHeader img {
-    margin-top: -75px;
+    /*margin-top: -75px;*/
     cursor:pointer;
 }
 
@@ -73,7 +75,7 @@
 }
 
 .Flikar div {
-    display: inline-block;
+   display: inline-block;
 }
 
 .Flikar div:hover {
@@ -91,11 +93,12 @@
 /*************** TITLAR FÖR MATCHER ***************/
 
 #statsTitlar th {
-    display:inline-block;
-    margin-right:16px;
+
+
+    /*margin-right:16px;*/
     min-width: 118px;
     color: orange;
-    margin-left: 4px;
+    /*margin-left: 4px;*/
 }
 
 #statsTitlar {
@@ -110,14 +113,12 @@
 
 .game {
     /*border:1px solid black;*/
-    display:inline-block; 
+    display:table; 
     width:100%
 }
 
 .game tr {
     display: inline-block;
-    margin-left: 4px;
-    margin-right:16px;
     /*border: 1px solid orange;*/
     min-width: 118px;  
 }
@@ -130,4 +131,11 @@
 
 #stats tr {
     color: white;
+}
+.td{
+    border-spacing:5em;
+    text-align:left;
+}
+.th{
+    border-spacing:5em;
 }

@@ -41,6 +41,10 @@ namespace WinFastLoseFaster.Controllers
                                 where b.user.Username == user.Username
                                 select b.Wager;
 
+                var amountLost = from a in context.Winners
+                                 where a.WinningUser.Username != user.Username && a.game == user.Games
+                                 select a.TotalAmount;
+
                 //var winBetAmount = from w in context.Bets
                 //                   where w.user.Username == user.Username
                 //                   where w.game.Winners == user
@@ -54,6 +58,7 @@ namespace WinFastLoseFaster.Controllers
 
                 int bets = 0;
                 int won = 0;
+                int loss = 0;
 
                 foreach (var bet in betAmount)
                 {
@@ -64,6 +69,11 @@ namespace WinFastLoseFaster.Controllers
                 {
                     won += wins;
                 }
+
+                //foreach (var losses in amountLost)
+                //{
+                //    loss -= losses;
+                //}
 
                 List <Game> myGames = new List<Game>();
 
@@ -100,6 +110,7 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Profit = won - bets;
                 ViewBag.Credits = user.Credits;
 
+                ViewBag.amountWon = won;
                 ViewBag.currentUser = user;
                 ViewBag.BetsAmount = bets;
                 ViewBag.Deposit = user.Deposit;

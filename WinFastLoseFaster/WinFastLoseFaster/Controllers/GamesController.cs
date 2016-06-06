@@ -244,7 +244,7 @@ namespace WinFastLoseFaster.Controllers
             List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
             List<string> takeThisJson2 = new List<string>();
             
-
+            //hej
 
             if (myList.Count() > 0)
             {

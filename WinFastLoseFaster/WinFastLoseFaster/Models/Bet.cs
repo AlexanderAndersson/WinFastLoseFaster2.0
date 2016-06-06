@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace WinFastLoseFaster.Models
 {
@@ -14,11 +15,21 @@ namespace WinFastLoseFaster.Models
         //[ForeignKey("user")]
         //public int UserId { get; set; }
 
-        [Required]
+        
         public int Wager { get; set; }
 
+        
         public virtual Game game { get; set; }
 
+        
         public virtual User user { get; set; }
+
+        public string ToJson()
+        {
+            string json = "";
+            json += "\"Wager\": " + Wager;
+
+            return json;
+        }
     }
 }

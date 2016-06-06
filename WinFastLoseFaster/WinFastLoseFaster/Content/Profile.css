@@ -61,6 +61,7 @@
 
 #profilHeader img {
     margin-top: -75px;
+    cursor:pointer;
 }
 
 /*************** FLIKAR FÖR MATCHER OCH STATS ***************/
@@ -89,7 +90,7 @@
 
 /*************** TITLAR FÖR MATCHER ***************/
 
-#statsTitlar h4 {
+#statsTitlar th {
     display:inline-block;
     margin-right:16px;
     min-width: 118px;
@@ -108,12 +109,12 @@
 }
 
 .game {
-    border:1px solid black;
+    /*border:1px solid black;*/
     display:inline-block; 
     width:100%
 }
 
-.game h4 {
+.game tr {
     display: inline-block;
     margin-left: 4px;
     margin-right:16px;
@@ -127,6 +128,6 @@
     display: none;
 }
 
-#stats h4 {
+#stats tr {
     color: white;
 }

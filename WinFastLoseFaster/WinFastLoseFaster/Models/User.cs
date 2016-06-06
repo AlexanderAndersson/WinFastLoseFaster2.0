@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace WinFastLoseFaster.Models
 {
@@ -15,6 +16,8 @@ namespace WinFastLoseFaster.Models
 
         [Required]
         public string Password { get; set; }
+
+
         public virtual IList<Game> Games { get; set; }
 
         public int Deposit { get; set; }
@@ -29,6 +32,16 @@ namespace WinFastLoseFaster.Models
 
         public string Picture { get; set; }
 
+
         public virtual IList<Bet> bets { get; set; }
+
+        public string ToJson()
+        {
+            string json = "{";
+            json +="\"Username\": \""+ Username + "\"";
+            json += ", ";
+            json += bets.LastOrDefault().ToJson();
+            return json + "}";
+        }
     }
 }

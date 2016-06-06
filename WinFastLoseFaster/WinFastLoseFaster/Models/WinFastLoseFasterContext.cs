@@ -8,8 +8,12 @@ namespace WinFastLoseFaster.Models
 {
     public class WinFastLoseFasterContext : DbContext
     {
-        public WinFastLoseFasterContext() : base ("name=LocalDB")
-        {}
+        public WinFastLoseFasterContext() : base ("name=LocalDb")
+        {
+            //this.Configuration.LazyLoadingEnabled = false;
+            
+        }
+
 
         public DbSet<User> Users { get; set; }
 
@@ -21,6 +25,7 @@ namespace WinFastLoseFaster.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Game>()
                 .HasMany(g => g.users)
                 .WithMany(u => u.Games);

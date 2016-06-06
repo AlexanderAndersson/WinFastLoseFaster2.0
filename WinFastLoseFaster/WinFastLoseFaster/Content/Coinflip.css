@@ -56,12 +56,14 @@ left: calc(50% - 100px);
 position: relative;
 width: 200px;
 transform-style: preserve-3d;
+display:none;
 }
 
 #coin .front, #coin .back {
 position: absolute;
 width: 200px;
 height: 200px;
+background-size:cover;
 }
 
 #coin .front {

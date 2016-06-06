@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function () { 
     $("#login").addClass('active');
     $("#signup").removeClass('active');
 

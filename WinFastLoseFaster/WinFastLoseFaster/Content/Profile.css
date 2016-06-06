@@ -1,9 +1,28 @@
 ﻿body {
 }
 
+#wrapper {
+    /*border: 2px solid orange;*/
+}
+
+/*************** Färg klasser ***************/
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.white {
+    color: white;
+}
+
+
 /*************** BIG STATS SHIT ***************/
 
-img {
+#profilPic {
     width: 200px;
     height: 200px;
     border-radius: 100px;
@@ -107,4 +126,8 @@ img {
 
 #stats {
     display: none;
+}
+
+#stats h4 {
+    color: white;
 }

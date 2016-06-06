@@ -27,6 +27,8 @@ namespace WinFastLoseFaster.Controllers
 
                 User user = myUserList.First();
 
+                Session["credits"] = user.Credits;
+
                 var numberOfWins = from n in context.Winners
                                    where n.WinningUser.Id == user.Id
                                    select n;

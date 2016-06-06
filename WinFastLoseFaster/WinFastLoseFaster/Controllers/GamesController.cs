@@ -72,6 +72,15 @@ namespace WinFastLoseFaster.Controllers
                          orderby cg.Userbets.FirstOrDefault().Wager descending
                          select cg;
 
+            string username = Session["username"].ToString();
+
+            var getUser = from u in context.Users
+                          where u.Username == username
+                          select u;
+
+            User user = getUser.FirstOrDefault();
+
+            Session["credits"] = user.Credits;
 
             return View(myList.ToList());
         }

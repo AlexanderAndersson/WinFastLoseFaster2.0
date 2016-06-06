@@ -22,7 +22,7 @@
 
 /*************** BIG STATS SHIT ***************/
 
-#profilPic {
+.profilPic {
     width: 200px;
     height: 200px;
     border-radius: 100px;
@@ -30,6 +30,16 @@
     display: inline-block;
     /*margin-right: 100px;*/
 }
+
+#imgPreview img {
+    margin-top: -75px;
+    background-size:cover;
+}
+
+#imgPreview {
+    margin:auto;
+}
+
 
 #username {
     display: inline-block;
@@ -62,6 +72,7 @@
 #profilHeader img {
     margin-top: -75px;
     cursor:pointer;
+    background-size:cover;
 }
 
 /*************** FLIKAR FÖR MATCHER OCH STATS ***************/

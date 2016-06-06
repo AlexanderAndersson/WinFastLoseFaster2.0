@@ -136,18 +136,23 @@ namespace WinFastLoseFaster.Controllers
 
             string newProfilePictureUrl = Request["newProfilePicture"];
 
-            var getUser = from u in context.Users
-                          where u.Username == username
-                          select u;
+            if (string.IsNullOrWhiteSpace(newProfilePictureUrl) == false)
+            {
 
-            User user = getUser.FirstOrDefault();
+                var getUser = from u in context.Users
+                              where u.Username == username
+                              select u;
 
-            user.Picture = newProfilePictureUrl;
+                User user = getUser.FirstOrDefault();
 
-            context.SaveChanges();
-            
+                user.Picture = newProfilePictureUrl;
 
-            return RedirectToAction("Profile", "Profile");
+                context.SaveChanges();
+
+            }
+
+
+            return RedirectToAction("/Profile", "Profile");
         }
     }
 }

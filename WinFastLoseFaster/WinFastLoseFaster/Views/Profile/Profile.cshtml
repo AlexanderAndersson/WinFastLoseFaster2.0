@@ -5,11 +5,39 @@
 @model IEnumerable<WinFastLoseFaster.Models.Game>
 @using WinFastLoseFaster.Models;
 
+
+<!-- Small modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div id="changePictureDiv">
+                <h3 style="margin-left:30%;">Change profile picture</h3>
+                <br /><hr /><br />
+                <form action="ChangeProfilePicture" method="post">
+                    <img style="margin-left:32%;" id="imgPreview" class="profilPic" src="@ViewBag.Picture" alt="Invalid Picture" />
+                    <br /><br />
+                    <input style="margin-left:29%; width:250px;" type="text" id="inputProfilePicture" name="newProfilePicture" placeholder="Picture url" value="@ViewBag.Picture" />
+                    <br />
+                    <span style="margin-left:29%; color:red; font-size:15px;" id="PicturePreviewError">error</span>
+                    <br /><br /><br />
+
+                    <hr />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--Wrapper runt hela skiten-->
 <div id="wrapper"> 
     <!--Profilbild-->
     <div id="profilHeader">
-        <img id="profilPic" src="@ViewBag.Picture" />
+        <img class="profilPic" src="@ViewBag.Picture" data-toggle="modal" data-target=".bs-example-modal-sm" />
         <!--Username-->
         <div id="username">
             <h2>@ViewBag.Username</h2>
@@ -210,4 +238,5 @@
 <!--Scripts as u can see-->
 <script src="~/Scripts/refresh.js"></script>
 <script src="~/Scripts/statsFlikar.js"></script>
+<script src="~/Scripts/ProfilePicturePreview.js"></script>
 

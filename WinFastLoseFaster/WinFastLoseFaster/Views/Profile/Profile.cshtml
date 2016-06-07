@@ -1,15 +1,48 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+
+
 @{
+
     ViewBag.Title = "Profil sida";
 }
 @model IEnumerable<WinFastLoseFaster.Models.Game>
 @using WinFastLoseFaster.Models;
 
+
+<!-- Small modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div id="changePictureDiv">
+                <h3 style="margin-left:30%;">Change profile picture</h3>
+                <br /><hr /><br />
+                <form action="ChangeProfilePicture" method="post">
+                    <img style="margin-left:32%;" id="imgPreview" class="profilPic" src="@ViewBag.Picture" alt="Invalid Picture" />
+                    <br /><br />
+                    <input style="margin-left:29%; width:250px;" type="text" id="inputProfilePicture" name="newProfilePicture" placeholder="Picture url" value="@ViewBag.Picture" />
+                    <br />
+                    @*<span style="margin-left:29%; color:red; font-size:15px;" id="PicturePreviewError">error</span>*@
+                    <br /><br />
+
+                    <hr />
+                    <span style="">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save Changes" />
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--Wrapper runt hela skiten-->
 <div id="wrapper"> 
     <!--Profilbild-->
     <div id="profilHeader">
-        <img id="profilPic" src="@ViewBag.Picture" />
+        <img class="profilPic" src="@ViewBag.Picture" data-toggle="modal" data-target=".bs-example-modal-sm" />
         <!--Username-->
         <div id="username">
             <h2>@ViewBag.Username</h2>
@@ -76,7 +109,7 @@
         </div>
     </div>
     <!--Status Titlar-->
-    <table id="statsTitlar">
+    @*<table id="statsTitlar">
         <thead>
             <tr>
                 <th>Status</th>
@@ -89,13 +122,26 @@
                 <th>Game Type</th>
             </tr>
         </thead>
-    </table>
+    </table>*@
     <!--Matcher-->
-    <table id="matches">
+    <table id="statsTitlar" class="table-responsive">
+        @*<thead>*@
+            <tr>
+                <th>Status</th>
+                <th>Wager</th>
+                <th>Winner</th>
+                <th>Credits Won</th>
+                <th>Loser</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Game Type</th>
+            </tr>
+        @*</thead>*@
+        @*<tbody>*@
             @foreach (Game game in ViewBag.myGames)
             {
                 <!--Spel status-->
-                <tr class="game">
+                <tr id="game" class="table-responsive">
                     @if (game.GameActive == true)
                 {
                         <td class="white">Active</td>
@@ -154,7 +200,7 @@
                                 }
                                 else
                                 {
-                                    <td>@player.Username</td>                                   
+                                    <td>@player.Username</td>
                                 }
                             }
                         }
@@ -174,6 +220,8 @@
                     <td>@game.Gametype</td>
                 </tr>
             }
+        @*</tbody>*@
+
     </table>
 
     <!--Alla stats på stats sidan-->
@@ -229,4 +277,5 @@
 
 <!--Scripts as u can see-->
 <script src="~/Scripts/statsFlikar.js"></script>
+<script src="~/Scripts/ProfilePicturePreview.js"></script>
 

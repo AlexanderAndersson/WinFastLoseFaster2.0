@@ -153,10 +153,10 @@ namespace WinFastLoseFaster.Controllers
 
             joiner.Credits -= wager;
 
-            int totalAmount = (int)((bets.First().Wager + bets.Last().Wager) * 0.97);
+            int totalAmount = (int)((bets.First().Wager + bets.Last().Wager));
 
             List<Winner> winner = new List<Winner>();
-            winner.Add(new Winner { game = gameToJoin, TotalAmount = totalAmount });
+            winner.Add(new Winner { game = gameToJoin, TotalAmount = (int)((totalAmount) /** 0.97*/) });
 
             if (rnd.Next(101) < 50)
             {

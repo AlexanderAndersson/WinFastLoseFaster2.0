@@ -104,9 +104,10 @@
         <div id="statsFlik">
             <h3>Stats</h3>
         </div>
+        <div id="bankFlik">
+            <h3>Bank</h3>
+        </div>
     </div>
-    <br />
-
     <!--Status Titlar-->
     @*<table id="statsTitlar">
         <thead>
@@ -182,11 +183,11 @@
 
                         if (winner.WinningUser == ViewBag.currentUser)
                         {
-                            <td class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
+                            <td class="green">@(winner.TotalAmount / 2)</td>
                         }
                         else
-                        {
-                            <td class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
+                        {                        
+                            <td class="red">@(winner.TotalAmount / 2)</td>
                         }
 
                         foreach (var player in game.users)
@@ -253,12 +254,28 @@
             <h3>Amount Won</h3>
             <h4><span class="green">@ViewBag.amountWon</span></h4>
         </div>
+        <div>
+            <h3>Amount Lost</h3>
+            <h4><span class="red">@ViewBag.amountLost</span></h4>
+        </div>
     </div>
+</div>
+<!--Deposit och withdrawal sida-->
+<div id="bank">
+    <form action="Bank" method="post">
+        <h4>@ViewBag.tooMuch</h4>
+        <input class="input-lg" type="number" name="deposit" placeholder="Deposit" />
+        <input class="btn btn-lg btn-danger" type="submit" name="sDeposit" value="Submit" /><br>
+        <h5>[Max 1000]</h5><br><br>
+    </form>
+    <form action="Bank" method="post">
+        <input class="input-lg" type="number" name="withdrawal" placeholder="Withdrawal" />
+        <input class="btn btn-lg btn-success" type="submit" name="sWithdrawal" value="Submit" />
+    </form>
 </div>
 
 
 <!--Scripts as u can see-->
-<script src="~/Scripts/refresh.js"></script>
 <script src="~/Scripts/statsFlikar.js"></script>
 <script src="~/Scripts/ProfilePicturePreview.js"></script>
 

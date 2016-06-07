@@ -41,9 +41,13 @@ namespace WinFastLoseFaster.Controllers
                                 where b.user.Username == user.Username
                                 select b.Wager;
 
-                var amountLost = from a in context.Winners
-                                 where a.WinningUser.Username != user.Username && a.game == user.Games
-                                 select a.TotalAmount;
+                var inactiveGames = from a in user.Games
+                                 where a.GameActive == false
+                                 select a;
+
+                var amountLost = from a in inactiveGames
+                                 where a.Winners.FirstOrDefault().WinningUser != user
+                                 select a.Userbets.FirstOrDefault().Wager;
 
                 //var winBetAmount = from w in context.Bets
                 //                   where w.user.Username == user.Username
@@ -58,7 +62,7 @@ namespace WinFastLoseFaster.Controllers
 
                 int bets = 0;
                 int won = 0;
-                int loss = 0;
+                double loss = 0.00;
                 double wonAmount = 0.00;
 
                 foreach (var bet in betAmount)
@@ -69,7 +73,12 @@ namespace WinFastLoseFaster.Controllers
                 foreach (var wins in amountWon)
                 {
                     won += wins;
-                    wonAmount += (wins * 1.03 / 2 )* 0.97;             
+                    wonAmount += (wins / 2 )/** 0.97*/;             
+                }
+
+                foreach (var l in amountLost)
+                {
+                    loss -= l;
                 }
 
                 //foreach (var losses in amountLost)
@@ -109,7 +118,7 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Username = user.Username;
                 ViewBag.Wins = numberOfWins.Count();
                 ViewBag.Loss = matchesLost;
-                ViewBag.Profit = won - bets;
+                ViewBag.Profit = Math.Round(loss + wonAmount, 0);
                 ViewBag.Credits = user.Credits;
 
                 ViewBag.amountWon = Math.Round(wonAmount, 0);
@@ -119,6 +128,7 @@ namespace WinFastLoseFaster.Controllers
                 ViewBag.Withdrawal = user.Withdrawal;
                 ViewBag.myGames = user.Games.OrderByDescending(g => g.Timestamp);
                 ViewBag.MatchesPlayed = user.Games.Count();
+                ViewBag.amountLost = loss;
             }
             else
             {
@@ -153,6 +163,66 @@ namespace WinFastLoseFaster.Controllers
 
 
             return RedirectToAction("/Profile", "Profile");
+        }
+
+        public ActionResult Bank()
+        {
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            string loggedInUser = (string)Session["username"];
+
+            var myUserList = from u in context.Users
+                             where u.Username == loggedInUser
+                             select u;
+
+            User user = myUserList.First();
+
+            string deposit = Request["deposit"];
+            string withdrawal = Request["withdrawal"];
+
+            int d = 0;
+            int w = 0;
+
+            int.TryParse(deposit, out d);
+            int.TryParse(withdrawal, out w);
+
+            if (!int.TryParse(deposit, out d))
+            {
+                ViewBag.letter = "Not allowed letters";
+            }
+            else if (d > 1000)
+            {
+                ViewBag.tooMuch = "Max amount is 1000";
+            }
+            else if(d < 1)
+            {
+                ViewBag.less = "Less then 0 not acceptable";
+            }
+            else
+            {
+                user.Deposit += d;
+                user.Credits += d;
+            }
+
+            if (w > user.Credits)
+            {
+                ViewBag.tooCredits = "Not enought credits";
+            }
+            else if (w < 1)
+            {
+                ViewBag.less = "Less then 0 not acceptable";
+            }
+            else
+            {
+                user.Withdrawal += w;
+                user.Credits -= w;
+            }
+
+            context.SaveChanges();
+
+            return RedirectToAction("/Profile","Profile");
+
+            //return View();
         }
     }
 }

@@ -80,7 +80,9 @@ namespace WinFastLoseFaster.Controllers
             
             context.SaveChanges();
 
-            return RedirectToAction("Coinflip", "Games");
+
+            return RedirectToAction("PlayCoinflip", "Games", new { gameId = newGame.Id });
+            //return RedirectToAction("Coinflip", "Games");
         }
 
         public ActionResult JoinCoinflip()
@@ -122,7 +124,7 @@ namespace WinFastLoseFaster.Controllers
 
             if (creater.Username == joiner.Username)
             {
-                return RedirectToAction("Coinflip", "Games");
+                return RedirectToAction("/Coinflip", "Games");
 
             }//Användaren försöker spela mot sig själv, som man inte får.
 
@@ -137,6 +139,12 @@ namespace WinFastLoseFaster.Controllers
                 return RedirectToAction("/Index", "Home");
 
             }//joining player doesn't have enough credits to join the coinflip and gets redirected back to home/Index
+
+            if (gameToJoin.GameActive == false)
+            {
+                return RedirectToAction("/Coinflip", "Ganes");
+
+            }//Check if gameActive is false, if so, they can't join it.
 
 
             Bet newBet = new Bet() { game = gameToJoin, user = joiner, Wager = wager };
@@ -178,25 +186,8 @@ namespace WinFastLoseFaster.Controllers
             context.SaveChanges();
 
 
-            //ZooContext context = new ZooContext();
-            //int count = context.Djur.Count();
-            //return Json(new { Count = count },
-            //    JsonRequestBehavior.AllowGet);
-
-
-            //string createrUsername = creater.Username;
-            //string createrProfilePicture = creater.Picture;
-
-
-            //string joinerUsername = joiner.Username;
-            //string joinerProfilePicture = joiner.Picture;
-
-
-            //return Json(new { createrUsername = createrUsername, createrProfilePicture = createrProfilePicture, joinerUsername = joinerUsername, joinerProfilePicture = joinerProfilePicture },
-            //    JsonRequestBehavior.AllowGet);
-
-
-            return RedirectToAction("/Coinflip", "Games");
+            return RedirectToAction("PlayCoinflip", "Games", new { gameId = gameToJoin.Id });
+            //return RedirectToAction("/Coinflip", "Games");
             //return View();
         }
 
@@ -283,6 +274,45 @@ namespace WinFastLoseFaster.Controllers
 
             //return View(myList.ToList());
 
+        }
+
+        public ActionResult PlayCoinflip(int gameId)
+        {
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            var currentGame = from g in context.Games
+                              where g.Id == gameId
+                              select g;
+
+            Game gameToPlay = currentGame.FirstOrDefault();
+
+            ViewBag.creater = null;
+            ViewBag.joiner = null;
+            ViewBag.winner = null;
+
+            if (gameToPlay.GameActive == true)
+            {
+                ViewBag.noOpponent = "Waiting for someone to join the game.";
+
+                User creater = gameToPlay.users.FirstOrDefault();
+
+                ViewBag.creater = creater;
+
+            }
+            else
+            {
+
+                User creater = gameToPlay.users.First();
+                User joiner = gameToPlay.users.Last();
+
+                ViewBag.creater = creater;
+                ViewBag.joiner = joiner;
+                ViewBag.winner = gameToPlay.Winners.FirstOrDefault().WinningUser;
+
+            }
+
+            return View();
         }
 
 

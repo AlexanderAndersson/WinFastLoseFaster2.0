@@ -33,22 +33,15 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="#">About</a></li>
-               <li><a href="#">contact us</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Spel <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/Games/Coinflip">CoinFlip</a></li>
-                        <li><a href="#">Roulette</a></li>
-                        <li><a href="#">gå inte in hit !</a></li>
-                        <li class="divider"></li>
-                    </ul>
-                   </ul>
+                <li><a href="#">contact us</a></li>
+                <li><a href="/Games/Coinflip">CoinFlip</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if ((bool)Session["isLoggedIn"] == true)
                 {
 
                     <li style="margin-top:15px;">
-                        $ @Session["credits"]
+                        <img style="width: 20px; height: 20px;" src="http://images.clipartpanda.com/coin-clip-art-coin-1-md.png"/> @Session["credits"]
                     </li>
 
                     <li>

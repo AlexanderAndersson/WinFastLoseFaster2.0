@@ -128,6 +128,7 @@
     <Content Include="Scripts\coinflip.js" />
     <Content Include="Scripts\coinflipCreaterWin.js" />
     <Content Include="Scripts\coinflipJoinerWin.js" />
+    <Content Include="Scripts\coinflipUpdateSpecificGame.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\login.js" />
@@ -154,6 +155,7 @@
     <Compile Include="Models\Bet.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GhettoCoinflipGameStatus.cs" />
     <Compile Include="Models\GhettoListCoinflipGames.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WinFastLoseFasterContext.cs" />

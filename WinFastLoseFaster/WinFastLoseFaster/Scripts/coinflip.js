@@ -8,7 +8,6 @@
         setTimeout(function () {
             $('#coin').addClass(getSpin());
         }, 100);
-
     });
 
     $("#coin .front").css("background-image", "url(http://i3.kym-cdn.com/photos/images/original/000/013/251/lenny_fsjal.jpg)");
@@ -24,7 +23,6 @@
         setTimeout(function () {
             $('#coin').addClass(getSpin());
         }, 100);
-
     });
 
     getGameList();
@@ -34,7 +32,6 @@
         getGameList();
 
     }, 3000);
-
 });
 
 
@@ -48,13 +45,10 @@ function getSpin() {
     if (randomNumber < 1) {
         //alert("SQUIRTLE WON");
         spin = "animation1980";
-
     }
     else {
         //alert("LENNY WON");
         spin = "animation2160";
-
-
     }
     return spin;
 }
@@ -83,24 +77,19 @@ function getGameList() {
                 //alert("I FOR LOOPEN");
 
                 var cGameToList = list[i];
-
-                
-
-                var shitToWrite = $("#coinflipGameList").html($("#coinflipGameList").html() + "<div class='coinflipGame row'>"
-                    + "<img src='" +cGameToList.PictureURL + "'/> "
-                    + "" +cGameToList.Creater + " "
-                    + "Wager: " + cGameToList.Wager + " "
-                    + cGameToList.ShortDate + " "
-                    + cGameToList.ShortTime
-                    
-
-                    + "<form action='JoinCoinflip' method='post'>"
-                    + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' readonly />"
-                    + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' style='float:right' />"
-                    + "</form>"
-                    
+             
+                var shitToWrite = $("#coinflipGameList").html($("#coinflipGameList").html()
+                    + "<div class='coinflipGame'>"
+                        //+ "<div id='coinDiv'>"
+                            + "<form action='JoinCoinflip' method='post'>"
+                            + "<div class='picture'>" + "<img src='" + cGameToList.PictureURL + "' style='width: 50px; height: 50px;'/>" + "</div>"
+                            + "<div class='newGameStats'>" + "User: " + cGameToList.Creater + "</div>"
+                            + "<div class='newGameStats'>" + "Wager: " + cGameToList.Wager + "</div>"
+                            + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' hidden readonly />"
+                            + "<div class='knapp'>" + "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />" + "</div>"
+                            + "</form>"
+                        //+ "</div>"
                     + "</div>");
-
                 
                 //alert("Saker att skriva till div coinflipGameList: " + shitToWrite);
 
@@ -115,20 +104,12 @@ function getGameList() {
                 //+ "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' readonly />"
                 //+ "<input class='btn-success coinflipJoinGame' type='submit' value='Join Game' />";
                 //+ "</div>";
-
-
             }
-
             //alert("AFTER FOREACH");
-
-
         },
         error: function (jqXHR, statusText, errorThrown) {
             $('#coinflipGameList').html('Ett fel inträffade: <br>'
                 + statusText);
         }
-
     });
-
-
 }

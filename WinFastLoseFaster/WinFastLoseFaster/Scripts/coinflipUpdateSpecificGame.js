@@ -6,7 +6,7 @@
 
         UpdateShit(refresher);
 
-    }, 2000);
+    }, 300);
 
 });
 

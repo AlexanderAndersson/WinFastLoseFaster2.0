@@ -25,7 +25,7 @@ namespace WinFastLoseFaster.Models
 
         public string ShortTime { get; set; }
 
-
+        public string PictureURL { get; set; }
 
 
     }

@@ -87,10 +87,12 @@ function getGameList() {
                 
 
                 var shitToWrite = $("#coinflipGameList").html($("#coinflipGameList").html() + "<div class='coinflipGame row'>"
-                    + cGameToList.Creater + " "
+                    + "<img src='" +cGameToList.PictureURL + "'/> "
+                    + "" +cGameToList.Creater + " "
                     + "Wager: " + cGameToList.Wager + " "
                     + cGameToList.ShortDate + " "
                     + cGameToList.ShortTime
+                    
 
                     + "<form action='JoinCoinflip' method='post'>"
                     + "<input type='number' value='" + cGameToList.GameId + "' name='coinflipGameId' hidden readonly />"

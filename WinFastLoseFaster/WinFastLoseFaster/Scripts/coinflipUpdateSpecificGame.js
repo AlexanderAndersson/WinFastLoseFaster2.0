@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    //Hejsan, för ändring.
+
     UpdateShit();
 
     var refresher = setInterval(function() {

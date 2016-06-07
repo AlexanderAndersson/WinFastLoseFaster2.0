@@ -6,7 +6,12 @@
 <link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
 
 <div id="coinflipGameBoard" class="col-lg-12">
+
+
+@*
+
     <div class="coinflipGameBoardLeft"></div>
+
 
 
     @if (ViewBag.joiner == null)
@@ -22,9 +27,9 @@
         <h3>Game in progress</h3>
 
 
-        
 
-    
+
+
         <!-- hidden, used to get winner username and profile pictures -->
         <p id="coinflipWinner" hidden readonly>@ViewBag.winner.Username</p>
         <p id="createrPicture" hidden readonly>@ViewBag.creater.Picture</p>
@@ -68,7 +73,8 @@
 
     <div class="coinflipGameBoardRight"></div>
 
-
+*@
+    
 </div>
 
 

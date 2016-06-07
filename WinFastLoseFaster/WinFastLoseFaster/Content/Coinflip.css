@@ -8,11 +8,11 @@
 #CreateGame {
     width: 253px;
     margin: 0px auto;
-    border: 1px solid green; 
+    border: 1px solid black; 
 }
 
 #knapp {
-    width: 250px;
+    width: 251px;
     height: 35px;
 }
 

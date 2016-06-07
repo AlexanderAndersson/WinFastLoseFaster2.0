@@ -249,7 +249,8 @@ namespace WinFastLoseFaster.Controllers
                         Wager = game.Userbets.FirstOrDefault().Wager,
                         GameId = game.Id,
                         ShortDate = game.Timestamp.ToShortDateString(),
-                        ShortTime = game.Timestamp.ToShortTimeString()
+                        ShortTime = game.Timestamp.ToShortTimeString(),
+                        PictureURL = game.users.FirstOrDefault().Picture
                         
                     };
 

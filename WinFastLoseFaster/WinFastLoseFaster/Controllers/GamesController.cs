@@ -291,6 +291,7 @@ namespace WinFastLoseFaster.Controllers
             ViewBag.creater = null;
             ViewBag.joiner = null;
             ViewBag.winner = null;
+            ViewBag.gameActive = null;
 
             if (gameToPlay.GameActive == true)
             {
@@ -299,6 +300,8 @@ namespace WinFastLoseFaster.Controllers
                 User creater = gameToPlay.users.FirstOrDefault();
 
                 ViewBag.creater = creater;
+
+                ViewBag.gameActive = gameToPlay.GameActive;
 
             }
             else
@@ -317,6 +320,65 @@ namespace WinFastLoseFaster.Controllers
         }
 
 
+        public ActionResult PlayCoinflipJson(int gameId)
+        {
+
+            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
+
+            var currentGame = from g in context.Games
+                              where g.Id == gameId
+                              select g;
+
+            Game gameToPlay = currentGame.FirstOrDefault();
+            
+
+            GhettoCoinflipGameStatus takeThisJson = new GhettoCoinflipGameStatus();
+
+            if (gameToPlay.GameActive == true)
+            {
+                User creater = gameToPlay.users.FirstOrDefault();
+
+                takeThisJson = new GhettoCoinflipGameStatus()
+                {
+                    gameId = gameToPlay.Id,
+                    gameActive = gameToPlay.GameActive,
+                    CreaterUsername = creater.Username,
+                    CreaterPicture = creater.Picture,
+                    JoinerUsername = "",
+                    JoinerPicture = "",
+                    WinnerUsername = "",
+                    WinnerPicture = ""
+
+                };
+
+            }
+            else
+            {
+                User creater = gameToPlay.users.FirstOrDefault();
+                User joiner = gameToPlay.users.LastOrDefault();
+                User winner = gameToPlay.Winners.FirstOrDefault().WinningUser;
+
+                takeThisJson = new GhettoCoinflipGameStatus()
+                {
+                    gameId = gameToPlay.Id,
+                    gameActive = gameToPlay.GameActive,
+                    CreaterUsername = creater.Username,
+                    CreaterPicture = creater.Picture,
+                    JoinerUsername = joiner.Username,
+                    JoinerPicture = joiner.Picture,
+                    WinnerUsername = winner.Username,
+                    WinnerPicture = winner.Picture
+
+                };
+
+            }
+
+            
+
+            return Json(new { activeCoinflipGame = takeThisJson },
+                JsonRequestBehavior.AllowGet);
+        }
 
     }
+
 }

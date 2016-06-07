@@ -21,11 +21,15 @@
     {
         <h3>Game in progress</h3>
 
+
+        
+
     
         <!-- hidden, used to get winner username and profile pictures -->
         <p id="coinflipWinner" hidden readonly>@ViewBag.winner.Username</p>
         <p id="createrPicture" hidden readonly>@ViewBag.creater.Picture</p>
         <p id="joinerPicture" hidden readonly>@ViewBag.joiner.Picture</p>
+        <p id="gameActive" hidden readonly>@ViewBag.gameActive</p>
 
         <div class="creater">
             <img class="profilPic" src="@ViewBag.creater.Picture" />
@@ -66,3 +70,6 @@
 
 
 </div>
+
+
+<script src="~/Scripts/coinflipUpdateSpecificGame.js"></script>

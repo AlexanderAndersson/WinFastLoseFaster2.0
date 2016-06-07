@@ -6,9 +6,9 @@
     $("#coin .front").css("background-image", "url(" + createrPicture + ")");
     $("#coin .back").css("background-image", "url(" + joinerPicture + ")");
     
+    $('#coin').removeClass();
 
     setTimeout(function () {
-        $('#coin').removeClass();
         $('#coin').addClass(getSpin());
     }, 1000);
 
@@ -23,13 +23,8 @@
 
 function getSpin() {
 
-    //var winner = $("#coinflipWinner").html();
-
     var spin = "";
-    //alert(winner + " won!");
-    //spin = "animation1980";
 
-    //alert("LENNY WON");
     spin = "animation2160";
 
 

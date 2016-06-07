@@ -13,7 +13,12 @@
         $('#coin').addClass(getSpin());
     }, 1000);
 
+    setTimeout(function () {
 
+        $("#winnerName").css("display", "initial");
+        $("#coin .back").css("border", "5px solid green");
+
+    }, 4910);
 });
 
 

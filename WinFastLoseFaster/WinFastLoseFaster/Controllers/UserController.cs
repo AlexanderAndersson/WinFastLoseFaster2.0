@@ -110,6 +110,12 @@ namespace WinFastLoseFaster.Controllers
 
                 }
 
+                if (username.Trim().Length > 15)
+                {
+                    faults++;
+
+                }
+
                 if (password.Trim().Length < 6)
                 {
                     faults++;

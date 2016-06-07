@@ -126,10 +126,13 @@
     <None Include="Properties\PublishProfiles\WinFastLoseFaster.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\coinflip.js" />
+    <Content Include="Scripts\coinflipCreaterWin.js" />
+    <Content Include="Scripts\coinflipJoinerWin.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ProfilePicturePreview.js" />
     <Content Include="Scripts\RegisterValidation.js" />
     <Content Include="Scripts\statsFlikar.js" />
     <Content Include="Web.config">
@@ -169,6 +172,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Games\Coinflip.cshtml" />
     <Content Include="Views\Profile\Profile.cshtml" />
+    <Content Include="Views\Games\PlayCoinflip.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

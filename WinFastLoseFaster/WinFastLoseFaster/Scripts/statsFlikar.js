@@ -3,8 +3,8 @@
     $("#matcherFlik").on("click", function() {
 
         $('#stats').css("display", "none");
-        $('#statsTitlar').css("display", "inline-block");
-        $("#matches").css("display", "inline-block");
+        $('#statsTitlar').css("display", "none");
+        $("#matches").css("display", "initial");
 
     });//Matches onclick
 

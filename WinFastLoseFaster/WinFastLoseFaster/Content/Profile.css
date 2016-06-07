@@ -13,22 +13,25 @@
 
 .red {
     color: red;
+    font-size:15px;
 }
 
 .white {
     color: white;
+    font-size:15px;
 }
 
 
 /*************** BIG STATS SHIT ***************/
 
 .profilPic {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 100px;
     border: 5px solid lightseagreen;
     display: inline-block;
     /*margin-right: 100px;*/
+    margin-top: 10px;
 }
 
 #imgPreview img {
@@ -43,38 +46,49 @@
 
 #username {
     display: inline-block;
+    margin-left:20px;
+    
+     
 }
 
 #username h2{
-    /*margin: auto;
+    margin: auto;
     padding-top: 10px;
-    padding-left: 66px;*/
+    padding-left: 66px;
+    font-size:20px;
 }
 
 .headStats {
     display:table-cell;
-    border: 5px solid lightseagreen;
-    background-color: black;
-    width: 180px;
-    height: 180px;
+    /*border: 5px solid lightseagreen;*/
+    /*background-color: black;*/
+    width: 150px;
+    height: 150px;
     text-align: center;
     border-radius: 5px;
     padding-top: 25px;
     margin-top: 30px;
-    margin-right: 10px;
-   
+    margin-right: 100px;
+    border-bottom-style:outset;
+    border-radius:50%;
+    word-spacing:5px;
     
 }
 
 #profilHeader {
     /*border: 1px solid pink;*/
-    background-color: #333333;
+       display: inline-block;
+
 }
 
 #profilHeader img {
     /*margin-top: -75px;*/
     cursor:pointer;
     background-size:cover;
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle;
+    
 }
 
 /*************** FLIKAR FÖR MATCHER OCH STATS ***************/
@@ -87,6 +101,7 @@
 
 .Flikar div {
    display: inline-block;
+   border-collapse:unset;
 }
 
 .Flikar div:hover {
@@ -99,6 +114,7 @@
     display: inline-block;
     margin-right: 5px; 
     margin-top: 10px;
+    border: 1px outset lightseagreen;
 }
 
 /*************** TITLAR FÖR MATCHER ***************/
@@ -110,6 +126,7 @@
     min-width: 118px;
     color: orange;
     /*margin-left: 4px;*/
+    font-size:15px;
 }
 
 #statsTitlar {
@@ -127,10 +144,14 @@
     display:table; 
     width:100%
 }
+.spacing{
+    width:100px;
+    height:50px;
+}
 
 .game tr {
     display: inline-block;
-    /*border: 1px solid orange;*/
+    border: 1px solid orange;
     min-width: 118px;  
 }
 
@@ -146,7 +167,22 @@
 .td{
     border-spacing:5em;
     text-align:left;
+    font-size:30px;
 }
 .th{
     border-spacing:5em;
+    font-size:30px;
+}
+div.headStats{
+    resize:both;
+    overflow:auto;
+
+}
+.h3  {
+    font-size: 10px;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    display: -webkit-inline-box;
 }

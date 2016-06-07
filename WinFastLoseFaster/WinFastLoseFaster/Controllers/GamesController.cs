@@ -347,8 +347,8 @@ namespace WinFastLoseFaster.Controllers
                     JoinerUsername = "",
                     JoinerPicture = "",
                     WinnerUsername = "",
-                    WinnerPicture = ""
-
+                    WinnerPicture = "",
+                    Wager = gameToPlay.Userbets.FirstOrDefault().Wager
                 };
 
             }
@@ -367,7 +367,8 @@ namespace WinFastLoseFaster.Controllers
                     JoinerUsername = joiner.Username,
                     JoinerPicture = joiner.Picture,
                     WinnerUsername = winner.Username,
-                    WinnerPicture = winner.Picture
+                    WinnerPicture = winner.Picture,
+                    Wager = gameToPlay.Userbets.FirstOrDefault().Wager
 
                 };
 

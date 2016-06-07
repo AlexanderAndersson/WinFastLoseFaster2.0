@@ -24,6 +24,6 @@ namespace WinFastLoseFaster.Models
 
         public string WinnerPicture { get; set; }
 
-
+        public int Wager { get; set; }
     }
 }

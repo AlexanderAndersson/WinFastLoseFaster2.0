@@ -49,13 +49,14 @@ function UpdateShit(refresher)
                 if (game.gameActive == true)
                 {
                     var shitToWrite = $("#coinflipGameBoard").html("<div class='someName row'>"
-                    + "<p id='gameActive'>" + game.gameActive + "</p>"
-                    + "<p id='gameId'>" + game.gameId + "</p>"
+                    + "<p id='gameActive' readonly hidden>" + game.gameActive + "</p>"
+                    + "<p id='gameId' readonly hidden>" + game.gameId + "</p>"
 
-
-
-                    + "creater username: " + game.CreaterUsername + "<br />"
-                    + "creater picture: " + game.CreaterPicture + "<br />"
+                    + "<center><h2>Waiting for a player to join</h2></center>"
+                    + "<center><img src='" + game.CreaterPicture + "' class='profilPic'/></center>"
+                    + "<div><h3>" + game.CreaterUsername + "</h3></div>"
+                    + "<div><h3>"+ "Wager: " + game.Wager + "</h3></div>"
+                    
 
                     + "</div>");
 
@@ -66,10 +67,10 @@ function UpdateShit(refresher)
                     if (game.WinnerUsername == game.CreaterUsername)
                     {
                         var shitToWrite = $("#coinflipGameBoard").html("<div class='someName row'>"
-                    + "<p id='gameActive'>" + game.gameActive + "</p>"
-                    + "<p id='gameId'>" + game.gameId + "</p>"
-                    + "<p id='createrPicture'>" + game.CreaterPicture + "</p>"
-                    + "<p id='joinerPicture'>" + game.JoinerPicture + "</p>"
+                    + "<p id='gameActive' readonly hidden>" + game.gameActive + "</p>"
+                    + "<p id='gameId' readonly hidden>" + game.gameId + "</p>"
+                    + "<p id='createrPicture' readonly hidden>" + game.CreaterPicture + "</p>"
+                    + "<p id='joinerPicture' readonly hidden>" + game.JoinerPicture + "</p>"
 
 
                     + '<div id="coin-flip-cont">'

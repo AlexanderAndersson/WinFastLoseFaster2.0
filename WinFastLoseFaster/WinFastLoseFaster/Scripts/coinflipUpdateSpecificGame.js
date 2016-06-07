@@ -92,6 +92,10 @@ function UpdateShit(refresher)
                     + "</div>"
                     + "<script src='~/Scripts/coinflipJoinerWin.js'></script>");
 
+
+                        var xtra = $("#coinflipGameBoard").html($("#coinflipGameBoard").html()
+                         + "<script src='/Scripts/coinflipJoinerWin.js'></script>");
+
                     }
                     else if (game.WinnerUsername == game.JoinerUsername)
                     {

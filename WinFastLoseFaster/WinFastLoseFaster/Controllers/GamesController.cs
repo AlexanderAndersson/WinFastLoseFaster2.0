@@ -124,7 +124,8 @@ namespace WinFastLoseFaster.Controllers
 
             if (creater.Username == joiner.Username)
             {
-                return RedirectToAction("/Coinflip", "Games");
+                
+                return RedirectToAction("/PlayCoinflip", "Games", new { gameId = gameToJoin.Id });
 
             }//Användaren försöker spela mot sig själv, som man inte får.
 

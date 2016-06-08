@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "PlayCoinflip";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Coinflip.css" />
+
+<div id="coinflipGameBoard" class="col-lg-12">
+    <div class="coinflipGameBoardLeft"></div>
+
+
+    @if (ViewBag.joiner == null)
+    {
+        <div id="alone">
+            <h3>Waiting for a player to join the game</h3>
+            <center><img class="profilPic" src="@ViewBag.creater.Picture" /></center>
+            <center><h2>@ViewBag.Creater.Username</h2></center>
+        </div>
+    }
+    else
+    {
+        <h3>Game in progress</h3>
+
+
+        
+
+    
+        <!-- hidden, used to get winner username and profile pictures -->
+        <p id="coinflipWinner" hidden readonly>@ViewBag.winner.Username</p>
+        <p id="createrPicture" hidden readonly>@ViewBag.creater.Picture</p>
+        <p id="joinerPicture" hidden readonly>@ViewBag.joiner.Picture</p>
+        <p id="gameActive" hidden readonly>@ViewBag.gameActive</p>
+
+        <div class="creater">
+            <img class="profilPic" src="@ViewBag.creater.Picture" />
+            <h2>@ViewBag.Creater.Username</h2>
+        </div>
+        <div class="joiner">
+            <img class="profilPic" src="@ViewBag.joiner.Picture" />
+            <h2>@ViewBag.Joiner.Username</h2>
+        </div>
+
+        <div id="coin-flip-cont">
+            <div id="coin">
+                <div class="front"></div>
+                <div class="back"></div>
+            </div>
+        </div>
+
+
+        if (ViewBag.creater == ViewBag.winner)
+        {
+            <script src="~/Scripts/coinflipCreaterWin.js"></script>
+
+        }
+        else if (ViewBag.joiner == ViewBag.winner)
+        {
+            <script src="~/Scripts/coinflipJoinerWin.js"></script>
+
+        }
+        else
+        {
+            <script type="text/javascript">alert("Error!");</script>
+
+        }
+
+    }
+
+    <div class="coinflipGameBoardRight"></div>
+
+
+</div>
+
+
+<script src="~/Scripts/coinflipUpdateSpecificGame.js"></script>

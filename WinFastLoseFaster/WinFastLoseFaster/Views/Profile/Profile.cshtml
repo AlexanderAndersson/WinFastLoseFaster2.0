@@ -42,17 +42,19 @@
 <!--Wrapper runt hela skiten-->
 <div id="wrapper" class="container">
     <!--Profilbild-->
-    <div id="profilHeader" class="row col-lg-12">
-        <img class="profilPic" src="@ViewBag.Picture" data-toggle="modal" data-target=".bs-example-modal-sm" />
-        <!--Username-->
-        <div id="username">
-            <h2>@ViewBag.Username</h2>
+    <center>
+        <div id="profilHeader" class="row col-lg-12">
+            <img class="profilPic" src="@ViewBag.Picture" data-toggle="modal" data-target=".bs-example-modal-sm" />
+            <!--Username-->
+            <div id="username">
+                <h2>@ViewBag.Username</h2>
+            </div>
         </div>
-    </div>
-   
+
+    </center>
         <!--W/L Ratio-->
     <div class="row">
-        <div class="headStats col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="headStats col-xs-12 col-sm-12 col-md-6 col-lg-3">
             <h2>W/L Ratio</h2>
             @if (ViewBag.WLR > 1)
             {
@@ -67,22 +69,19 @@
                 <h3 class="red"> @ViewBag.WLR</h3>
             }
         </div>
-    </div>
         <!--Antal vinster och förluster-->'
-        <div class="row">
-            <div id="WL" class="headStats col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <h2>Win/Loss</h2>
-                <h3>
-                    <span class="green">@ViewBag.Wins</span>
-                    <span class="white">/</span>
-                    <span class="red">@ViewBag.Loss</span>
-                </h3>
-            </div>
+        <div id="WL" class="headStats col-xs-12 col-sm-12 col-md-6 col-lg-3">
+            <h2>Win/Loss</h2>
+            <h3>
+                <span class="green">@ViewBag.Wins</span>
+                <span class="white">/</span>
+                <span class="red">@ViewBag.Loss</span>
+            </h3>
         </div>
         <!--Profit-->
-        <div class="row">
-            <div class="headStats col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                 @if (ViewBag.Profit > 0) {    <h2>Profit</h2>
+        <div class="headStats col-xs-12 col-sm-12 col-md-6 col-lg-3">
+            @if (ViewBag.Profit > 0)
+            {    <h2>Profit</h2>
                 <h3 class="green">@ViewBag.Profit</h3>
             }
             else if (ViewBag.Profit < 0)
@@ -95,30 +94,50 @@
                 <h2>Profit</h2>
                 <h3 style="color: white">@ViewBag.Profit</h3>
             }
-           </div>
-            </div>
+        </div>
         <!--Credits-->
-        <div class="row">
-        <div class="headStats col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="headStats col-xs-12 col-sm-12 col-md-6 col-lg-3">
             <h2>Credits</h2>
             <h3 class="white">@ViewBag.Credits</h3>
         </div>
     </div>
     <!--Flikar-->
         <div class="row">
-            <div class="Flikar">
-                <div id="matcherFlik">
-                    <h3>Matches</h3>
-                </div>
-                <div id="statsFlik">
-                    <h3>Stats</h3>
-                </div>
-            </div>
-            <br />
+    <div class="Flikar">
+        <div id="matcherFlik">
+            <h3>Matches</h3>
         </div>
+        <div id="statsFlik">
+            <h3>Stats</h3>
+        </div>
+        <div id="bankFlik">
+            <h3>Bank</h3>
+    </div>
+            
+        </div>
+            <br />  
     <!--Status Titlar-->
     @*<table id="statsTitlar">
-            <thead>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Wager</th>
+                <th>Winner</th>
+                <th>Credits Won</th>
+                <th>Loser</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Game Type</th>
+            </tr>
+        </thead>
+    </table>*@
+    <!--Matcher-->
+            
+
+    <div class="row" >
+        <div class="table-responsive col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table id="statsTitlar" class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @*<thead>*@
                 <tr>
                     <th>Status</th>
                     <th>Wager</th>
@@ -129,110 +148,96 @@
                     <th>Time</th>
                     <th>Game Type</th>
                 </tr>
-            </thead>
-        </table>*@
-    <!--Matcher-->
-       <div class="row" >
-    <table id="statsTitlar" class="table-responsive">
-        @*<thead>*@
-        <tr>
-            <th>Status</th>
-            <th>Wager</th>
-            <th>Winner</th>
-            <th>Credits Won</th>
-            <th>Loser</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Game Type</th>
-        </tr>
-        @*</thead>*@
-        @*<tbody>*@
-        @foreach (Game game in ViewBag.myGames)
+                @*</thead>*@
+                @*<tbody>*@
+                @foreach (Game game in ViewBag.myGames)
             {
                 <!--Spel status-->
-            <tr id="game" class="table-responsive">
-                @if (game.GameActive == true)
-                {
-                    <td class="white">Active</td>
-                }
-                else
-                {
-                    foreach (Winner winner in game.Winners)
-                    {
-                        if (winner.WinningUser == ViewBag.currentUser)
+                    <tr id="game" class="table table-responsive">
+                        @if (game.GameActive == true)
                         {
-                            <td class="green">Won</td>
+                            <td class="white">Active</td>
                         }
                         else
                         {
-                            <td class="red">Lost</td>
+                            foreach (Winner winner in game.Winners)
+                            {
+                                if (winner.WinningUser == ViewBag.currentUser)
+                                {
+                                    <td class="green">Won</td>
+                                }
+                                else
+                                {
+                                    <td class="red">Lost</td>
+                                }
+                            }
                         }
-                    }
-                }
-                <td>@game.Userbets.FirstOrDefault().Wager</td>
+                        <td>@game.Userbets.FirstOrDefault().Wager</td>
 
-                <!--Om spelet är aktivt så kommer där stå pending istället för Winner, Credits-Won och Loser-->
-                @if (game.GameActive == true)
-                {
-                    <td>Pending</td>
-                    <td class="white">Pending</td>
-                        <td>Pending</td>
-                }
-
-                @foreach (Winner winner in game.Winners)
-                {
-                    if (winner.WinningUser == ViewBag.currentUser)
-                    {
-                        <td>You</td>
-                    }
-                    else
-                    {
-                        <td>@winner.WinningUser.Username</td>
-                    }
-
-                    if (winner.WinningUser == ViewBag.currentUser)
-                    {
-                        <td class="green">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
-                    }
-                    else
-                    {
-                        <td class="red">@(winner.TotalAmount - game.Userbets.FirstOrDefault().Wager)</td>
-                    }
-
-                    foreach (var player in game.users)
-                    {
-                        if (player != winner.WinningUser)
+                        <!--Om spelet är aktivt så kommer där stå pending istället för Winner, Credits-Won och Loser-->
+                        @if (game.GameActive == true)
                         {
-                            if (winner.WinningUser != ViewBag.currentUser)
+                            <td>Pending</td>
+                            <td class="white">Pending</td>
+                            <td>Pending</td>
+                        }
+
+                        @foreach (Winner winner in game.Winners)
+                        {
+                            if (winner.WinningUser == ViewBag.currentUser)
                             {
                                 <td>You</td>
                             }
                             else
                             {
-                                <td>@player.Username</td>
+                                <td>@winner.WinningUser.Username</td>
+                            }
+
+                            if (winner.WinningUser == ViewBag.currentUser)
+                            {
+                                <td class="green">@(winner.TotalAmount / 2)</td>
+                            }
+                            else
+                            {
+                                <td class="red">@(winner.TotalAmount / 2)</td>
+                            }
+
+                            foreach (var player in game.users)
+                            {
+                                if (player != winner.WinningUser)
+                                {
+                                    if (winner.WinningUser != ViewBag.currentUser)
+                                    {
+                                        <td>You</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@player.Username</td>
+                                    }
+                                }
                             }
                         }
-                    }
+                        <!--Om spelet spelades idag så står det today istället för ett datum-->
+                        @if (game.Timestamp.Date == DateTime.Today)
+                        {
+                            <td>Today</td>
+                            <td>@game.Timestamp.ToShortTimeString()</td>
+                        }
+                        else
+                        {
+                            <td>@game.Timestamp.ToShortDateString()</td>
+                            <td>@game.Timestamp.ToShortTimeString()</td>
+                        }
+                        <!--Spel typ-->
+                        <td>@game.Gametype</td>
+                    </tr>
                 }
-                <!--Om spelet spelades idag så står det today istället för ett datum-->
-                @if (game.Timestamp.Date == DateTime.Today)
-                {
-                    <td>Today</td>
-                    <td>@game.Timestamp.ToShortTimeString()</td>
-                }
-                else
-                {
-                    <td>@game.Timestamp.ToShortDateString()</td>
-                    <td>@game.Timestamp.ToShortTimeString()</td>
-                }
-                <!--Spel typ-->
-                <td>@game.Gametype</td>
-            </tr>
-        }
-        @*</tbody>*@
+                @*</tbody>*@
 
-    </table>
+            </table>
+        </div>
            </div>
+      
     <!--Alla stats på stats sidan-->
     <div id="stats" class="row">
         <div>
@@ -263,12 +268,27 @@
             <h3>Amount Won</h3>
             <h4><span class="green">@ViewBag.amountWon</span></h4>
         </div>
+        <div>
+            <h3>Amount Lost</h3>
+            <h4><span class="red">@ViewBag.amountLost</span></h4>
+        </div>
     </div>
-
 </div>
-
+<!--Deposit och withdrawal sida-->
+        <div id="bank"class="row">
+            <form action="Bank" method="post">
+                <h4>@ViewBag.tooMuch</h4>
+                <input class="input-lg" type="number" name="deposit" placeholder="Deposit" />
+                <input class="btn btn-lg btn-danger" type="submit" name="sDeposit" value="Submit" /><br>
+                <h5>[Max 1000]</h5><br><br>
+            </form>
+            <form action="Bank" method="post">
+                <input class="input-lg" type="number" name="withdrawal" placeholder="Withdrawal" />
+                <input class="btn btn-lg btn-success" type="submit" name="sWithdrawal" value="Submit" />
+            </form>
+        </div>
+    </div>
 <!--Scripts as u can see-->
-<script src="~/Scripts/refresh.js"></script>
 <script src="~/Scripts/statsFlikar.js"></script>
 <script src="~/Scripts/ProfilePicturePreview.js"></script>
 

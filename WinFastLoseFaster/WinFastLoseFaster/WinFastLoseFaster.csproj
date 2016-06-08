@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Coinflip.css" />
     <Content Include="Content\img\backgroundwallpaper.jpg" />
+    <Content Include="Content\img\Lgo2.jpg" />
     <Content Include="Content\img\LOgo.jpg" />
     <Content Include="Content\img\overwtach.jpg" />
     <Content Include="Content\img\Trump.jpg" />
@@ -127,12 +128,14 @@
     <None Include="Properties\PublishProfiles\WinFastLoseFaster.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\coinflip.js" />
+    <Content Include="Scripts\coinflipCreaterWin.js" />
+    <Content Include="Scripts\coinflipJoinerWin.js" />
+    <Content Include="Scripts\coinflipUpdateSpecificGame.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ProfilePicturePreview.js" />
-    <Content Include="Scripts\refresh.js" />
     <Content Include="Scripts\RegisterValidation.js" />
     <Content Include="Scripts\statsFlikar.js" />
     <Content Include="Web.config">
@@ -154,6 +157,7 @@
     <Compile Include="Models\Bet.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GhettoCoinflipGameStatus.cs" />
     <Compile Include="Models\GhettoListCoinflipGames.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WinFastLoseFasterContext.cs" />
@@ -172,6 +176,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Games\Coinflip.cshtml" />
     <Content Include="Views\Profile\Profile.cshtml" />
+    <Content Include="Views\Games\PlayCoinflip.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

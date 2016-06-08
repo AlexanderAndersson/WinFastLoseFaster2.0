@@ -8,8 +8,7 @@
 #CreateGame {
     width: 253px;
     margin: 0px auto;
-    border: 1px solid green;
-   
+    border: 1px solid green; 
 }
 
 #knapp {
@@ -26,12 +25,25 @@
 .coinflipGame {
     border: 1px solid lightblue;
     margin: 0px auto;
-    width: 430px;
-    height:90px;
-    text-align:center;
-    font-size:15px;
-    font-style:italic;
-    
+    width: 600px;
+    margin-bottom: 10px;
+    /*height:90px;*/
+    /*text-align:center;*/
+    font-size:17px;
+    /*font-style:italic;*/
+}
+
+.coinflipGame div {
+    display: inline-block;
+    /*border: 1px solid limegreen;*/
+}
+
+.newGameStats {
+    min-width: 203px;
+}
+
+.picture {
+    min-width: 90px
 }
 
 #title {
@@ -53,15 +65,15 @@
 width: 200px;
 height: 200px;
 position: absolute;
-top: calc(50% - 100px);
-left: calc(50% - 100px);
+top: calc(70% - 100px);
+left: calc(46% - 100px);
 }
 
 #coin {
 position: relative;
 width: 200px;
 transform-style: preserve-3d;
-display:none;
+/*display:none;*/
 }
 
 #coin .front, #coin .back {
@@ -203,4 +215,58 @@ from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rot
 to { -webkit-transform: rotateY(2160deg); -moz-transform: rotateY(2160deg); transform: rotateY(2160deg); }
 }
 
+.profilPic {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 5px solid lightseagreen;
+    /*display: inline-block;*/
+    /*margin-right: 100px;*/
+}
+
+.picDiv {
+    /*margin-left: 39%;*/  
+    vertical-align: central;  
+}
+
+#coinflipGameBoard img {
+    /*margin-top: -75px;*/
+    background-size:cover;
+    display: inline-block;
+}
+
+p {
+    display:inline-block;
+}
+
+#coinflipGameBoard {
+    margin: 0px auto;
+    /*width:1000px;
+    height:500px;*/
+    background-color:black;
+    border: 2px solid lightseagreen;
+}
+
+#coinflipGameBoard h3 {
+    text-align:center;
+    margin-top:2%;
+}
+
+.coinflipGameBoardLeft {
+    float:left;
+    border: 1px solid green;
+}
+
+.coinflipGameBoardRight {
+    float:right;
+    border: 1px solid green;
+}
+
+#coinDiv {
+    border: 2px solid orange;
+}
+
+#alone {
+    border: 2px solid orange;
+}
 

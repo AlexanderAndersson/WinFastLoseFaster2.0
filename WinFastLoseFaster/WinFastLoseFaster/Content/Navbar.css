@@ -26,7 +26,7 @@
 }
 
 .navbar-nav li:hover {
-    background-color:white;
+    background-color:gray;
 }
 .navbar-nav {
     background-color: black;
@@ -47,6 +47,5 @@ body {
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: white;
+    color: slategrey;
 }
-

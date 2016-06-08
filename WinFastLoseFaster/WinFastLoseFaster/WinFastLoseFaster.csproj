@@ -113,10 +113,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Coinflip.css" />
     <Content Include="Content\img\backgroundwallpaper.jpg" />
-    <Content Include="Content\img\Lgo2.jpg" />
-    <Content Include="Content\img\LOgo.jpg" />
     <Content Include="Content\img\overwtach.jpg" />
     <Content Include="Content\img\Trump.jpg" />
+    <Content Include="Content\img\Winfast-logo 321x96.png" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Profile.css" />
     <Content Include="Content\Site.css" />

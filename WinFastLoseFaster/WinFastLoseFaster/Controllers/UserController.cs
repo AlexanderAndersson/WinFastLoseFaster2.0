@@ -110,6 +110,12 @@ namespace WinFastLoseFaster.Controllers
 
                 }
 
+                if (username.Trim().Length > 15)
+                {
+                    faults++;
+
+                }
+
                 if (password.Trim().Length < 6)
                 {
                     faults++;
@@ -137,6 +143,17 @@ namespace WinFastLoseFaster.Controllers
                 var userList = from u in context.Users
                                where u.Username == username
                                select u;
+
+                var emailList = from e in context.Users
+                                where e.Mail == email
+                                select e;
+
+                if (emailList.Count() > 0)
+                {
+                    //Email is taken.
+                    faults++;
+
+                }
 
                 if (userList.Count() > 0)
                 {

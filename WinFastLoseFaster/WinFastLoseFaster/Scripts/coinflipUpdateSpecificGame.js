@@ -83,65 +83,68 @@ function UpdateShit(refresher)
                     + '</div>'
 
 
-                    + "creater username: " + game.CreaterUsername + "<br />"
-                    + "joiner username: " + game.JoinerUsername + "<br />"
-                    + "winner username: " + game.WinnerUsername + "<br />"
-                    + "creater picture: " + game.CreaterPicture + "<br />"
-                    + "joiner picture: " + game.JoinerPicture + "<br />"
-                    + "winner picture: " + game.WinnerPicture + "<br />"
-
+                    + "<div class='coinflipGameBoardLeft'>"
+                        + "<div><img class='profilPic' src='" + game.CreaterPicture + "'/></div>"
+                        + "<div><h3>" + game.CreaterUsername + "</h3></div>"
                     + "</div>"
-                    + "<script src='~/Scripts/coinflipJoinerWin.js'></script>");
+
+                    + "<div class='coinflipGameBoardRight'>"                     
+                        + "<div><img class='profilPic' src='" + game.JoinerPicture + "'/></div>"
+                        + "<div><h3> " + game.JoinerUsername + "</h3></div><br />"
+                    + "</div>"
+                    + "<div id='vs'>"
+                        + "<h3>VS</h3>"
+                    + "<div id='Winner'>"
+                    + "<h3>" + "WINNER IS!</h3><br/>"
+                    + "</div>"
+                    + "<div id='winnerName'><h3>" + game.WinnerUsername + "</h3></div>"
+                    + "</div>");
+
+                        var xtra = $("#coinflipGameBoard").html($("#coinflipGameBoard").html()
+                        + "<script src='/Scripts/coinflipCreaterWin.js'></script>");
+
 
                     }
                     else if (game.WinnerUsername == game.JoinerUsername)
                     {
                         var shitToWrite = $("#coinflipGameBoard").html("<div class='someName row'>"
-                    + "<p id='gameActive'>" + game.gameActive + "</p>"
-                    + "<p id='gameId'>" + game.gameId + "</p>"
-                    + "<p id='createrPicture'>" + game.CreaterPicture + "</p>"
-                    + "<p id='joinerPicture'>" + game.JoinerPicture + "</p>"
-
+                    + "<p id='gameActive' readonly hidden>" + game.gameActive + "</p>"
+                    + "<p id='gameId' readonly hidden>" + game.gameId + "</p>"
+                    + "<p id='createrPicture' readonly hidden>" + game.CreaterPicture + "</p>"
+                    + "<p id='joinerPicture' readonly hidden>" + game.JoinerPicture + "</p>"
 
                     + '<div id="coin-flip-cont">'
                     + '<div id="coin">'
-                    + '<div class="front"></div>'
-                    + '<div class="back"></div>'
+                        + '<div class="front"></div>'
+                        + '<div class="back"></div>'
                     + '</div>'
                     + '</div>'
+                    
+                    + "<div class='coinflipGameBoardLeft'>"
+                        + "<div><img class='profilPic' src='" + game.CreaterPicture + "'/></div>"
+                        + "<div><h3>" + game.CreaterUsername + "</h3></div>"
+                    + "</div>"
 
-
-                    + "creater username: " + game.CreaterUsername + "<br />"
-                    + "joiner username: " + game.JoinerUsername + "<br />"
-                    + "winner username: " + game.WinnerUsername + "<br />"
-                    + "creater picture: " + game.CreaterPicture + "<br />"
-                    + "joiner picture: " + game.JoinerPicture + "<br />"
-                    + "winner picture: " + game.WinnerPicture + "<br />"
-
+                    + "<div class='coinflipGameBoardRight'>"                     
+                        + "<div><img class='profilPic' src='" + game.JoinerPicture + "'/></div>"
+                        + "<div><h3> " + game.JoinerUsername + "</h3></div><br />"
+                    + "</div>"
+                    + "<div id='vs'>"
+                        + "<h3>VS</h3>"
+                    + "<div id='Winner'>"
+                    + "<h3>" + "WINNER IS!</h3><br/>"
+                    + "</div>"
+                    + "<div id='winnerName'><h3>" + game.WinnerUsername + "</h3></div>"
                     + "</div>");
-
-                        
-
+                                        
                         var xtra = $("#coinflipGameBoard").html($("#coinflipGameBoard").html()
-                         + "<script src='/Scripts/coinflipJoinerWin.js'></script>");
-                    
-
-
-                    }
-                    
-
-                }
-
-                
-                
-
+                         + "<script src='/Scripts/coinflipJoinerWin.js'></script>");                   
+                    }                   
+                }               
             },
             error: function (jqXHR, statusText, errorThrown) {
                 $('#coinflipGameList').html('Ett fel inträffade: <br>'
                     + statusText);
             }
-
         });
-
-
 }

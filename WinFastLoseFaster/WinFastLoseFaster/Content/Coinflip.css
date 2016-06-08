@@ -8,11 +8,11 @@
 #CreateGame {
     width: 253px;
     margin: 0px auto;
-    border: 1px solid green; 
+    border: 1px solid black; 
 }
 
 #knapp {
-    width: 250px;
+    width: 251px;
     height: 35px;
 }
 
@@ -20,6 +20,9 @@
     width: 250px;
     height: 40px;
     background-color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .coinflipGame {
@@ -66,7 +69,8 @@ width: 200px;
 height: 200px;
 position: absolute;
 top: calc(70% - 100px);
-left: calc(46% - 100px);
+left: calc(50% - 100px);
+/*border: 1px solid orange;*/
 }
 
 #coin {
@@ -81,12 +85,14 @@ position: absolute;
 width: 200px;
 height: 200px;
 background-size:cover;
+border: 5px solid lightseagreen;
 }
 
 #coin .front {
 transform: translateZ(1px);
 border-radius: 50%;
 background-color: #3498db;
+border: 5px solid lightseagreen;
 }
 
 #coin .back {
@@ -235,38 +241,70 @@ to { -webkit-transform: rotateY(2160deg); -moz-transform: rotateY(2160deg); tran
     display: inline-block;
 }
 
-p {
+/*p {
     display:inline-block;
-}
+}*/
 
 #coinflipGameBoard {
-    margin: 0px auto;
-    /*width:1000px;
-    height:500px;*/
+    margin: 40px auto;
+    /*width:1000px;*/
+    height:700px;
     background-color:black;
     border: 2px solid lightseagreen;
 }
 
-#coinflipGameBoard h3 {
+/*#coinflipGameBoard h3 {
     text-align:center;
     margin-top:2%;
-}
+}*/
 
 .coinflipGameBoardLeft {
     float:left;
-    border: 1px solid green;
+    /*border: 1px solid green;*/
+    display: inline-block;
+    margin-left: 15%;
 }
 
 .coinflipGameBoardRight {
     float:right;
-    border: 1px solid green;
+    /*border: 1px solid green;*/
+    display: inline-block;
+    margin-right: 15%;
+
 }
 
 #coinDiv {
-    border: 2px solid orange;
+    /*border: 2px solid orange;*/
 }
 
 #alone {
     border: 2px solid orange;
 }
 
+.someName {
+    text-align:center;
+    margin-top:2%;
+}
+
+#vs {
+    /*border: 1px solid orange;*/
+    margin-top: 10%;
+}
+
+#Winner {
+    position: absolute;
+    /*border: 1px solid orange;*/
+    top: calc(60% - 100px);
+    left: calc(53% - 100px);
+}
+
+#winnerName {
+    position: absolute;
+    /*border: 1px solid orange;*/
+    top: calc(84%);
+    left: calc(41%);
+    min-width: 200px;
+    text-align: center;
+    display: none;
+    color: green;
+}

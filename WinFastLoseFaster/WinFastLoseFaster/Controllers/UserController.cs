@@ -138,6 +138,17 @@ namespace WinFastLoseFaster.Controllers
                                where u.Username == username
                                select u;
 
+                var emailList = from e in context.Users
+                                where e.Mail == email
+                                select e;
+
+                if (emailList.Count() > 0)
+                {
+                    //Email is taken.
+                    faults++;
+
+                }
+
                 if (userList.Count() > 0)
                 {
                     //There's already a user with that username

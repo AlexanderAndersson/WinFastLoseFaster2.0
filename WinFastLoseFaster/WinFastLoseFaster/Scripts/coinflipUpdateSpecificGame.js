@@ -104,9 +104,6 @@ function UpdateShit(refresher)
                         + "<script src='/Scripts/coinflipCreaterWin.js'></script>");
 
 
-                        var xtra = $("#coinflipGameBoard").html($("#coinflipGameBoard").html()
-                         + "<script src='/Scripts/coinflipJoinerWin.js'></script>");
-
                     }
                     else if (game.WinnerUsername == game.JoinerUsername)
                     {

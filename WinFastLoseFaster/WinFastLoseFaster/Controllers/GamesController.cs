@@ -184,7 +184,7 @@ namespace WinFastLoseFaster.Controllers
             gameToJoin.users = usersToPlay;
             gameToJoin.Userbets = bets;
 
-            Session["credits"] = joiner.Credits;
+            //Session["credits"] = joiner.Credits;
 
             context.Winners.Add(winner.FirstOrDefault());
 

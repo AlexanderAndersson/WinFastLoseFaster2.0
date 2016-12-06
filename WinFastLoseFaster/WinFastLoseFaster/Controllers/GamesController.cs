@@ -239,18 +239,47 @@ namespace WinFastLoseFaster.Controllers
             //return Json(new { activeCoinflipGame = myList2.ToList() },
             //    JsonRequestBehavior.AllowGet);
 
-            List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
-            List<string> takeThisJson2 = new List<string>();
-            
-            //hej
+            //////List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
+            //////List<string> takeThisJson2 = new List<string>();
+
+            ////////hej
+
+            //////if (myList.Count() > 0)
+            //////{
+
+            //////    foreach (var game in myList)
+            //////    {
+
+            //////        GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
+            //////        {
+            //////            Creater = game.users.FirstOrDefault().Username,
+            //////            Wager = game.Userbets.FirstOrDefault().Wager,
+            //////            GameId = game.Id,
+            //////            ShortDate = game.Timestamp.ToShortDateString(),
+            //////            ShortTime = game.Timestamp.ToShortTimeString(),
+            //////            PictureURL = game.users.FirstOrDefault().Picture
+
+            //////        };
+
+
+
+
+            //////        takeThisJson.Add(shit);
+            //////        //takeThisJson2.Add(game.users.FirstOrDefault().Username);
+            //////        //takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
+            //////        //takeThisJson2.Add(game.Id.ToString());
+
+            //////    }
+
+            //////}
+
+            List<object> takeThisJson = new List<object>();
 
             if (myList.Count() > 0)
             {
-
                 foreach (var game in myList)
                 {
-
-                    GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
+                    var newGame = new
                     {
                         Creater = game.users.FirstOrDefault().Username,
                         Wager = game.Userbets.FirstOrDefault().Wager,
@@ -258,22 +287,11 @@ namespace WinFastLoseFaster.Controllers
                         ShortDate = game.Timestamp.ToShortDateString(),
                         ShortTime = game.Timestamp.ToShortTimeString(),
                         PictureURL = game.users.FirstOrDefault().Picture
-                        
                     };
-
-                    
-
-
-                    takeThisJson.Add(shit);
-                    //takeThisJson2.Add(game.users.FirstOrDefault().Username);
-                    //takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
-                    //takeThisJson2.Add(game.Id.ToString());
-
+                    takeThisJson.Add(newGame);
                 }
-
             }
 
-            
 
 
             return Json(new { activeCoinflipGame = takeThisJson },
@@ -284,7 +302,7 @@ namespace WinFastLoseFaster.Controllers
 
         }
 
-        public ActionResult PlayCoinflip(int gameId)
+        public ActionResult PlayCoinflip(int? gameId)
         {
 
             //WinFastLoseFasterContext context = new WinFastLoseFasterContext();
@@ -327,69 +345,62 @@ namespace WinFastLoseFaster.Controllers
         }
 
 
-        public ActionResult PlayCoinflipJson(int gameId)
+        public ActionResult PlayCoinflipJson(int? gameId)
         {
-
-            WinFastLoseFasterContext context = new WinFastLoseFasterContext();
-
-            var currentGame = from g in context.Games
-                              where g.Id == gameId
-                              select g;
-
-            if (currentGame.Count() == 1)
+            if (gameId != null)
             {
+                WinFastLoseFasterContext context = new WinFastLoseFasterContext();
 
-                Game gameToPlay = currentGame.FirstOrDefault();
-
-
-                GhettoCoinflipGameStatus takeThisJson = new GhettoCoinflipGameStatus();
-
-                if (gameToPlay.GameActive == true)
+                var gameToPlay = context.Games.Find(gameId);
+                if (gameToPlay != null)
                 {
-                    User creater = gameToPlay.users.FirstOrDefault();
+                    object takeThisJson;
 
-                    takeThisJson = new GhettoCoinflipGameStatus()
+                    if (gameToPlay.GameActive == true)
                     {
-                        gameId = gameToPlay.Id,
-                        gameActive = gameToPlay.GameActive,
-                        CreaterUsername = creater.Username,
-                        CreaterPicture = creater.Picture,
-                        JoinerUsername = "",
-                        JoinerPicture = "",
-                        WinnerUsername = "",
-                        WinnerPicture = "",
-                        Wager = gameToPlay.Userbets.FirstOrDefault().Wager
-                    };
+                        User creater = gameToPlay.users.FirstOrDefault();
+
+                        takeThisJson = new
+                        {
+                            gameId = gameToPlay.Id,
+                            gameActive = gameToPlay.GameActive,
+                            CreaterUsername = creater.Username,
+                            CreaterPicture = creater.Picture,
+                            JoinerUsername = "",
+                            JoinerPicture = "",
+                            WinnerUsername = "",
+                            WinnerPicture = "",
+                            Wager = gameToPlay.Userbets.FirstOrDefault().Wager
+                        };
+
+                    }
+                    else
+                    {
+                        User creater = gameToPlay.users.FirstOrDefault();
+                        User joiner = gameToPlay.users.LastOrDefault();
+                        User winner = gameToPlay.Winners.FirstOrDefault().WinningUser;
+
+                        takeThisJson = new
+                        {
+                            gameId = gameToPlay.Id,
+                            gameActive = gameToPlay.GameActive,
+                            CreaterUsername = creater.Username,
+                            CreaterPicture = creater.Picture,
+                            JoinerUsername = joiner.Username,
+                            JoinerPicture = joiner.Picture,
+                            WinnerUsername = winner.Username,
+                            WinnerPicture = winner.Picture,
+                            Wager = gameToPlay.Userbets.FirstOrDefault().Wager
+
+                        };
+
+                    }
+
+                    return Json(new { activeCoinflipGame = takeThisJson },
+                        JsonRequestBehavior.AllowGet);
 
                 }
-                else
-                {
-                    User creater = gameToPlay.users.FirstOrDefault();
-                    User joiner = gameToPlay.users.LastOrDefault();
-                    User winner = gameToPlay.Winners.FirstOrDefault().WinningUser;
-
-                    takeThisJson = new GhettoCoinflipGameStatus()
-                    {
-                        gameId = gameToPlay.Id,
-                        gameActive = gameToPlay.GameActive,
-                        CreaterUsername = creater.Username,
-                        CreaterPicture = creater.Picture,
-                        JoinerUsername = joiner.Username,
-                        JoinerPicture = joiner.Picture,
-                        WinnerUsername = winner.Username,
-                        WinnerPicture = winner.Picture,
-                        Wager = gameToPlay.Userbets.FirstOrDefault().Wager
-
-                    };
-
-                }
-
-
-
-                return Json(new { activeCoinflipGame = takeThisJson },
-                    JsonRequestBehavior.AllowGet);
-
-            }
+            } else { return RedirectToAction("/Coinflip", "Games"); }
 
             return RedirectToAction("/Coinflip", "Games");
         }

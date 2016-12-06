@@ -156,8 +156,6 @@
     <Compile Include="Models\Bet.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GhettoCoinflipGameStatus.cs" />
-    <Compile Include="Models\GhettoListCoinflipGames.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WinFastLoseFasterContext.cs" />
     <Compile Include="Models\Winner.cs" />

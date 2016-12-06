@@ -210,69 +210,6 @@ namespace WinFastLoseFaster.Controllers
                          orderby cg.Userbets.FirstOrDefault().Wager descending
                          select cg;
 
-
-            //ZooContext context = new ZooContext();
-            //int count = context.Djur.Count();
-            //return Json(new { Count = count },
-            //    JsonRequestBehavior.AllowGet);
-
-
-            //var myList2 = context.Games.Where(g => g.GameActive == true && g.Gametype == Game.GameEnum.Coinflip);
-
-
-            //foreach (var game in myList2)
-            //{
-            //    context.Entry(game).Collection(g => g.users).Load();
-            //    context.Entry(game).Collection(g => g.Userbets).Load();
-
-            //}
-
-            //List<string> myList3 = new List<string>();
-
-            //foreach (var game in myList2)
-            //{
-
-
-            //}
-
-
-            //return Json(new { activeCoinflipGame = myList2.ToList() },
-            //    JsonRequestBehavior.AllowGet);
-
-            //////List<GhettoListCoinflipGames> takeThisJson = new List<GhettoListCoinflipGames>();
-            //////List<string> takeThisJson2 = new List<string>();
-
-            ////////hej
-
-            //////if (myList.Count() > 0)
-            //////{
-
-            //////    foreach (var game in myList)
-            //////    {
-
-            //////        GhettoListCoinflipGames shit = new GhettoListCoinflipGames()
-            //////        {
-            //////            Creater = game.users.FirstOrDefault().Username,
-            //////            Wager = game.Userbets.FirstOrDefault().Wager,
-            //////            GameId = game.Id,
-            //////            ShortDate = game.Timestamp.ToShortDateString(),
-            //////            ShortTime = game.Timestamp.ToShortTimeString(),
-            //////            PictureURL = game.users.FirstOrDefault().Picture
-
-            //////        };
-
-
-
-
-            //////        takeThisJson.Add(shit);
-            //////        //takeThisJson2.Add(game.users.FirstOrDefault().Username);
-            //////        //takeThisJson2.Add(game.Userbets.FirstOrDefault().Wager.ToString());
-            //////        //takeThisJson2.Add(game.Id.ToString());
-
-            //////    }
-
-            //////}
-
             List<object> takeThisJson = new List<object>();
 
             if (myList.Count() > 0)
@@ -296,10 +233,6 @@ namespace WinFastLoseFaster.Controllers
 
             return Json(new { activeCoinflipGame = takeThisJson },
                 JsonRequestBehavior.AllowGet);
-
-
-            //return View(myList.ToList());
-
         }
 
         public ActionResult PlayCoinflip(int? gameId)
